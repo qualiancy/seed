@@ -1,4 +1,12 @@
 
+0.0.4 / 2011-10-03 
+==================
+
+  * refactored as model/collection factory
+  * added drip
+  * moving util extend to utils
+  * npm ignore
+
 0.0.3 / 2011-10-03 
 ==================
 
