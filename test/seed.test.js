@@ -128,12 +128,30 @@ module.exports = {
     assert.equal('[Plant hemmy]', hemmy.toString());
   },
   
-  'throws error on bad constructor': function () {
-    var create = function() {
-      return seed.extend(['test']);
+  'constructor using unseeded function': function() {
+    var plant = function() {
+      return this;
     };
     
-    assert.throws(create, Error);
+    plant.prototype.type = 'plant';
+    
+    plant.prototype.get = function (prop) {
+      return this[prop];
+    };
+    
+    var tree = seed.extend(plant, {
+      type: 'tree',
+      set: function (prop, value) {
+        this[prop] = value;
+      }
+    });
+    
+    var hemlock = new tree();
+    
+    assert.equal('function', typeof hemlock.set);
+    assert.equal('tree', hemlock.get('type'));
+    hemlock.set('type', 'hemlock');
+    assert.equal('hemlock', hemlock.type);
   },
   
   'after extend prototype changes': function() {
