@@ -14,7 +14,7 @@ module.exports = {
     
     var success = function (data) {
       assert.type(jake, 'object', 'model of correct type');
-      assert.eql(jake.attributes.name, 'jake', 'model has correct attributes');
+      assert.equal(jake.get('name'), 'jake', 'model has correct attributes');
       assert.equal(true, jake instanceof person, 'model is correct instance');
       assert.isNotNull(jake._mid);
     };
