@@ -91,5 +91,44 @@ module.exports = {
     assert.equal('summer', hemmy.get('season'));
     assert.equal('hemlock', hemmy.title);
     assert.equal('tree', hemmy.type);
+  },
+  'multipe extended constructor of objects': function() {
+    var plant = seed.extend({
+      initialize: function (arg1, arg2) {
+        this.name = arg1;
+        this.season = arg2;
+      },
+      get: function (prop) {
+        return this[prop];
+      },
+      toString: function() {
+        return '[Plant ' + this.name + ']';
+      }
+    });
+    
+    var tree = {
+      type: 'tree',
+      title: 'tree'
+    };
+    
+    var hemlock = seed.extend(plant, tree, {
+      title: 'hemlock'
+    });
+    
+    var hemmy = new hemlock('hemmy', 'summer');
+    
+    assert.equal('function', typeof hemmy.get);
+    assert.equal('hemmy', hemmy.get('name'));
+    assert.equal('summer', hemmy.get('season'));
+    assert.equal('hemlock', hemmy.title);
+    assert.equal('tree', hemmy.type);
+    assert.equal('[Plant hemmy]', hemmy.toString());
+  },
+  'throws error on bad constructor': function () {
+    var create = function() {
+      return seed.extend(['test']);
+    };
+    
+    assert.throws(create, Error);
   }
 };
