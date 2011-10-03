@@ -14,6 +14,8 @@
   "engines": {
     "node": "~v0.4.12"
   },
-  "dependencies": {},
+  "dependencies": {
+    "drip": "0.0.x"
+  },
   "devDependencies": {}
 }
