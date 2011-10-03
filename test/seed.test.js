@@ -130,5 +130,35 @@ module.exports = {
     };
     
     assert.throws(create, Error);
+  },
+  'after extend prototype changes': function() {
+    var plant = seed.extend({
+      initialize: function (arg1, arg2) {
+        this.name = arg1;
+        this.season = arg2;
+      },
+      get: function (prop) {
+        return this[prop];
+      }
+    });
+    
+    plant.prototype.initialize = function(arg1, arg2, arg3) {
+      this.set('name', arg1);
+      this.set('season', arg2);
+      this.set('region', arg3);
+    };
+    
+    plant.prototype.set = function (prop, value) {
+      this[prop] = value;
+    };
+    
+    var hemmy = new plant('hemmy', 'winter', 'forest');
+    
+    assert.equal('function', typeof hemmy.set);
+    assert.equal('function', typeof hemmy.get);
+    assert.equal('hemmy', hemmy.get('name'));
+    assert.equal('winter', hemmy.get('season'));
+    assert.equal('forest', hemmy.get('region'));
+    
   }
 };
