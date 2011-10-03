@@ -12,6 +12,8 @@ module.exports = {
       name: 'jake'
     });
     
+    jake.save();
+    
     assert.type(jake, 'object', 'model of correct type');
     assert.eql(jake.attributes, { name: 'jake' }, 'model has correct attributes');
     assert.equal(true, jake instanceof person, 'model is correct instance');
@@ -22,7 +24,10 @@ module.exports = {
         n = 0, changed;
     
     var jake = new person({
-      name: 'jake'
+      name: 'jake',
+      big: {
+        complicated: 'word'
+      }
     });
     
     jake.on('testing', function() {
@@ -38,6 +43,7 @@ module.exports = {
       jake.set({ name: 'doctor who' });
       jake.set({ name: 'the doctor'}, { silent: true }); // should not call event
       jake.emit('testing');
+      jake.save({ silent: true });
     }, 200);
     
     this.on('exit', function () {
