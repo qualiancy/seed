@@ -15,7 +15,8 @@
     "node": "~v0.4.12"
   },
   "dependencies": {
-    "drip": "0.0.x"
+    "drip": "0.0.x",
+    "oath": "0.0.x"
   },
   "devDependencies": {}
 }
