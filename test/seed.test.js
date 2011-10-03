@@ -7,7 +7,7 @@ module.exports = {
   },
   
   'basic constructor': function() {
-    var plant = seed.extend({
+    var plant = seed.create({
       name: 'maple',
       season: function(str) {
         return str;
@@ -21,7 +21,7 @@ module.exports = {
   },
   
   'basic constructor initialize function': function() {
-    var plant = seed.extend({
+    var plant = seed.create({
       initialize: function (arg1, arg2) {
         this.name = arg1;
         this.season = arg2;
@@ -38,7 +38,7 @@ module.exports = {
   },
   
   'basic extended constructor': function() {
-    var plant = seed.extend({
+    var plant = seed.create({
       initialize: function (arg1, arg2) {
         this.name = arg1;
         this.season = arg2;
@@ -48,12 +48,12 @@ module.exports = {
       }
     });
     
-    var tree = seed.extend(plant, {
+    var tree = seed.create(plant, {
       type: 'tree',
       title: 'tree'
     });
     
-    var hemlock = seed.extend(tree, {
+    var hemlock = seed.create(tree, {
       title: 'hemlock'
     });
     
@@ -67,7 +67,7 @@ module.exports = {
   },
   
   'multiple extended constructor': function() {
-    var plant = seed.extend({
+    var plant = seed.create({
       initialize: function (arg1, arg2) {
         this.name = arg1;
         this.season = arg2;
@@ -77,12 +77,12 @@ module.exports = {
       }
     });
     
-    var tree = seed.extend({
+    var tree = seed.create({
       type: 'tree',
       title: 'tree'
     });
     
-    var hemlock = seed.extend(plant, tree, {
+    var hemlock = seed.create(plant, tree, {
       title: 'hemlock'
     });
     
@@ -96,7 +96,7 @@ module.exports = {
   },
   
   'multipe extended constructor of objects': function() {
-    var plant = seed.extend({
+    var plant = seed.create({
       initialize: function (arg1, arg2) {
         this.name = arg1;
         this.season = arg2;
@@ -114,7 +114,7 @@ module.exports = {
       title: 'tree'
     };
     
-    var hemlock = seed.extend(plant, tree, {
+    var hemlock = seed.create(plant, tree, {
       title: 'hemlock'
     });
     
@@ -139,7 +139,7 @@ module.exports = {
       return this[prop];
     };
     
-    var tree = seed.extend(plant, {
+    var tree = seed.create(plant, {
       type: 'tree',
       set: function (prop, value) {
         this[prop] = value;
@@ -155,7 +155,7 @@ module.exports = {
   },
   
   'after extend prototype changes': function() {
-    var plant = seed.extend({
+    var plant = seed.create({
       initialize: function (arg1, arg2) {
         this.name = arg1;
         this.season = arg2;
