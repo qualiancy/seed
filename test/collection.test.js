@@ -14,8 +14,6 @@ module.exports = {
     
     var people = new seed.collection([jake]);
     
-    console.log(people);
-    
     assert.type(jake, 'object', 'model of correct type');
     assert.eql(jake.attributes, { name: 'jake' }, 'model has correct attributes');
     assert.equal(true, jake instanceof person, 'model is correct instance');
