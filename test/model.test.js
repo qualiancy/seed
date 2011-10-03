@@ -5,19 +5,25 @@ module.exports = {
   'version exists': function () {
     assert.isNotNull(seed.version);
   },
-  'model creation': function () {
+  'model creation // saving': function () {
     var person = seed.model.extend();
     
     var jake = new person({
       name: 'jake'
     });
     
-    jake.save();
+    var success = function (data) {
+      assert.type(jake, 'object', 'model of correct type');
+      assert.eql(jake.attributes.name, 'jake', 'model has correct attributes');
+      assert.equal(true, jake instanceof person, 'model is correct instance');
+      assert.isNotNull(jake._mid);
+    };
     
-    assert.type(jake, 'object', 'model of correct type');
-    assert.eql(jake.attributes, { name: 'jake' }, 'model has correct attributes');
-    assert.equal(true, jake instanceof person, 'model is correct instance');
-    assert.isNotNull(jake._mid);
+    var error = function (msg) {
+      assert.fail();
+    };
+    
+    jake.save().then(success, error);
   },
   'models have events': function () {
     var person = seed.model.extend(),
@@ -50,5 +56,17 @@ module.exports = {
       assert.equal(n, 2, 'event has successfully executed callback');
       assert.eql(changed, { attribute: 'name', previous: 'jake', current: 'doctor who' });
     });
+  },
+  'model save then destroy': function () {
+    var doctor = new seed.model({
+      name: 'who'
+    });
+    
+    doctor.save().then(function(data) {
+      assert.ok(true);
+      doctor.destroy().then(function(data) {
+        assert.ok(true);
+      }, function(err) { assert.fail(err); });
+    }, function(err) { assert.fail(err); });
   }
 };
