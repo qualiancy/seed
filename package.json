@@ -1,0 +1,19 @@
+{
+  "author": "Jake Luer <@jakeluer>",
+  "name": "seed",
+  "description": "little object factory",
+  "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/logicalparadox/seed.git"
+  },
+  "main": "index",
+  "scripts": {
+    "test": "expresso -I lib test/*.test.js"
+  },
+  "engines": {
+    "node": "~v0.4.12"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}
