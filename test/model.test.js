@@ -15,10 +15,11 @@ module.exports = {
     assert.type(jake, 'object', 'model of correct type');
     assert.eql(jake.attributes, { name: 'jake' }, 'model has correct attributes');
     assert.equal(true, jake instanceof person, 'model is correct instance');
+    assert.isNotNull(jake._mid);
   },
   'models have events': function () {
     var person = seed.model.extend(),
-        n = 0;
+        n = 0, changed;
     
     var jake = new person({
       name: 'jake'
@@ -28,12 +29,20 @@ module.exports = {
       n++;
     });
     
+    jake.on('change:name', function (data) {
+      n++;
+      changed = data;
+    });
+    
     setTimeout(function() {
+      jake.set({ name: 'doctor who' });
+      jake.set({ name: 'the doctor'}, { silent: true }); // should not call event
       jake.emit('testing');
     }, 200);
     
     this.on('exit', function () {
-      assert.equal(n, 1, 'event has successfully executed callback');
+      assert.equal(n, 2, 'event has successfully executed callback');
+      assert.eql(changed, { attribute: 'name', previous: 'jake', current: 'doctor who' });
     });
   }
 };
