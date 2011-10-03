@@ -7,7 +7,7 @@
     "type": "git",
     "url": "git://github.com/logicalparadox/seed.git"
   },
-  "main": "index",
+  "main": "./lib/seed.js",
   "scripts": {
     "test": "expresso -I lib test/*.test.js"
   },
