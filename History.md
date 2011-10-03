@@ -1,4 +1,9 @@
 
+0.0.3 / 2011-10-03 
+==================
+
+  * constructor using unseeded function and tests
+
 0.0.2 / 2011-10-03 
 ==================
 
