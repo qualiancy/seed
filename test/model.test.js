@@ -89,15 +89,69 @@ module.exports = {
       assert.equal(v, 2, 'verify called twice');
     });
   },
-  'model saving and destroy': function () {
-    var doctor = new seed.model({ name: 'who' });
+  'model saving and updating': function () {
+    var doctor = new seed.model({ name: 'who' }),
+        id, n = 0, v = 0;
     
-    doctor.save().then(function(data) {
-      console.log(data);
-      assert.ok(true);
-      doctor.destroy().then(function(data) {
-        assert.ok(true);
-      }, fail);
-    }, fail);
+    var verify1 = function(result) {
+      v++;
+      assert.equal('object', typeof result);
+      assert.equal('who', result.name);
+    };
+    
+    var verify2 = function(result) {
+      v++;
+      assert.equal('object', typeof result);
+      assert.equal('doctor who', result.name);
+    };
+    
+    var updatedoctor = function(id) {
+      n++;
+      assert.isNotNull(id);
+      
+      doctor
+        .set({ name: 'doctor who' })
+        .save()
+          .then(verify2, fail);
+      
+    };
+    
+    doctor.save()
+      .then(verify1, fail)
+      .get('id')
+        .then(updatedoctor, fail);
+      
+    
+    this.on('exit', function () {
+      assert.equal(n, 1, 'getdoctor called once');
+      assert.equal(v, 2, 'both verify called');
+    });
+  },
+  'model saving and destroy': function () {
+    var doctor = new seed.model({ name: 'who' }),
+      n = 0;
+    
+    var destroy = function () {
+      n++;
+      doctor.destroy()
+        .then(success, fail)
+        .then(confirm_delete);
+    };
+    
+    var confirm_delete = function (id) {
+      var newdoctor = new seed.model({ id: id });
+      n++;
+      newdoctor
+        .fetch()
+        .then(fail, success); //switch because we want it to fail;
+    };
+    
+    doctor.save()
+      .then(success, fail)
+      .then(destroy);
+      
+    this.on('exit', function () {
+      assert.equal(n, 2, 'both callbacks fired');
+    });
   }
 };
