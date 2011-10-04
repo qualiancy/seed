@@ -1,6 +1,14 @@
 var assert = require('assert'),
     seed = require('seed');
 
+var success = function(data) {
+  assert.ok(true);
+};
+
+var fail = function(err) {
+  assert.fail(err);
+};
+
 module.exports = {
   'version exists': function () {
     assert.isNotNull(seed.version);
@@ -31,19 +39,11 @@ module.exports = {
     
     var jake = new person({
       name: 'jake',
-      big: {
-        complicated: 'word'
-      }
+      big: { complicated: 'word' }
     });
     
-    jake.on('testing', function() {
-      n++;
-    });
-    
-    jake.on('change:name', function (data) {
-      n++;
-      changed = data;
-    });
+    jake.on('testing', function() { n++; });
+    jake.on('change:name', function (data) { n++; changed = data; });
     
     setTimeout(function() {
       jake.set({ name: 'doctor who' });
@@ -66,7 +66,7 @@ module.exports = {
       assert.ok(true);
       doctor.destroy().then(function(data) {
         assert.ok(true);
-      }, function(err) { assert.fail(err); });
-    }, function(err) { assert.fail(err); });
+      }, fail);
+    }, fail);
   }
 };
