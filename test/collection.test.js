@@ -1,25 +1,9 @@
 var assert = require('assert'),
-    seed = require('seed');
+    sherlock = require('sherlock');
 
-var sherlock = {
-  spy: function(fn) {
-    if (!fn) fn = function() {};
-    function proxy() {
-      var args = Array.prototype.slice.call(arguments);
-      proxy.calls.push(args);
-      proxy.called = true;
-      fn.apply(this, args);
-    }
-  
-    proxy.prototype = fn.prototype;
-    proxy.calls = [];
-    proxy.called = false;
-    
-    return proxy;
-  }
-}
+console.log(sherlock.version);
 
-
+var seed = require('seed');
 
 module.exports = {
   'version exists': function () {
