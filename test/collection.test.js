@@ -1,6 +1,26 @@
 var assert = require('assert'),
     seed = require('seed');
 
+var sherlock = {
+  spy: function(fn) {
+    if (!fn) fn = function() {};
+    function proxy() {
+      var args = Array.prototype.slice.call(arguments);
+      proxy.calls.push(args);
+      proxy.called = true;
+      fn.apply(this, args);
+    }
+  
+    proxy.prototype = fn.prototype;
+    proxy.calls = [];
+    proxy.called = false;
+    
+    return proxy;
+  }
+}
+
+
+
 module.exports = {
   'version exists': function () {
     assert.isNotNull(seed.version);
