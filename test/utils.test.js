@@ -23,5 +23,15 @@ module.exports = {
     
     var obj3 = utils.merge(obj1, obj2);
     assert.eql(obj3, { doctor: 'who', companion: 'amy', tardis: 'police box' });
+  },
+  
+  'uuid generation': function () {
+    var list = [], count = 10;
+    uidg = new utils.uuid();
+    for (var i=0;i<count;i++) {
+      guid = uidg.gen();
+      list.push(guid);
+    }
+    assert.equal(count,list.length);
   }
 };
