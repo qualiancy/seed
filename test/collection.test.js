@@ -25,37 +25,51 @@ module.exports = {
   'version exists': function () {
     assert.isNotNull(seed.version);
   },
-  'model creation': function () {
-    var person = seed.model.extend();
+  'collection add model': function () {
+    var person = seed.model.extend({ className: 'Person' });
     
-    var jake = new person({
-      name: 'jake'
+    var doctor = new person({ name: 'who' }),
+        companion = new person({ name: 'amy' });
+    
+    var tardis = new seed.collection([doctor], { model: person });
+    
+    // defaults
+    assert.equal(1, tardis.models.length);
+    assert.eql(person, tardis.model);
+    
+    var spy = new sherlock.spy();
+    
+    tardis.once('add', spy);
+    tardis.add(companion);
+    
+    this.on('exit', function() {
+      assert.equal(2, tardis.models.length);
+      assert.equal(true, spy.called, 'tardis add event fired');
+      assert.equal(1, spy.calls.length, 'tardis add only fired once');
     });
-    
-    var people = new seed.collection([jake]);
-    
-    assert.type(jake, 'object', 'model of correct type');
-    assert.eql(jake._attributes, { name: 'jake' }, 'model has correct attributes');
-    assert.equal(true, jake instanceof person, 'model is correct instance');
   },
-  'models have events': function () {
-    var person = seed.model.extend(),
-        n = 0;
+  'collection remove model': function () {
+    var person = seed.model.extend({ className: 'Person' });
     
-    var jake = new person({
-      name: 'jake'
-    });
+    var doctor = new person({ name: 'who' }),
+        companion = new person({ name: 'amy' });
     
-    jake.on('testing', function() {
-      n++;
-    });
+    var tardis = new seed.collection([doctor, companion], { model: person });
     
-    setTimeout(function() {
-      jake.emit('testing');
-    }, 200);
+    // defaults
+    assert.equal(2, tardis.models.length);
+    assert.eql(person, tardis.model);
+    assert.eql(companion.collection, tardis);
     
-    this.on('exit', function () {
-      assert.equal(n, 1, 'event has successfully executed callback');
+    var bye = new sherlock.spy();
+    
+    tardis.once('remove', bye);
+    tardis.remove(companion); // sadface
+    
+    this.on('exit', function() {
+      assert.equal(1, tardis.models.length, 'doctor travelling alone');
+      assert.equal(true, bye.called, 'tardis `remove` event fired');
+      assert.equal(1, bye.calls.length, 'tardis `remove` only fired once');
     });
   }
 };
