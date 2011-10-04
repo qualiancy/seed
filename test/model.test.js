@@ -57,12 +57,43 @@ module.exports = {
       assert.eql(changed, { attribute: 'name', previous: 'jake', current: 'doctor who' });
     });
   },
-  'model save then destroy': function () {
-    var doctor = new seed.model({
-      name: 'who'
+  'model saving and reading': function () {
+    var doctor = new seed.model({ name: 'who' }),
+        id, n = 0, v = 0;
+    
+    var verify = function(result) {
+      v++;
+      assert.equal('object', typeof result);
+      assert.equal('who', result.name);
+    };
+    
+    var getdoctor = function(id) {
+      n++;
+      assert.isNotNull(id);
+      
+      var doctor2 = new seed.model({ id: id });
+      doctor2.fetch()
+        .then(verify, fail);
+      
+    };
+    
+    doctor.save()
+      .then(success, fail)
+      .get('id')
+        .then(getdoctor, fail)
+        .pop()
+      .then(verify, fail);
+    
+    this.on('exit', function () {
+      assert.equal(n, 1, 'getdoctor called once');
+      assert.equal(v, 2, 'verify called twice');
     });
+  },
+  'model saving and destroy': function () {
+    var doctor = new seed.model({ name: 'who' });
     
     doctor.save().then(function(data) {
+      console.log(data);
       assert.ok(true);
       doctor.destroy().then(function(data) {
         assert.ok(true);
