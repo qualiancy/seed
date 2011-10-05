@@ -25,6 +25,14 @@ module.exports = {
     assert.eql(obj3, { doctor: 'who', companion: 'amy', tardis: 'police box' });
   },
   
+  'test isFunction': function() {
+    var fn = function() {};
+    var notfn = {};
+    
+    assert.equal(true, utils.isFunction(fn));
+    assert.equal(false, utils.isFunction(notfn));
+  },
+  
   'uuid generation': function () {
     var list = [], count = 10;
     uidg = new utils.uuid();
