@@ -1,4 +1,22 @@
 
+0.0.6 / 2011-10-05 
+==================
+
+  * models can chain
+  * adding oath
+  * memory storage engine implementing seed standard error codes
+  * all model storage actions converted to callbacks
+  * collection tests have different them than models
+  * save, fetch, destroy converted from oaths to callbacks
+  * utils isFunction
+  * using sherlock for extra testing
+  * collection beginnings: add/remove
+  * test spies use sherlock
+  * models using new uuid generator
+  * better uuid generation - ms time  based
+  * model is actually Model (caps)
+  * utils no longer part of exports
+
 0.0.5 / 2011-10-04 
 ==================
 
