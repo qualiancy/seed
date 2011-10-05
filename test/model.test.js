@@ -68,7 +68,7 @@ module.exports = {
       assert.equal('who', this.get('name'), 'names still match on save');
       
       var doctor1 = this;
-      
+      console.log();
       var doctor2 = new seed.model({ id: this.id });
       
       doctor2.fetch(function(err) {

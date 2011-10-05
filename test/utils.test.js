@@ -35,7 +35,7 @@ module.exports = {
   
   'uuid generation': function () {
     var list = [], count = 10;
-    uidg = new utils.uuid();
+    uidg = new utils.uid();
     for (var i=0;i<count;i++) {
       guid = uidg.gen();
       list.push(guid);
