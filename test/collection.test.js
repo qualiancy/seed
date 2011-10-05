@@ -1,8 +1,6 @@
 var assert = require('assert'),
     sherlock = require('sherlock');
 
-console.log(sherlock.version);
-
 var seed = require('seed');
 
 module.exports = {
@@ -12,48 +10,48 @@ module.exports = {
   'collection add model': function () {
     var person = seed.model.extend({ className: 'Person' });
     
-    var doctor = new person({ name: 'who' }),
-        companion = new person({ name: 'amy' });
+    var arthur = new person({ name: 'arthur dent' }),
+        ford = new person({ name: 'ford prefect' });
     
-    var tardis = new seed.collection([doctor], { model: person });
+    var earth = new seed.collection([arthur], { model: person });
     
     // defaults
-    assert.equal(1, tardis.models.length);
-    assert.eql(person, tardis.model);
+    assert.equal(1, earth.models.length);
+    assert.eql(person, earth.model);
     
     var spy = new sherlock.spy();
     
-    tardis.once('add', spy);
-    tardis.add(companion);
+    earth.once('add', spy);
+    earth.add(ford);
     
     this.on('exit', function() {
-      assert.equal(2, tardis.models.length);
-      assert.equal(true, spy.called, 'tardis add event fired');
-      assert.equal(1, spy.calls.length, 'tardis add only fired once');
+      assert.equal(2, earth.models.length);
+      assert.equal(true, spy.called, 'earth add event fired');
+      assert.equal(1, spy.calls.length, 'earth add only fired once');
     });
   },
   'collection remove model': function () {
     var person = seed.model.extend({ className: 'Person' });
     
-    var doctor = new person({ name: 'who' }),
-        companion = new person({ name: 'amy' });
+    var arthur = new person({ name: 'arthur dent' }),
+        ford = new person({ name: 'ford prefect' });
     
-    var tardis = new seed.collection([doctor, companion], { model: person });
+    var earth = new seed.collection([arthur, ford], { model: person });
     
     // defaults
-    assert.equal(2, tardis.models.length);
-    assert.eql(person, tardis.model);
-    assert.eql(companion.collection, tardis);
+    assert.equal(2, earth.models.length);
+    assert.eql(person, earth.model);
+    assert.eql(ford.collection, earth);
     
     var bye = new sherlock.spy();
     
-    tardis.once('remove', bye);
-    tardis.remove(companion); // sadface
+    earth.once('remove', bye);
+    earth.remove(ford); // sadface
     
     this.on('exit', function() {
-      assert.equal(1, tardis.models.length, 'doctor travelling alone');
-      assert.equal(true, bye.called, 'tardis `remove` event fired');
-      assert.equal(1, bye.calls.length, 'tardis `remove` only fired once');
+      assert.equal(1, earth.models.length, 'arthur only remains');
+      assert.equal(true, bye.called, 'earth `remove` event fired');
+      assert.equal(1, bye.calls.length, 'earth `remove` only fired once');
     });
   }
 };
