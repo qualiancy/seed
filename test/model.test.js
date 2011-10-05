@@ -144,5 +144,95 @@ module.exports = {
     this.on('exit', function () {
       assert.equal(n, 3, 'all callbacks fired');
     });
+  },
+  'model chaining of actions': function () {
+    var doctor = new seed.model({ name: 'who' }),
+        n = 0;
+    
+    var fail = function(err) {
+      assert.fail(err);
+    };
+    
+    var verify1 = function (id) {
+      n++;
+      assert.eql(this, doctor, 'correct context');
+      assert.equal('doctor who', this.get('name'));
+    };
+    
+    var verify2 = function (data) {
+      n++;
+      assert.eql(this, doctor, 'correct context');
+    };
+    
+    var verifySave = function (data) {
+      n++;
+      assert.eql(this, doctor, 'correct context');
+      assert.isDefined(this.id, 'made trip to server');
+      assert.equal(this.id, doctor.get('id'), 'orig ref updated attributes');
+    };
+    
+    var fetch = function (data) {
+      n++;
+      assert.eql(this, doctor, 'correct context');
+      assert.isNotNull(data);
+      
+      var new_doctor = new seed.model({ id: this.id });
+      
+      var verifyFetch = function (data) {
+        n++;
+        assert.eql(this, new_doctor, 'correct context');
+      };
+      
+      var verifyDestroy = function (data) {
+        n++;
+      };
+      
+      new_doctor
+        .chain()
+        .fetch()
+          .then(verifyFetch, fail)
+          .destroy(verifyDestroy, fail)
+            .pop()
+          .pop()
+        .exec();
+    };
+    
+    var verifyThen = function (data) {
+      n++;
+      assert.eql(this, doctor, 'correct context');
+      assert.isUndefined(data);
+    };
+    
+    
+    doctor
+      .chain()
+      .set({ name: 'doctor who' })
+      .then(verify1, fail)
+      .get('name')
+        .then(verify2, fail)
+        .pop()
+      .save(verifySave)
+        .serialize()
+          .then(verify2, fail)
+          .pop()
+        .then(verifyThen, fail)
+        .save()
+          .then(verifyThen, fail)
+          .save()
+            .then(verifySave, fail)
+            .then(verifyThen, fail)
+            .save()
+              .then(verifySave, fail)
+              .then(fetch, fail)
+              .pop()
+            .pop()
+          .pop()
+        .pop()
+      .exec();
+
+    
+    this.on('exit', function () {
+      assert.equal(n, 12, 'all callbacks called');
+    });
   }
 };
