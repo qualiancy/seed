@@ -1,6 +1,8 @@
 var assert = require('assert'),
     seed = require('seed');
 
+var sherlock = require('sherlock');
+
 var success = function(data) {
   assert.ok(true);
 };
@@ -20,18 +22,15 @@ module.exports = {
       name: 'jake'
     });
     
-    var success = function (data) {
-      assert.type(jake, 'object', 'model of correct type');
-      assert.equal(jake.get('name'), 'jake', 'model has correct attributes');
-      assert.equal(true, jake instanceof person, 'model is correct instance');
-      assert.isNotNull(jake._mid);
-    };
-    
-    var error = function (msg) {
-      assert.fail();
-    };
-    
-    jake.save().then(success, error);
+    jake.save(function(err) {
+      assert.isNull(err);
+      assert.type(this, 'object', 'model of correct type');
+      assert.equal(this.get('name'), 'jake', 'model has correct attributes');
+      assert.equal(true, this instanceof person, 'model is correct instance');
+      assert.isDefined(this.uuid);
+      assert.isDefined(this.id);
+      assert.eql(this, jake);
+    });
   },
   'models have events': function () {
     var person = seed.model.extend(),
@@ -59,99 +58,91 @@ module.exports = {
   },
   'model saving and reading': function () {
     var doctor = new seed.model({ name: 'who' }),
-        id, n = 0, v = 0;
+        n = 0;
     
-    var verify = function(result) {
-      v++;
-      assert.equal('object', typeof result);
-      assert.equal('who', result.name);
-    };
-    
-    var getdoctor = function(id) {
+    doctor.save(function (err) {
       n++;
-      assert.isNotNull(id);
+      assert.isNull(err);
+      assert.isDefined(this.uuid, 'uuid defined');
+      assert.isDefined(this.id, 'id defined upon save');
+      assert.equal('who', this.get('name'), 'names still match on save');
       
-      var doctor2 = new seed.model({ id: id });
-      doctor2.fetch()
-        .then(verify, fail);
+      var doctor1 = this;
       
-    };
-    
-    doctor.save()
-      .then(success, fail)
-      .get('id')
-        .then(getdoctor, fail)
-        .pop()
-      .then(verify, fail);
+      var doctor2 = new seed.model({ id: this.id });
+      
+      doctor2.fetch(function(err) {
+        n++;
+        assert.isNull(err);
+        assert.isDefined(this.uuid, 'uuid defined');
+        assert.isDefined(this.id, 'id defined upon fetch');
+        assert.equal(doctor1.id, this.id);
+        assert.eql(doctor1._attributes, this._attributes);
+      });
+      
+    });
     
     this.on('exit', function () {
-      assert.equal(n, 1, 'getdoctor called once');
-      assert.equal(v, 2, 'verify called twice');
+      assert.equal(n, 2, 'all tests completed');
     });
   },
   'model saving and updating': function () {
     var doctor = new seed.model({ name: 'who' }),
-        id, n = 0, v = 0;
+        n = 0;
     
-    var verify1 = function(result) {
-      v++;
-      assert.equal('object', typeof result);
-      assert.equal('who', result.name);
-    };
-    
-    var verify2 = function(result) {
-      v++;
-      assert.equal('object', typeof result);
-      assert.equal('doctor who', result.name);
-    };
-    
-    var updatedoctor = function(id) {
+    doctor.save(function(err) {
       n++;
-      assert.isNotNull(id);
+      assert.isNull(err);
+      assert.isDefined(this.uuid, 'uuid defined');
+      assert.isDefined(this.id, 'id defined upon save');
+      assert.equal('who', this.get('name'), 'names still match on save');
       
-      doctor
-        .set({ name: 'doctor who' })
-        .save()
-          .then(verify2, fail);
-      
-    };
-    
-    doctor.save()
-      .then(verify1, fail)
-      .get('id')
-        .then(updatedoctor, fail);
-      
+      this.set({ name: 'doctor who' });
+      this.save(function (err) {
+        n++;
+        assert.isNull(err);
+        assert.isDefined(this.uuid, 'uuid defined');
+        assert.isDefined(this.id, 'id defined upon save');
+        assert.equal('doctor who', this.get('name'), 'names still match on save');
+      });
+    });
     
     this.on('exit', function () {
-      assert.equal(n, 1, 'getdoctor called once');
-      assert.equal(v, 2, 'both verify called');
+      assert.equal(n, 2, 'all callbacks completed');
     });
   },
   'model saving and destroy': function () {
     var doctor = new seed.model({ name: 'who' }),
-      n = 0;
+        n = 0;
     
-    var destroy = function () {
+    doctor.save(function (err) {
       n++;
-      doctor.destroy()
-        .then(success, fail)
-        .then(confirm_delete);
-    };
-    
-    var confirm_delete = function (id) {
-      var newdoctor = new seed.model({ id: id });
-      n++;
-      newdoctor
-        .fetch()
-        .then(fail, success); //switch because we want it to fail;
-    };
-    
-    doctor.save()
-      .then(success, fail)
-      .then(destroy);
+      assert.isNull(err);
+      assert.isDefined(this.uuid, 'uuid defined');
+      assert.isDefined(this.id, 'id defined upon save');
+      assert.equal('who', this.get('name'), 'names still match on save');
+      
+      var id = this.id;
+      
+      this.destroy(function(err) {
+        n++;
+        assert.isNull(err, 'no errors on destroy');
+        
+        var doctor2 = new seed.model({ id: id });
+      
+        doctor2.fetch(function(err) {
+          n++;
+          assert.isDefined(err);
+          assert.equal(6, err.code, 'correct callback code for not defined');
+        });
+      });
+      
+      
+      
+    });
       
     this.on('exit', function () {
-      assert.equal(n, 2, 'both callbacks fired');
+      assert.equal(n, 3, 'all callbacks fired');
     });
   }
 };
