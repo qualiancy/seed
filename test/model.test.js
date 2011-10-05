@@ -133,7 +133,7 @@ module.exports = {
         doctor2.fetch(function(err) {
           n++;
           assert.isDefined(err);
-          assert.equal(6, err.code, 'correct callback code for not defined');
+          assert.equal(3, err.code, 'correct callback code for not defined');
         });
       });
       
