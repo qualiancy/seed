@@ -1,7 +1,7 @@
 var assert = require('assert'),
     sherlock = require('sherlock');
 
-var seed = require('seed');
+var seed = require('..');
 
 module.exports = {
   'version exists': function () {
