@@ -1,5 +1,5 @@
 var assert = require('assert'),
-    seed = require('seed');
+    seed = require('..');
 
 var sherlock = require('sherlock');
 
