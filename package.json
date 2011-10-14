@@ -16,7 +16,8 @@
   },
   "dependencies": {
     "drip": "0.0.x",
-    "oath": "0.0.x"
+    "oath": "0.0.x",
+    "tea": "0.0.x"
   },
   "devDependencies": {
     "sherlock": "0.0.x"  
