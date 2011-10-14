@@ -1,4 +1,22 @@
 
+0.0.7 / 2011-10-14 
+==================
+
+  * collection uses tea, not utils
+  * model uses tea, not utils
+  * store uses tea, not utils
+  * rewrite model chain api for set/serialize to behave more like jquery chains
+  * removed utils, added tea to package
+  * Cleaning chain api and some documentation
+  * storage naming convention
+  * MemoryStore documentation
+  * store documentation
+  * store defaults to collection store
+  * comment cleanup
+  * model doc updates based on storage change
+  * better storage handling
+  * comments / docs for models
+
 0.0.6 / 2011-10-05 
 ==================
 
