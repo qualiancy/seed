@@ -1,19 +1,19 @@
 var assert = require('assert'),
     sherlock = require('sherlock');
 
-var seed = require('..');
+var Seed = require('..');
 
 module.exports = {
   'version exists': function () {
-    assert.isNotNull(seed.version);
+    assert.isNotNull(Seed.version);
   },
-  'collection add model': function () {
-    var person = seed.model.extend({ className: 'Person' });
+  'Collection add Model': function () {
+    var person = Seed.Model.extend({ className: 'Person' });
     
     var arthur = new person({ name: 'arthur dent' }),
         ford = new person({ name: 'ford prefect' });
     
-    var earth = new seed.collection([arthur], { model: person });
+    var earth = new Seed.Collection([arthur], { model: person });
     
     // defaults
     assert.equal(1, earth.models.length);
@@ -30,13 +30,13 @@ module.exports = {
       assert.equal(1, spy.calls.length, 'earth add only fired once');
     });
   },
-  'collection remove model': function () {
-    var person = seed.model.extend({ className: 'Person' });
+  'Collection remove Model': function () {
+    var person = Seed.Model.extend({ className: 'Person' });
     
     var arthur = new person({ name: 'arthur dent' }),
         ford = new person({ name: 'ford prefect' });
     
-    var earth = new seed.collection([arthur, ford], { model: person });
+    var earth = new Seed.Collection([arthur, ford], { model: person });
     
     // defaults
     assert.equal(2, earth.models.length);
