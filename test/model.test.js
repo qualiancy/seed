@@ -58,6 +58,12 @@ module.exports = {
       assert.eql(changed, { attribute: 'name', previous: 'jake', current: 'doctor who' });
     });
   },
+  'Model understands type': function () {
+    var doctor = new Seed.Model({ name: 'who' }, { type: 'person' });
+    
+    assert.equal(doctor.type, 'person');
+    assert.equal(doctor.toString().toLowerCase(), '[object person]');
+  },
   'Model saving and reading': function () {
     var doctor = new Seed.Model({ name: 'who' }, { store: store }),
         n = 0;
