@@ -11,6 +11,8 @@ var fail = function(err) {
   assert.fail(err);
 };
 
+var store = new seed.MemoryStore();
+
 module.exports = {
   'version exists': function () {
     assert.isNotNull(seed.version);
@@ -20,7 +22,7 @@ module.exports = {
     
     var jake = new person({
       name: 'jake'
-    });
+    }, { store: store });
     
     jake.save(function(err) {
       assert.isNull(err);
@@ -39,7 +41,7 @@ module.exports = {
     var jake = new person({
       name: 'jake',
       big: { complicated: 'word' }
-    });
+    }, { store: store });
     
     jake.on('testing', function() { n++; });
     jake.on('change:name', function (data) { n++; changed = data; });
@@ -57,7 +59,7 @@ module.exports = {
     });
   },
   'model saving and reading': function () {
-    var doctor = new seed.model({ name: 'who' }),
+    var doctor = new seed.model({ name: 'who' }, { store: store }),
         n = 0;
     
     doctor.save(function (err) {
@@ -69,7 +71,7 @@ module.exports = {
       
       var doctor1 = this;
       console.log();
-      var doctor2 = new seed.model({ id: this.id });
+      var doctor2 = new seed.model({ id: this.id }, { store: store });
       
       doctor2.fetch(function(err) {
         n++;
@@ -87,7 +89,7 @@ module.exports = {
     });
   },
   'model saving and updating': function () {
-    var doctor = new seed.model({ name: 'who' }),
+    var doctor = new seed.model({ name: 'who' }, { store: store }),
         n = 0;
     
     doctor.save(function(err) {
@@ -112,7 +114,7 @@ module.exports = {
     });
   },
   'model saving and destroy': function () {
-    var doctor = new seed.model({ name: 'who' }),
+    var doctor = new seed.model({ name: 'who' }, { store: store }),
         n = 0;
     
     doctor.save(function (err) {
@@ -128,7 +130,7 @@ module.exports = {
         n++;
         assert.isNull(err, 'no errors on destroy');
         
-        var doctor2 = new seed.model({ id: id });
+        var doctor2 = new seed.model({ id: id }, { store: store });
       
         doctor2.fetch(function(err) {
           n++;
@@ -146,7 +148,7 @@ module.exports = {
     });
   },
   'model chaining of actions': function () {
-    var doctor = new seed.model({ name: 'who' }),
+    var doctor = new seed.model({ name: 'who' }, { store: store }),
         n = 0;
     
     var fail = function(err) {
@@ -176,7 +178,7 @@ module.exports = {
       assert.eql(this, doctor, 'correct context');
       assert.isNotNull(data);
       
-      var new_doctor = new seed.model({ id: this.id });
+      var new_doctor = new seed.model({ id: this.id }, { store: store });
       
       var verifyFetch = function (data) {
         n++;
