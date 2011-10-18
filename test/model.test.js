@@ -59,10 +59,30 @@ module.exports = {
     });
   },
   'Model understands type': function () {
+    var n = 0;
+    
     var doctor = new Seed.Model({ name: 'who' }, { type: 'person' });
     
     assert.equal(doctor.type, 'person');
     assert.equal(doctor.toString().toLowerCase(), '[object person]');
+    
+    var who = Seed.Model.extend('person', {
+      initialize: function () {
+        n++;
+      }
+    });
+    
+    var dr = new who();
+    
+    assert.equal(who.type, 'person');
+    assert.equal(who.toString().toLowerCase(), '[object person]');
+    
+    assert.equal(dr.type, 'person');
+    assert.equal(who.toString().toLowerCase(), '[object person]');
+    
+    this.on('exit', function () {
+      assert.equal(1, n, 'all callbacks fired');
+    });
   },
   'Model saving and reading': function () {
     var doctor = new Seed.Model({ name: 'who' }, { store: store }),
