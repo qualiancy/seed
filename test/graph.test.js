@@ -29,21 +29,9 @@ var investigation = new sherlock.Investigation('Seed.Graph', function (test, don
   
   
   test('Graph#add', function (test, done) {
-    var n = 0;
-    
-    var person = Seed.Model.extend('person', {
-      schema: {
-        name: {
-          type: String,
-          unique: true
-        },
-        origin: String
-      }
-    });
-    
-    var earth = new Seed.Graph({
-      models: [ person ]
-    });
+    var n = 0
+      , person = Seed.Model.extend('person', {})
+      , earth = new Seed.Graph({ models: [ person ] });
     
     var arthur = {
       id: 'arthur',
@@ -117,7 +105,6 @@ var investigation = new sherlock.Investigation('Seed.Graph', function (test, don
       origin: 'Earth'
     };
     
-    
     test('person has been added', function (test, done) {
       earth.add('person', arthur, function (err, data) {
         assert.isNull(err);
@@ -144,8 +131,6 @@ var investigation = new sherlock.Investigation('Seed.Graph', function (test, don
         done();
       });
     });
-    
-    
     
     done();
   });
