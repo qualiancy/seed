@@ -1,7 +1,7 @@
 {
   "author": "Jake Luer <@jakeluer>",
   "name": "seed",
-  "description": "little object factory",
+  "description": "Storage agnostic, event based models and collections.",
   "version": "0.0.7",
   "repository": {
     "type": "git",
@@ -20,6 +20,6 @@
     "tea": "0.1.x"
   },
   "devDependencies": {
-    "sherlock": "0.0.x"  
+    "sherlock": "0.1.x"  
   }
 }
