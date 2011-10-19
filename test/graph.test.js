@@ -82,7 +82,6 @@ var investigation = new sherlock.Investigation('Seed.Graph', function (test, don
         assert.ok(tea.isType(person, 'person'));
         done();
       });
-      
     });
     
     earth.add('person', arthur, success);
@@ -96,6 +95,61 @@ var investigation = new sherlock.Investigation('Seed.Graph', function (test, don
     
     done();
   });
+  
+  test('Graph#get', function (test, done) {
+    var person = Seed.Model.extend('person', {
+      schema: {
+        name: {
+          type: String,
+          unique: true
+        },
+        origin: String
+      }
+    });
+    
+    var earth = new Seed.Graph({
+      models: [ person ]
+    });
+    
+    var arthur = {
+      id: 'arthur',
+      name: 'Arthur Dent',
+      origin: 'Earth'
+    };
+    
+    
+    test('person has been added', function (test, done) {
+      earth.add('person', arthur, function (err, data) {
+        assert.isNull(err);
+        assert.isNotNull(data);
+        assert.equal(data.id, arthur.id);
+        
+        test('person can be retrieved', function (test, done) {
+          earth.get('/person/arthur', function (err, person) {
+            assert.isNull(err);
+            assert.isNotNull(person);
+            assert.equal(person.id, arthur.id, 'retrieved person has correct id');
+            assert.equal(person.get('name'), arthur.name, 'retrieved person has correct name');
+            done();
+          });
+        });
+        
+        test('person who has not been added cannot be retrieved', function (test, done) {
+          earth.get('/person/ford', function (err, person) {
+            assert.isNotNull(err);
+            done();
+          });
+        });
+        
+        done();
+      });
+    });
+    
+    
+    
+    done();
+  });
+  
   
   done();
 });
