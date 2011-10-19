@@ -1,31 +1,34 @@
-
-var assert = require('assert'),
-    tea = require('tea'),
-    Seed = require('..');
-
 var sherlock = require('sherlock')
-  , inspect = require('eyes').inspector({ maxLength: 10240 });
+  , assert = sherlock.assert
+  , tea = require('tea');
 
-module.exports = {
-  'seed#version': function () {
+var Seed = require('../lib/seed');
+
+var investigation = new sherlock.Investigation('Seed.Graph', function (test, done) {
+  
+  test('Seed#version', function (test, done) {
     assert.isNotNull(Seed.version);
-  },
-  'graph#constructor': function () {
-    var n = 0;
-    
-    var graph = Seed.Graph.extend({
-      initialize: function () {
-        n++;
-      }
-    });
-    
-    var g = new graph();
+    done();
+  });
+  
+  test('Graph#constructor', function (test, done) {
+    var n = 0
+      , graph = Seed.Graph.extend({
+          initialize: function () {
+            n++;
+          }
+        })
+      , g = new graph();
     
     this.on('exit', function () {
-      assert.equal(1,n, 'all callbacks have been called');
+      assert.equal(1, n, 'all callbacks have been called');
     });
-  },
-  'graph stores simple models, emits events': function () {
+    
+    done();
+  });
+  
+  
+  test('Graph#add', function (test, done) {
     var n = 0;
     
     var person = Seed.Model.extend('person', {
@@ -56,35 +59,45 @@ module.exports = {
     
     var success = function (err, data) {
       n++;
-      assert.isNull(err);
-      assert.isNotNull(data);
+      test('item added - ' + data.id, function (test, done) {
+        assert.isNull(err);
+        assert.isNotNull(data);
+        done();
+      });
     };
     
     var fail = function (err, data) {
       n++;
-      assert.isNotNull(err);
-      assert.isNull(data);
-    }
+      test('item not added when model not available', function (test, done) {
+        assert.isNotNull(err);
+        assert.isNull(data);
+        done();
+      });
+    };
     
     earth.on('new:person', function (person) {
       n++;
-      assert.isNotNull(person);
-      assert.ok(tea.isType(person, 'person'));
+      test('event#new:person valid - ' + person.id, function (test, done) {
+        assert.isNotNull(person);
+        assert.ok(tea.isType(person, 'person'));
+        done();
+      });
+      
     });
     
     earth.add('person', arthur, success);
     earth.add('person', ford, success);
-    
     earth.add('alien', ford, fail);
-    
-    inspect(earth);
-    
-    
     
     this.on('exit', function () {
       assert.equal(2, earth.length(), 'Both items added to graph.');
-      assert.equal(5, n, 'All callbacks fired');
+      assert.equal(n, 5, 'All callbacks fired');
     });
     
-  }
-};
+    done();
+  });
+  
+  done();
+});
+
+module.exports = investigation;
