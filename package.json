@@ -7,7 +7,7 @@
     "type": "git",
     "url": "git://github.com/logicalparadox/seed.git"
   },
-  "main": "./lib/seed.js",
+  "main": "index",
   "scripts": {
     "test": "expresso -I lib test/*.test.js"
   },
@@ -15,7 +15,7 @@
     "node": "~v0.4.12"
   },
   "dependencies": {
-    "drip": "0.0.x",
+    "drip": "0.1.x",
     "oath": "0.0.x",
     "tea": "0.1.x"
   },
