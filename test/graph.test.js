@@ -115,15 +115,30 @@ var investigation = new sherlock.Investigation('Seed.Graph', function (test, don
           earth.get('/person/arthur', function (err, person) {
             assert.isNull(err);
             assert.isNotNull(person);
+            assert.equal(earth._models.length, 1, 'model has been removed');
             assert.equal(person.id, arthur.id, 'retrieved person has correct id');
             assert.equal(person.get('name'), arthur.name, 'retrieved person has correct name');
+            
+            test('person can be removed', function (test, done) {
+              earth.remove('/person/arthur', function (err) {
+                assert.isNull(err, 'no error on remove');
+                assert.equal(earth._models.length, 0, 'model has been removed');
+                earth.get('/person/arthur', function (err, person) {
+                  assert.isNull(err);
+                  assert.isNull(person, 'person wasn\'t found so null returned');
+                  done();
+                });
+              });
+            });
+            
             done();
           });
         });
         
         test('person who has not been added cannot be retrieved', function (test, done) {
           earth.get('/person/ford', function (err, person) {
-            assert.isNotNull(err);
+            assert.isNull(err);
+            assert.isNull(person);
             done();
           });
         });
