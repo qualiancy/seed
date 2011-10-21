@@ -84,7 +84,7 @@ var investigation = new sherlock.Investigation('Seed.Graph', function (test, don
     done();
   });
   
-  test('Graph#get', function (test, done) {
+  test('Graph#remove', function (test, done) {
     var person = Seed.Model.extend('person', {
       schema: {
         name: {
@@ -105,13 +105,13 @@ var investigation = new sherlock.Investigation('Seed.Graph', function (test, don
       origin: 'Earth'
     };
     
-    test('person has been added', function (test, done) {
+    test('Graph#add - person has been added', function (test, done) {
       earth.add('person', arthur, function (err, data) {
         assert.isNull(err);
         assert.isNotNull(data);
         assert.equal(data.id, arthur.id);
         
-        test('person can be retrieved', function (test, done) {
+        test('Graph#get - person can be retrieved', function (test, done) {
           earth.get('/person/arthur', function (err, person) {
             assert.isNull(err);
             assert.isNotNull(person);
@@ -119,7 +119,14 @@ var investigation = new sherlock.Investigation('Seed.Graph', function (test, don
             assert.equal(person.id, arthur.id, 'retrieved person has correct id');
             assert.equal(person.get('name'), arthur.name, 'retrieved person has correct name');
             
-            test('person can be removed', function (test, done) {
+            test('Graph#remove - person can be removed - w/events', function (test, done) {
+              var spy = sherlock.Spy(function(address) {
+                assert.isNotNull(address);
+                assert.equal(address, '/person/arthur');
+              });
+              
+              earth.on('remove', spy);
+              
               earth.remove('/person/arthur', function (err) {
                 assert.isNull(err, 'no error on remove');
                 assert.equal(earth._models.length, 0, 'model has been removed');
@@ -129,27 +136,38 @@ var investigation = new sherlock.Investigation('Seed.Graph', function (test, don
                   done();
                 });
               });
+              
+              this.on('exit', function () {
+                assert.equal(spy.calls.length, 1, 'remove event has been called');
+              });
+              
             });
             
             done();
           });
         });
-        
-        test('person who has not been added cannot be retrieved', function (test, done) {
-          earth.get('/person/ford', function (err, person) {
-            assert.isNull(err);
-            assert.isNull(person);
-            done();
-          });
-        });
-        
+        done();
+      });
+    });
+    
+    
+    test('person who has not been added cannot be retrieved', function (test, done) {
+      earth.get('/person/ford', function (err, person) {
+        assert.isNull(err);
+        assert.isNull(person);
+        done();
+      });
+    });
+    
+    test('person who has not been added cannot be removed', function (test, done) {
+      earth.remove('/person/ford', function (err) {
+        assert.isNull(err);
         done();
       });
     });
     
     done();
   });
-  
   
   done();
 });
