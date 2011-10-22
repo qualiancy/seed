@@ -104,7 +104,7 @@ var investigation = new Sherlock.Investigation('Seed#Hash', function (test, done
     var hash = new Seed.Hash(data)
       , index = 0;
     
-    var spy = Sherlock.Spy(function (k, d, i) {
+    var spy = Sherlock.Spy(function (d, k, i) {
       assert.equal(index, i, 'counting match');
       assert.equal(data[k], d, 'data matches');
       index++;
