@@ -99,6 +99,55 @@ var investigation = new Sherlock.Investigation('Seed#Hash', function (test, done
     done();
   });
   
+  test('Hash#each', function (test, done) {
+    var hash = new Seed.Hash(data)
+      , index = 0;
+    
+    var spy = Sherlock.Spy(function (k, d, i) {
+      assert.equal(index, i, 'counting match');
+      assert.equal(data[k], d, 'data matches');
+      index++;
+    });
+    
+    hash.each(spy);
+    
+    assert.equal(spy.calls.length, expected_length, 'all tests fired');
+    assert.equal(index, expected_length, 'double check');
+    done();
+  });
+  
+  test('Hash#map', function (test, done) {
+    var hash = new Seed.Hash(data)
+      , index = 0;
+    
+    var spy = Sherlock.Spy(function (d, k) {
+      assert.equal(data[k], d, 'data matches');
+      index++;
+      return d + 1;
+    });
+    
+    hash.map(spy);
+    
+    assert.equal(spy.calls.length, expected_length, 'all tests fired');
+    assert.equal(index, expected_length, 'double check');
+    done();
+  });
+  
+  test('Hash#select', function (test, done) {
+    var hash = new Seed.Hash(data)
+      , index = 0;
+    
+    var hash2 = hash.select(function (d, k) {
+      assert.equal(data[k], d, 'data matches');
+      index++;
+      return (index <= 10) ? true : false;
+    });
+    
+    assert.equal(index, expected_length, 'all items checked');
+    assert.equal(hash2.length, 10, 'only first 10 items included');
+    done();
+  });
+  
   done();
 });
 
