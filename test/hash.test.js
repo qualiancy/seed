@@ -8,7 +8,8 @@ var fs = require('fs')
 
 var investigation = new Sherlock.Investigation('Seed#Hash', function (test, done) {
   
-  var data = JSON.parse(fs.readFileSync(path.join(__dirname, 'fixtures', 'countries.json'), 'utf-8'))
+  var data_raw = fs.readFileSync(path.join(__dirname, 'fixtures', 'countries.json'), 'utf-8')
+    , data = JSON.parse(data_raw)
     , expected_length = 238;
   
   test('Seed#version', function (test, done) {
@@ -145,6 +146,48 @@ var investigation = new Sherlock.Investigation('Seed#Hash', function (test, done
     
     assert.equal(index, expected_length, 'all items checked');
     assert.equal(hash2.length, 10, 'only first 10 items included');
+    done();
+  });
+  
+  test('Hash#keys', function (test, done) {
+    var hash = new Seed.Hash(data)
+      , index = 0;
+    
+    var keys = hash.keys();
+    
+    assert.equal(keys.length, expected_length, 'all items checked');
+    done();
+  });
+  
+  test('Hash#values', function (test, done) {
+    var hash = new Seed.Hash(data)
+      , index = 0;
+    
+    var values = hash.values();
+    
+    assert.equal(values.length, expected_length, 'all items checked');
+    done();
+  });
+  
+  test('Hash#toArray', function (test, done) {
+    var hash = new Seed.Hash(data)
+      , index = 0;
+    
+    var arr = hash.toArray();
+    
+    assert.isArray(arr, 'its an array');
+    assert.equal(arr.length, expected_length, 'all items checked');
+    done();
+  });
+  
+  test('Hash#toJSON', function (test, done) {
+    var hash = new Seed.Hash(data)
+      , index = 0;
+    
+    var json = hash.toJSON();
+    
+    assert.isString(json, 'its an string');
+    assert.equal(json, data_raw, 'matches original file');
     done();
   });
   
