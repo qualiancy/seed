@@ -1,4 +1,47 @@
 
+0.0.8 / 2011-10-21 
+==================
+
+  * Merge branch 'feature/hash'
+  * all basic tests pass
+  * Hash#keys uses native Object.keys, doh
+  * tests Hash each / map / select
+  * cleaning Hash#select
+  * fixed hash#index function
+  * Hash tests and data fixtures
+  * Hash # select, key, values cleanup
+  * Hash#index getter
+  * hash events emit index or key, not full data
+  * Added Hash
+  * everything moved around
+  * no event emitted on graph.remove is object doesn't exist
+  * Graph#remove + tests
+  * drip updated
+  * Gragh#test cleanup
+  * Graph#get
+  * Merge branch 'feature/graph-tests'
+  * graph test written in sherlock
+  * package - sherlock for testing
+  * Merge branch 'feature/graph'
+  * can add models to graphs
+  * improved model typing, customized extend function
+  * improved model typing, customized extend function
+  * Merge branch 'master' into feature/graph
+  * Merge branch 'feature/model-type'
+  * model understands type
+  * basic use model as schema
+  * graph initialized correctly
+  * graph initializing
+  * get/set/destroy of model for filestore
+  * storing in folder based on model or collection path
+  * better storage selection upon sync
+  * added filestore
+  * models bug - uid now in utils
+  * tea 0.1.0 compatibility
+  * capitalization
+  * model requires definition of storage
+  * moving uid generation into seed
+
 0.0.7 / 2011-10-14 
 ==================
 
