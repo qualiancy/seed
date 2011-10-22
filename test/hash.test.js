@@ -64,6 +64,38 @@ var investigation = new Sherlock.Investigation('Seed#Hash', function (test, done
     
     assert.equal(spy.calls.length, expected_length, 'all events fired for `del`');
     assert.equal(hash.length, 0, 'all items removed');
+    // assert.isEmpty(hash._data, 'inner structure confirms all items removed');
+    done();
+  });
+  
+  test('Hash#at', function (test, done) {
+    var hash = new Seed.Hash(data)
+      , spy = Sherlock.Spy()
+      , index = 0;
+    
+    for (var key in data) {
+      assert.equal(data[key], hash.at(index), 'correct value returned for `at`');
+      assert.isNotNull(hash.at(index), 'value is returned');
+      index++;
+      spy();
+    }
+    
+    assert.equal(spy.calls.length, expected_length, 'all tests fired');
+    done();
+  });
+  
+  test('Hash#index', function (test, done) {
+    var hash = new Seed.Hash(data)
+      , spy = Sherlock.Spy()
+      , index = 0;
+    
+    for (var key in data) {
+      assert.equal(index, hash.index(key), 'correct value returned for `index`');
+      index++;
+      spy();
+    }
+    
+    assert.equal(spy.calls.length, expected_length, 'all tests fired');
     done();
   });
   
