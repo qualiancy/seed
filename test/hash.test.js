@@ -69,6 +69,16 @@ var investigation = new Sherlock.Investigation('Seed#Hash', function (test, done
     done();
   });
   
+  test('Hash#clone', function (test, done) {
+    var hash = new Seed.Hash(data)
+      , hash2 = hash.clone();
+    
+    hash.set('Nation of Open Source', 10000000);
+    assert.equal(hash.length, expected_length +1, 'added 1 to hash');
+    assert.equal(hash2.length, expected_length, 'didn\'t add 1 to clone hash');
+    done();
+  });
+  
   test('Hash#at', function (test, done) {
     var hash = new Seed.Hash(data)
       , spy = Sherlock.Spy()
