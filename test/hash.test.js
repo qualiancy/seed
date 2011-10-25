@@ -65,7 +65,7 @@ var investigation = new Sherlock.Investigation('Seed#Hash', function (test, done
     
     assert.equal(spy.calls.length, expected_length, 'all events fired for `del`');
     assert.equal(hash.length, 0, 'all items removed');
-    // assert.isEmpty(hash._data, 'inner structure confirms all items removed');
+    assert.isEmpty(hash._data, 'inner structure confirms all items removed');
     done();
   });
   
@@ -172,7 +172,6 @@ var investigation = new Sherlock.Investigation('Seed#Hash', function (test, done
     
     test('Hash#sort - DESC', function (tset, done) {
       var sorted = hash.sort(Seed.Comparator.DESC);
-      console.log(sorted);
       assert.equal(sorted.length, expected_length);
       assert.equal(sorted.index('China'), 0);
       assert.equal(sorted.at(0), sorted.get('China'));
@@ -184,9 +183,7 @@ var investigation = new Sherlock.Investigation('Seed#Hash', function (test, done
   
   test('Hash#keys', function (test, done) {
     var hash = new Seed.Hash(data)
-      , index = 0;
-    
-    var keys = hash.keys();
+      , keys = hash.keys();
     
     assert.equal(keys.length, expected_length, 'all items checked');
     done();
@@ -194,9 +191,7 @@ var investigation = new Sherlock.Investigation('Seed#Hash', function (test, done
   
   test('Hash#values', function (test, done) {
     var hash = new Seed.Hash(data)
-      , index = 0;
-    
-    var values = hash.values();
+      , values = hash.values();
     
     assert.equal(values.length, expected_length, 'all items checked');
     done();
