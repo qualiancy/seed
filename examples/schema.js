@@ -7,11 +7,14 @@ var abbrevs = ['AL','AK','AZ','AR','CA','CO','CT','DE','FL','GA','HI',
 
 
 var Person = new Seed.Schema({
-  name:{
+  name: {
     type: String,
-    required: true
+    require: true
   },
-  age: Number,
+  age: {
+    type: Number,
+    require: true
+  },
   skills: Array,
   address: {
     street: String,
@@ -35,7 +38,6 @@ var traveller_1 = {
 
 var traveller_2 = {
   name: 'Jim Doe',
-  age: 26,
   skills: 'nodejs',
   address: {
     street: 'Somewhere',
