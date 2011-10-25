@@ -159,6 +159,29 @@ var investigation = new Sherlock.Investigation('Seed#Hash', function (test, done
     done();
   });
   
+  test('Hash#sort', function (test, done) {
+    var hash = new Seed.Hash(data);
+    
+    test('Hash#sort - ASC', function (test, done) {
+      var sorted = hash.sort(Seed.Comparator.ASC);
+      assert.equal(sorted.length, expected_length);
+      assert.equal(sorted.index('Pitcairn Islands'), 0);
+      assert.equal(sorted.at(0), sorted.get('Pitcairn Islands'));
+      done();
+    });
+    
+    test('Hash#sort - DESC', function (tset, done) {
+      var sorted = hash.sort(Seed.Comparator.DESC);
+      console.log(sorted);
+      assert.equal(sorted.length, expected_length);
+      assert.equal(sorted.index('China'), 0);
+      assert.equal(sorted.at(0), sorted.get('China'));
+      done();
+    });
+    
+    done();
+  });
+  
   test('Hash#keys', function (test, done) {
     var hash = new Seed.Hash(data)
       , index = 0;
@@ -186,6 +209,8 @@ var investigation = new Sherlock.Investigation('Seed#Hash', function (test, done
     var arr = hash.toArray();
     
     assert.isArray(arr, 'its an array');
+    assert.equal(arr[0].key, 'Afghanistan');
+    assert.equal(arr[0].value, 29835392);
     assert.equal(arr.length, expected_length, 'all items checked');
     done();
   });
