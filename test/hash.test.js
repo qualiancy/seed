@@ -36,10 +36,17 @@ var investigation = new Sherlock.Investigation('Seed#Hash', function (test, done
     var hash = new Seed.Hash(data)
       , average = hash.avg;
     
-    console.log(average);
-    
     assert.equal(hash.length, expected_length, 'all data loaded correctly');
     assert.equal(average, 29143987.659663867, 'sum functions correctly');
+    done();
+  });
+  
+  test('Hash#min', function (test, done) {
+    var hash = new Seed.Hash(data)
+      , min = hash.min;
+    
+    assert.equal(hash.length, expected_length, 'all data loaded correctly');
+    assert.equal(min, 48, 'sum functions correctly');
     done();
   });
   
