@@ -50,6 +50,15 @@ var investigation = new Sherlock.Investigation('Seed#Hash', function (test, done
     done();
   });
   
+  test('Hash#max', function (test, done) {
+    var hash = new Seed.Hash(data)
+      , max = hash.max;
+    
+    assert.equal(hash.length, expected_length, 'all data loaded correctly');
+    assert.equal(max, 1336718015, 'sum functions correctly');
+    done();
+  });
+  
   test('Hash#get', function (test, done) {
     var hash = new Seed.Hash(data)
       , n = 0;
