@@ -23,6 +23,15 @@ var investigation = new Sherlock.Investigation('Seed#Hash', function (test, done
     done();
   });
   
+  test('Hash#sum', function (test, done) {
+    var hash = new Seed.Hash(data)
+      , sum = hash.sum;
+    
+    assert.equal(hash.length, expected_length, 'all data loaded correctly');
+    assert.equal(sum, 6936269063, 'sum functions correctly');
+    done();
+  });
+  
   test('Hash#get', function (test, done) {
     var hash = new Seed.Hash(data)
       , n = 0;
