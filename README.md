@@ -1,6 +1,8 @@
 # Seed.js ORM
 
-#### Storage-agnostic event emitting datasets. Currently not production ready, but getting there!
+### Storage-agnostic event emitting datasets.
+
+*Note: Currently not production ready, but getting there!*
 
 Seed provides an API layer for working with relatable datasets. The data can be streams of data or large tables 
 of metrics. At it's heart Seed is an event based ORM tool, but it will also allow for realtime analysis, 
