@@ -32,7 +32,7 @@ Seed comes with a Memory based storage engine. Need an alternative?
 * Version 0.1.0 - Nov. 1st. Focus: stabled api, documentation.
 * Version 0.2.0 - Nov. 10th (tentative). Focus: performance, benchmarks.
 
-## Where to get help
+## Where to Get Help
 
 Please post issues to [GitHub Issues](https://github.com/logicalparadox/seed/issues). 
 Community forum is available at the [Google Group](https://groups.google.com/group/seedjs-orm).
@@ -45,7 +45,7 @@ Tests are writting in [Sherlock](http://github.com/logicalparadox/sherlock). Mak
 
 ## Contributors
 
-Interested in contributing? Fork to get started. Contact [@logicalparadox](http://github.com/logicalparadox) if you are interested in deep involvement.
+Interested in contributing? Fork to get started. Contact [@logicalparadox](http://github.com/logicalparadox) if you are interested in being regular contributor.
 
 * Jake Luer ([Github: @logicalparadox](http://github.com/logicalparadox)) ([Twitter: @jakeluer](http://twitter.com/jakeluer)) ([Website](http://alogicalparadox.com))
 
