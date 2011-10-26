@@ -4,7 +4,7 @@
 
 *Note: Currently not production ready, but getting there!*
 
-Seed provides an API layer for working with relatable datasets. The data can be streams of data or large tables 
+Seed provides an API layer for working with relational datasets. The data can be streams of data or large tables 
 of metrics. At it's heart Seed is an event based ORM tool, but it will also allow for realtime analysis, 
 aggregation, and whatnot. The focus is to allow for datasets from many sources to be modeled, monitored,
 analyzed, and acted upon.
