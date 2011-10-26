@@ -2,7 +2,7 @@
   "author": "Jake Luer <@jakeluer>",
   "name": "seed",
   "description": "Storage agnostic, event based models and collections.",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "repository": {
     "type": "git",
     "url": "git://github.com/logicalparadox/seed.git"

@@ -1,4 +1,28 @@
 
+0.0.9 / 2011-10-25 
+==================
+
+  * Merge branch 'feature/schema'
+  * Merge branch 'master' of github.com:logicalparadox/seed into feature/schema
+  * Merge branch 'feature/rmFileStore'
+  * moved filestore to npm `seed-filestore`
+  * moved UID generator to `tea`
+  * Schema type validation for custom types.
+  * basic validation
+  * Seed#Schema - path detection
+  * Merge branch 'master' of github.com:logicalparadox/seed
+  * Hash#max
+  * Hash#max
+  * Hash#min
+  * Hash#--getter AVG
+  * Hash#--getter SUM
+  * sherlock 0.1.6 compatible tests (assert.isEmpty)
+  * cleaner Hash#set
+  * comparators and Hash#sort + tests
+  * hash#values cleanup
+  * Hash#clone
+  * All Hash function now use this.each instead of for loops
+
 0.0.8 / 2011-10-21 
 ==================
 
