@@ -1,10 +1,10 @@
-var Seed = require('..');
+var Seed = require('..')
+  , Type = Seed.Schema.Type;
 
-var abbrevs = ['AL','AK','AZ','AR','CA','CO','CT','DE','FL','GA','HI',
+var States = new Type.Select(['AL','AK','AZ','AR','CA','CO','CT','DE','FL','GA','HI',
 'ID','IL','IN','IA','KS','KY','LA','ME','MD','MA','MI','MN','MS','MO',
 'MT','NE','NV','NH','NJ','NM','NY','NC','ND','OH','OK','OR','PA','RI',
-'SC','SD','TN','TX','UT','VT','VA','WA','WV','WI','WY'];
-
+'SC','SD','TN','TX','UT','VT','VA','WA','WV','WI','WY']);
 
 var Person = new Seed.Schema({
   name: {
@@ -19,7 +19,7 @@ var Person = new Seed.Schema({
   address: {
     street: String,
     city: String,
-    state: Seed.Type.Select(abbrevs),
+    state: States,
     zipcode: Number
   }
 });
@@ -45,8 +45,6 @@ var traveller_2 = {
     state: 'UK'
   }
 };
-
-console.log(Person);
 
 var valid_person = Person.validate(traveller_1);
 var invalid_person = Person.validate(traveller_2);
