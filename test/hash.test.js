@@ -6,7 +6,7 @@ var Seed = require('..');
 var fs = require('fs')
   , path = require('path');
 
-var investigation = new Sherlock.Investigation('Seed#Hash', function (test, done) {
+module.exports = new Sherlock.Investigation('Seed#Hash', function (test, done) {
   
   var data_raw = fs.readFileSync(path.join(__dirname, 'fixtures', 'countries.json'), 'utf-8')
     , data = JSON.parse(data_raw)
@@ -259,5 +259,3 @@ var investigation = new Sherlock.Investigation('Seed#Hash', function (test, done
   
   done();
 });
-
-module.exports = investigation;
