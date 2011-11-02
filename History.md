@@ -1,4 +1,35 @@
 
+0.0.10 / 2011-11-02 
+==================
+
+  * model set uses attrs, not props
+  * Graph rebuild step 1 … get, set, del, each
+  * changing storage semantics
+  * Seed#ObjectId shortcut
+  * cleaner tests for hash/graph
+  * Hash#each uses allows context definition
+  * Model flags use Hash
+  * Seed#model - getter/setter for id, better type handling
+  * collection note to sefl
+  * Graphs also stores objects in collections
+  * Schema uses required (not: `require`) to note path is not optional
+  * Collection#push
+  * Collection#fetch functional
+  * Collection#push saves all models currently in memory to store
+  * Collection#_refreshLookups & Collection#add uses it
+  * iterator in Collection#each has context = null
+  * improved opts/callback detecting in Model#save
+  * Collection#count getter
+  * improved Collection#add / Collection#fetch
+  * Collection#each
+  * Better model path handling
+  * Collection uses uid (not uuid) for models
+  * Model UID now model.uid not model.uuid
+  * Small readme updates
+  * one last readme typo
+  * readme tweak
+  * Big README update :)
+
 0.0.9 / 2011-10-25 
 ==================
 
