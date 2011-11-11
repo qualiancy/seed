@@ -1,4 +1,10 @@
 
+0.1.0 / 2011-11-11 
+==================
+
+  * remove Collection (obsolete)
+  * node version package typo
+
 0.0.11 / 2011-11-11 
 ==================
 
