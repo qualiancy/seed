@@ -12,7 +12,7 @@
     "test": "sherlock test/*.test.js"
   },
   "engines": {
-    "node": ">= v0.4.8 < 0.0.7"
+    "node": ">= v0.4.8 < 0.7.0"
   },
   "dependencies": {
     "drip": "0.1.x",
