@@ -1,4 +1,18 @@
 
+0.0.11 / 2011-11-11 
+==================
+
+  * Graph#pull
+  * Graph#push
+  * Graph#set supports empty attributes
+  * Graph#fetch is functional
+  * Graph#all returns clone
+  * graph defines parent for all models within
+  * model has more generic `parent` attribute
+  * query support
+  * Graph#fetch
+  * improved sync with query object
+
 0.0.10 / 2011-11-02 
 ==================
 
