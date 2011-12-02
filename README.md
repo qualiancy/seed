@@ -41,8 +41,8 @@ Seed comes with a Memory based storage engine. Need an alternative?
 
 ## Roadmap
 
-* Version 0.1.0 - Nov. 1st. Focus: stabled api, documentation.
-* Version 0.2.0 - Nov. 10th (tentative). Focus: performance, benchmarks.
+* Version 0.2.0 - cleaner schema API
+* Version 0.3.0 - graph relationships 
 
 ## Where to Get Help
 
