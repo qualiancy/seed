@@ -61,12 +61,6 @@ Interested in contributing? Fork to get started. Contact [@logicalparadox](http:
 
 * Jake Luer ([Github: @logicalparadox](http://github.com/logicalparadox)) ([Twitter: @jakeluer](http://twitter.com/jakeluer)) ([Website](http://alogicalparadox.com))
 
-## Inspiration
-
-* Models/Collections API inspired by Backbone
-* Hash API inspired by data
-* Schema API inspired by Mongoose
-
 ## License
 
 (The MIT License)
