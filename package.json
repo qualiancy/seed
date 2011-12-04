@@ -9,17 +9,19 @@
   },
   "main": "index",
   "scripts": {
-    "test": "sherlock test/*.test.js"
+    "test": "make test",
+    "prepublish": "npm prune"
   },
   "engines": {
     "node": ">= v0.4.8 < 0.7.0"
   },
   "dependencies": {
     "drip": "0.1.x",
-    "oath": "0.0.x",
-    "tea": "0.1.x"
+    "oath": "0.0.x"
   },
   "devDependencies": {
-    "sherlock": "0.1.x"
+    "sherlock": "0.1.x",
+    "mocha": "0.3.0",
+    "should": "0.3.x"
   }
 }
