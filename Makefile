@@ -1,6 +1,6 @@
 
 TESTS = test/*.js
-REPORTER = list
+REPORTER = dot
 
 test:
 	@NODE_ENV=test ./node_modules/.bin/mocha \
