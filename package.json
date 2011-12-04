@@ -2,7 +2,7 @@
   "author": "Jake Luer <jake@alogicalparadox.com>",
   "name": "seed",
   "description": "Storage agnostic, event based models and collections.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "repository": {
     "type": "git",
     "url": "git://github.com/logicalparadox/seed.git"
@@ -20,6 +20,6 @@
     "tea": "0.1.x"
   },
   "devDependencies": {
-    "sherlock": "0.1.x"  
+    "sherlock": "0.1.x"
   }
 }

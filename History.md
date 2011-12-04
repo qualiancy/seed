@@ -1,11 +1,26 @@
 
-0.1.0 / 2011-11-11 
+0.1.1 / 2011-12-04
+==================
+
+  * whitespace cleanup
+  * schema example comments
+  * readme cleanup
+  * README updates
+  * clean model#set
+  * schema cleanup
+  * readme updates
+  * code cleanup
+  * Hash#__getters__ moved to prototype
+  * Model/Graph #flag supports using an array as key
+  * renamed submodules as index in respective folders
+
+0.1.0 / 2011-11-11
 ==================
 
   * remove Collection (obsolete)
   * node version package typo
 
-0.0.11 / 2011-11-11 
+0.0.11 / 2011-11-11
 ==================
 
   * Graph#pull
@@ -19,7 +34,7 @@
   * Graph#fetch
   * improved sync with query object
 
-0.0.10 / 2011-11-02 
+0.0.10 / 2011-11-02
 ==================
 
   * model set uses attrs, not props
@@ -50,7 +65,7 @@
   * readme tweak
   * Big README update :)
 
-0.0.9 / 2011-10-25 
+0.0.9 / 2011-10-25
 ==================
 
   * Merge branch 'feature/schema'
@@ -74,7 +89,7 @@
   * Hash#clone
   * All Hash function now use this.each instead of for loops
 
-0.0.8 / 2011-10-21 
+0.0.8 / 2011-10-21
 ==================
 
   * Merge branch 'feature/hash'
@@ -117,7 +132,7 @@
   * model requires definition of storage
   * moving uid generation into seed
 
-0.0.7 / 2011-10-14 
+0.0.7 / 2011-10-14
 ==================
 
   * collection uses tea, not utils
@@ -135,7 +150,7 @@
   * better storage handling
   * comments / docs for models
 
-0.0.6 / 2011-10-05 
+0.0.6 / 2011-10-05
 ==================
 
   * models can chain
@@ -153,7 +168,7 @@
   * model is actually Model (caps)
   * utils no longer part of exports
 
-0.0.5 / 2011-10-04 
+0.0.5 / 2011-10-04
 ==================
 
   * memory#update
@@ -174,7 +189,7 @@
   * serialize models
   * unique id generator
 
-0.0.4 / 2011-10-03 
+0.0.4 / 2011-10-03
 ==================
 
   * refactored as model/collection factory
@@ -182,19 +197,19 @@
   * moving util extend to utils
   * npm ignore
 
-0.0.3 / 2011-10-03 
+0.0.3 / 2011-10-03
 ==================
 
   * constructor using unseeded function and tests
 
-0.0.2 / 2011-10-03 
+0.0.2 / 2011-10-03
 ==================
 
   * test formatting
   * define properties from constructor.prototype (allows after extend prototype changes)
   * package.json
 
-0.0.1 / 2011-10-02 
+0.0.1 / 2011-10-02
 ==================
 
   * bad constructor tests, tostring tests
