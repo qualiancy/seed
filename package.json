@@ -1,7 +1,7 @@
 {
   "author": "Jake Luer <jake@alogicalparadox.com>",
   "name": "seed",
-  "description": "Storage agnostic, event based models and collections.",
+  "description": "Storage-agnostic, event emitting datasets: schemas, models, hashes, and graphs.",
   "version": "0.1.1",
   "repository": {
     "type": "git",
