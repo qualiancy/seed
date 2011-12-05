@@ -10,7 +10,7 @@ describe('Schema', function () {
   });
 
   describe('required data', function () {
-    var s = new Seed.Schema({
+    var s = new Schema({
       name: {
         type: String,
         required: true
@@ -28,7 +28,7 @@ describe('Schema', function () {
   });
 
   describe('nested data', function () {
-    var s = new Seed.Schema({
+    var s = new Schema({
       name: {
         first: {
           type: String,
