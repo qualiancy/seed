@@ -1,4 +1,38 @@
 
+0.1.2 / 2011-12-04
+==================
+
+  * Merge branch 'feature/mochatests'
+  * added keywords to package.json
+  * graph tests rewritten in mocha
+  * graph flags new objects with type
+  * hash test descriptor
+  * data folder for testing not needed
+  * we prefer dot notation
+  * hash tests rewritten in mocha
+  * hash map/select include index in iteration
+  * toJSON is now `serialize` to match model function
+  * model chain uses util correctly
+  * main exports util.flake as object id
+  * added mocha
+  * chain removed tea
+  * Merge branch 'feature/rmtea'
+  * remove tea from store and memorystore
+  * schema no tea
+  * Graph, all tea references removed
+  * util.inherits…. not util.merge
+  * Hash#keys & Hash#values are getters, not functions
+  * model code cleanup based on flag refactor
+  * model - remove references to tea
+  * Flake (time based uid generation) in utils
+  * comparator whitespace
+  * remove tea from hash
+  * added utils
+  * model comments
+  * model uses model.store or model.parent.store for all db operations
+  * move model getters/setters to prototype
+  * package.json description update
+
 0.1.1 / 2011-12-04
 ==================
 
