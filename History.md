@@ -1,4 +1,14 @@
 
+0.1.3 / 2011-12-04
+==================
+
+  * schema example supports changes to types
+  * schema tests for required and nested data
+  * schema improved handling of required and omitted data
+  * Merge branch 'feature/schema-types'
+  * schema types defined w/ basic tests
+  * schema typecasting refactored
+
 0.1.2 / 2011-12-04
 ==================
 
