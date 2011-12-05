@@ -6,7 +6,7 @@ var Seed = require('..')
 var fs = require('fs')
   , path = require('path');
 
-describe('Seed#Hash', function () {
+describe('Hash', function () {
 
   var data_raw = fs.readFileSync(path.join(__dirname, 'fixtures', 'countries.json'), 'utf-8')
     , data = JSON.parse(data_raw)
