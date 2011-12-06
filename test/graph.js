@@ -123,7 +123,7 @@ describe('Graph', function () {
     };
 
     it('should emit `add` events', function () {
-      g.on('add:person', spy);
+      g.on('add:person:*', spy);
     });
 
     it('should allow data to be set by address', function () {

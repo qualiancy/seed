@@ -97,7 +97,7 @@ describe('Hash', function () {
         var hash = new Hash()
           , n = 0;
 
-        hash.on('set', function () {
+        hash.on('set:*', function () {
           n++;
         });
 
@@ -124,7 +124,7 @@ describe('Hash', function () {
         var hash = new Hash()
           , n = 0;
 
-        hash.on('delete', function () {
+        hash.on('delete:*', function () {
           n++;
         });
 
