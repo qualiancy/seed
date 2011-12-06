@@ -1,5 +1,4 @@
-var matcha = require('matcha')
-  , Seed = require('../lib/seed');
+var Seed = require('../lib/seed');
 
 var schema = new Seed.Schema({
   string: String,
@@ -23,18 +22,12 @@ var data = {
   }
 }
 
-var suite = new matcha.Suite({
-  iterations: 10000
-});
-
-suite.bench('Schema#validate', function (next) {
+bench('Schema#validate', function (next) {
   var valid = schema.validate(data);
   next();
 });
 
-suite.bench('Model#constructor', function (next) {
+bench('Model#constructor', function (next) {
   var m = new model(data);
   next();
 });
-
-module.exports = suite;

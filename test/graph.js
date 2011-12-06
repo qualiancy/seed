@@ -1,8 +1,24 @@
-var should = require('should')
-  , Sherlock = require('sherlock');
+var should = require('should');
 
 var Seed = require('../lib/seed')
   , Graph = Seed.Graph;
+
+function Spy (fn) {
+  if (!fn) fn = function() {};
+
+  function proxy() {
+    var args = Array.prototype.slice.call(arguments);
+    proxy.calls.push(args);
+    proxy.called = true;
+    fn.apply(this, args);
+  }
+
+  proxy.prototype = fn.prototype;
+  proxy.calls = [];
+  proxy.called = false;
+
+  return proxy;
+}
 
 describe('Graph', function () {
 
@@ -26,7 +42,7 @@ describe('Graph', function () {
     });
 
     it('should emit events', function () {
-      var spy = Sherlock.Spy();
+      var spy = Spy();
       g.on('test', spy);
       g.emit('test');
       spy.calls.length.should.equal(1);
@@ -87,7 +103,7 @@ describe('Graph', function () {
 
   describe('adding basic data', function () {
     var g = new Graph()
-      , spy = Sherlock.Spy(function (person) {
+      , spy = Spy(function (person) {
           should.exist(person);
           person.flag('type').should.equal('person');
       });

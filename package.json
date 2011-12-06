@@ -21,7 +21,6 @@
     "oath": "0.0.x"
   },
   "devDependencies": {
-    "sherlock": "0.1.x",
     "mocha": "0.3.0",
     "should": "0.3.x",
     "matcha": "0.0.x"
