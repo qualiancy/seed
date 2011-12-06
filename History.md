@@ -1,4 +1,23 @@
 
+0.1.4 / 2011-12-06
+==================
+
+  * graph supports drip 0.2.0
+  * hash supports drip 0.2.0
+  * model supports drip 0.2.0
+  * tests support drip 0.2.0
+  * benchmark, not benchmarks (makefile)
+  * drip update
+  * Merge branch 'feature/model-tests'
+  * removed sherlock completely
+  * benchmarks `matcha` 0.0.2 compatible
+  * flag code cleanup
+  * Merge branch 'master' of github.com:logicalparadox/seed into feature/model-tests
+  * start of benchmarks
+  * (makefile) benchmarks
+  * added matcha + first benchmarks
+  * added model test
+
 0.1.3 / 2011-12-04
 ==================
 
