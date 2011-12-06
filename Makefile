@@ -9,7 +9,7 @@ test:
 		--reporter $(REPORTER) \
 		$(TESTS)
 
-benchmarks:
+benchmark:
 	@NODE_ENV=test ./node_modules/.bin/matcha $(BENCHMARKS)
 
-.PHONY: test benchmarks
+.PHONY: test benchmark
