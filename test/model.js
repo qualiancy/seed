@@ -1,4 +1,4 @@
-var should = require('should');
+var should = require('chai').should();
 
 var Seed = require('..')
   , Model = Seed.Model;

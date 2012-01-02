@@ -1,4 +1,4 @@
-var should = require('should');
+var should = require('chai').should();
 
 var Seed = require('..')
   , Hash = Seed.Hash;
@@ -143,8 +143,8 @@ describe('Hash', function () {
 
       hash.set('Nation of Seed.js', 10000000);
 
-      hash.keys.should.contain('Nation of Seed.js');
-      hash2.keys.should.not.contain('Nation of Seed.js');
+      hash.keys.should.include('Nation of Seed.js');
+      hash2.keys.should.not.include('Nation of Seed.js');
     });
 
     it('should produce an Array of key/value objects', function () {

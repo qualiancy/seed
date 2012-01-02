@@ -1,4 +1,4 @@
-var should = require('should');
+var should = require('chai').should();
 
 var Seed = require('../lib/seed')
   , Graph = Seed.Graph;
@@ -71,7 +71,7 @@ describe('Graph', function () {
 
     it('should be able to accept a model definition', function () {
       g.define('person', Person);
-      g.types.should.contain('person');
+      g.types.should.include('person');
     });
 
     it('should be able to accept a schema instance', function () {
@@ -80,7 +80,7 @@ describe('Graph', function () {
       });
 
       g.define('person2', s);
-      g.types.should.contain('person2');
+      g.types.should.include('person2');
     });
 
     it('should be able to accept a schema definition', function () {
@@ -89,7 +89,7 @@ describe('Graph', function () {
       };
 
       g.define('person3', s);
-      g.types.should.contain('person3');
+      g.types.should.include('person3');
     });
 
     after(function () {
