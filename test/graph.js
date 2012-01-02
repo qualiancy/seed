@@ -22,7 +22,30 @@ function Spy (fn) {
 
 describe('Graph', function () {
 
-  var Person = Seed.Model.extend('person', {});
+  var Person = Seed.Model.extend('person', {})
+    , Location = Seed.Model.extend('location', {});
+
+  var arthur = {
+    id: 'arthur',
+    name: 'Arthur Dent',
+    origin: 'Earth'
+  };
+
+  var ford = {
+    id: 'ford',
+    name: 'Ford Prefect',
+    origin: 'Betelgeuse-ish'
+  };
+
+  var earth = {
+      id: 'earth'
+    , name: 'Dent\'s Planet Earth'
+  };
+
+  var ship = {
+      id: 'gold'
+    , name: 'Starship Heart of Gold'
+  };
 
   it('should have a version', function () {
     should.exist(Seed.version);
@@ -106,30 +129,51 @@ describe('Graph', function () {
 
     g.define('person', Person);
 
-    var arthur = {
-      id: 'arthur',
-      name: 'Arthur Dent',
-      origin: 'Earth'
-    };
-
-    var ford = {
-      id: 'ford',
-      name: 'Ford Prefect',
-      origin: 'Betelgeuse-ish'
-    };
-
     it('should emit `add` events', function () {
       g.on('add:person:*', spy);
     });
 
     it('should allow data to be set by address', function () {
-      g.set('/person/arthur', arthur);
-      g.set('/person/ford', ford);
+      g.set('/person/' + arthur.id, arthur);
+      g.set('/person/' + ford.id, ford);
       g.count.should.equal(2);
     });
 
     it('should have called all callbacks', function () {
       spy.calls.length.should.equal(2);
     });
+  });
+
+  describe('select', function () {
+    var g = new Graph();
+
+    g.define('person', Person);
+    g.define('location', Location);
+
+    g.set('/person/' + arthur.id, arthur);
+    g.set('/person/' + ford.id, ford);
+    g.set('/location/' + earth.id, earth);
+    g.set('/location/' + ship.id, ship);
+
+    it('should provide a hash when select by attr', function () {
+      var locations = g.select({ name: 'Starship Heart of Gold' });
+
+      locations.should.be.instanceof(Seed.Hash);
+      locations.length.should.equal(1);
+    });
+
+    it('should allow select by regex', function () {
+      var people = g.select({ name: /Dent$/});
+
+      people.should.be.instanceof(Seed.Hash);
+      people.length.should.equal(1);
+    });
+
+  });
+
+  describe('flushing the graph', function () {
+
+
+
   });
 });
