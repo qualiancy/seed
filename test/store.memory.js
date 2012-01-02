@@ -12,7 +12,7 @@ describe('MemoryStore', function () {
 
     it('should call initialize', function () {
       var Store = new MemoryStore();
-      Store.store.should.be.an.instanceof(Seed.Hash);
+      Store.store.should.be.a('object');
     });
 
   });
@@ -34,8 +34,8 @@ describe('MemoryStore', function () {
     it('should allow a new object to be created', function (done) {
       arthur.save(function (err) {
         should.not.exist(err);
-        store.store.length.should.equal(1);
-        arthur._attributes.should.eql(store.store.get('arthur'));
+        store.store.person.length.should.equal(1);
+        arthur._attributes.should.eql(store.store.person.get('arthur'));
         done();
       });
     });
