@@ -92,13 +92,9 @@ describe('Graph', function () {
       g.types.should.include('person3');
     });
 
-    after(function () {
-      describe('list', function () {
-        it('should have all types included', function () {
-          g.types.length.should.equal(3);
-        });
-      });
-    }); // end after
+    it('should have all types included', function () {
+      g.types.length.should.equal(3);
+    });
   });
 
   describe('adding basic data', function () {
@@ -132,7 +128,7 @@ describe('Graph', function () {
       g.count.should.equal(2);
     });
 
-    after(function () {
+    it('should have called all callbacks', function () {
       spy.calls.length.should.equal(2);
     });
   });
