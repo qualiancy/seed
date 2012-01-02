@@ -171,9 +171,37 @@ describe('Graph', function () {
 
   });
 
-  describe('flushing the graph', function () {
+  describe('flush', function () {
 
+    var g = new Graph();
 
+    g.define('person', Person);
+    g.define('location', Location);
+
+    beforeEach(function () {
+      g.set('/person/' + arthur.id, arthur);
+      g.set('/person/' + ford.id, ford);
+      g.set('/location/' + earth.id, earth);
+      g.set('/location/' + ship.id, ship);
+    });
+
+    it('should allow flushing by type', function () {
+      var spy = Spy();
+      g.count.should.equal(4);
+      g.on([ 'flush', 'person'], spy);
+      g.flush('person');
+      g.count.should.equal(2);
+      spy.calls.length.should.equal(1);
+    });
+
+    it('should allow flushing by type', function () {
+      var spy = Spy();
+      g.count.should.equal(4);
+      g.on([ 'flush', 'all' ], spy);
+      g.flush();
+      g.count.should.equal(0);
+      spy.calls.length.should.equal(1);
+    });
 
   });
 });
