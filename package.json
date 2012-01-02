@@ -10,19 +10,18 @@
   },
   "main": "index",
   "scripts": {
-    "test": "make test",
-    "prepublish": "npm prune"
+    "test": "make test"
   },
   "engines": {
     "node": ">= v0.4.8 < 0.7.0"
   },
   "dependencies": {
     "drip": "0.2.x",
-    "oath": "0.1.x"
+    "oath": "0.2.x"
   },
   "devDependencies": {
-    "mocha": "0.3.x",
-    "should": "0.3.x",
+    "mocha": "*",
+    "chai": "*",
     "matcha": "0.0.x"
   }
 }
