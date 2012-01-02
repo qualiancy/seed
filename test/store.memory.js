@@ -88,9 +88,31 @@ describe('MemoryStore', function () {
           err.code.should.equal(3);
           done();
         });
-
       });
+    });
+  });
 
+
+  describe('CRUD from Graph', function () {
+
+    it('should allow new objects to be created', function (done) {
+      done();
+    });
+
+    it('should allow already existing objects to be read', function (done) {
+      done();
+    });
+
+    it('should allow a subset of existing objects to be selected', function (done) {
+      done();
+    });
+
+    it('show allow an already existing object to be updated', function (done) {
+      done();
+    })
+
+    it('should allow an already existing ojbect tobe deleted', function (done) {
+      done();
     });
 
   });
