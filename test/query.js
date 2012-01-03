@@ -28,7 +28,12 @@ describe('Model', function () {
   it('should parse a nested query', function () {
     var query = { $and: [ { $size: 3 }, { $all: [ 1, 2 ] } ] }
       , Q = new Query(query);
+    Q.stack.should.have.length(1);
+    Q.stack[0].params.should.be.instanceof(Array);
     Q.test([0,1,2]).should.be.true;
   });
+
+  // TODO: More complicated nesting
+  // TODO: All nesting options.
 
 });
