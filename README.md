@@ -1,4 +1,4 @@
-# Seed
+# Seed [![Build Status](https://secure.travis-ci.org/qualiancy/seed.png)](http://travis-ci.org/qualiancy/seed)
 
 ### Storage-agnostic event emitting datasets.
 
