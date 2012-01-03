@@ -3,7 +3,7 @@
   "name": "seed",
   "description": "Storage-agnostic, event emitting datasets: schemas, models, hashes, and graphs.",
   "keyword": [ "database", "db", "storage", "schema", "model", "collection" ],
-  "version": "0.1.5",
+  "version": "0.1.6",
   "repository": {
     "type": "git",
     "url": "git://github.com/logicalparadox/seed.git"

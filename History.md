@@ -1,4 +1,60 @@
 
+0.1.6 / 2012-01-03
+==================
+
+  * major file rearranging
+  * Merge branch 'feature/hash-filtering'
+  * hash find + test
+  * remove eyes inspector
+  * detailed testing for Query
+  * query testing
+  * basic query functionality
+  * expected query from main export
+  * all hash filters for now
+  * most helpers and tests
+  * started filters and test
+  * moved comparator to helpers folder
+  * tests for Graph.flush
+  * Graph.flush for all or by type
+  * tests for graph.select
+  * graph.select supports string and regex
+  * empty graph tests for memory store
+  * graph tests cleanup
+  * Merge branch 'feature/memorystore-refactor'
+  * comment cleanup
+  * tests completed for model crud operations for memory store
+  * Merge branch 'feature/memorystore-refactor' of github.com:qualiancy/seed into feature/memorystore-refactor
+  * memorystore constructor test
+  * MemoryStore require of Store is correct
+  * memory store using hash
+  * cleanup memory store nextTick and Promise usage
+  * Store provide default initialize function
+  * memory story refactored to extend style
+  * cleaner memory store requires
+  * Graph: getters all use defineProperty
+  * Hash: all getters are defineProperty and cleanup of whitespace
+  * using node.js inherits
+  * seed utils a _ in model
+  * Model getters/setters use Object.defineProperty
+  * correctly importing drip for Model
+  * removing model chain api as not compatible with drip 0.2.x
+  * memorystore constructor test
+  * MemoryStore require of Store is correct
+  * memory store using hash
+  * cleanup memory store nextTick and Promise usage
+  * Store provide default initialize function
+  * memory story refactored to extend style
+  * cleaner memory store requires
+  * Merge branch 'feature/util-refactor'
+  * moved utils to utils folder, added loader
+  * Merge branch 'feature/store-refactor'
+  * Store tests
+  * Store is now drip delimited and provides Oath helper
+  * store main export as Store, not _Store
+  * empty tests for memory
+  * switched out should.js for chai should interface
+  * update deps
+
 0.1.5 / 2011-12-12
 ==================
 

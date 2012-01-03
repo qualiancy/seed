@@ -1,11 +1,9 @@
-# Seed.js ORM
+# Seed
 
 ### Storage-agnostic event emitting datasets.
 
-*Note: Currently not production ready, but getting there!*
-
-Seed provides an API layer for working with relational datasets. The data can be streams of data or large tables 
-of metrics. At it's heart Seed is an event based ORM tool, but it will also allow for realtime analysis, 
+Seed provides an API layer for working with relational datasets. The data can be streams of data or large tables
+of metrics. At it's heart Seed is an event based ORM tool, but it will also allow for realtime analysis,
 aggregation, and whatnot. The focus is to allow for datasets from many sources to be modeled, monitored,
 analyzed, and acted upon.
 
@@ -39,14 +37,9 @@ Seed comes with a Memory based storage engine. Need an alternative?
 
 * [seed-filestore](http://github.com/logicalparadox) - Store your datasets in a JSON based file structure.
 
-## Roadmap
-
-* Version 0.2.0 - cleaner schema API
-* Version 0.3.0 - graph relationships 
-
 ## Where to Get Help
 
-Please post issues to [GitHub Issues](https://github.com/logicalparadox/seed/issues). 
+Please post issues to [GitHub Issues](https://github.com/logicalparadox/seed/issues).
 Community forum is available at the [Google Group](https://groups.google.com/group/seedjs-orm).
 
 ## Tests
