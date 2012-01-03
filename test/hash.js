@@ -233,6 +233,25 @@ describe('Hash', function () {
 
     });
 
+    describe('#find', function () {
+      var hash = new Hash(data);
+
+      it('should allow for basic finding', function () {
+        var hash2 = hash.find({ $gt: 100000000 });
+        hash2.should.have.length(12);
+      });
+
+      it('should allow for multiple findings', function () {
+        var hash2 = hash.find({ $gt: 100000000, $lt: 300000000 });
+        hash2.should.have.length(9);
+      });
+
+      it('should allow for nested findings', function () {
+        var hash2 = hash.find({ $or: [ { $gt: 300000000 }, { $lt: 10000 } ]});
+        hash2.should.have.length(17);
+      });
+    });
+
     describe('#select', function () {
       var hash = new Hash(data)
         , n = 0;
