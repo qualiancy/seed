@@ -6,14 +6,14 @@
   "version": "0.1.6",
   "repository": {
     "type": "git",
-    "url": "git://github.com/logicalparadox/seed.git"
+    "url": "git://github.com/qualiancy/seed.git"
   },
   "main": "index",
   "scripts": {
     "test": "make test"
   },
   "engines": {
-    "node": ">= v0.4.8 < 0.7.0"
+    "node": ">= v0.4.8"
   },
   "dependencies": {
     "drip": "0.2.x",
