@@ -5,7 +5,7 @@ var Seed = require('..')
 
 describe('Model', function () {
   it('should have a version', function () {
-    should.exist(Seed.version);
+    Seed.version.should.match(/^\d+\.\d+\.\d+$/);
   });
 
 
