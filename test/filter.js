@@ -1,7 +1,7 @@
 var should = require('chai').should();
 
 var Seed = require('..')
-  , Filter = Seed.Filter;
+  , Filter = Seed.filters;
 
 describe('Filter', function () {
 
