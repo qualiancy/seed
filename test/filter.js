@@ -84,4 +84,22 @@ describe('Filter', function () {
     Filter.$or([ t1, t2 ]).should.be.true;
     Filter.$or([ t1, t3 ]).should.be.false;
   });
+
+  it('$nor should work', function () {
+    var a = [0,1,2]
+      , t1 = Filter.$size(a, 2) // fail
+      , t2 = Filter.$in(1, a) // pass
+      , t3 = Filter.$in(4, a); // fail
+    Filter.$nor([ t1, t2 ]).should.be.false;
+    Filter.$nor([ t1, t3 ]).should.be.true;
+  });
+
+  it('$and should work', function () {
+    var a = [0,1,2]
+      , t1 = Filter.$size(a, 3) // pass
+      , t2 = Filter.$in(1, a) // pass
+      , t3 = Filter.$in(4, a); // fail
+    Filter.$and([ t1, t2 ]).should.be.true;
+    Filter.$and([ t1, t3 ]).should.be.false;
+  });
 });
