@@ -44,9 +44,10 @@ Community forum is available at the [Google Group](https://groups.google.com/gro
 
 ## Tests
 
-Tests are writting in [Sherlock](http://github.com/logicalparadox/sherlock). Make sure you have that installed, clone this repo, install dependacies using `npm install`.
+Tests are writting in [Mocha](http://github.com/visionmedia/mocha) using the [chai](http://chaijs.com)
+`should` BDD assertion library. Make sure you have that installed, clone this repo, install dependacies using `npm install`.
 
-    $ sherlock test/*.test.js
+    $ make test
 
 ## Contributors
 
