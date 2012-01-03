@@ -41,10 +41,47 @@ describe('Filter', function () {
     var a = undefined
       , b = {c: 'hi'};
     Filter.$exists(a, false).should.be.true;
+    Filter.$exists(a, true).should.be.false;
     Filter.$exists(b, true).should.be.true;
     Filter.$exists(b.c, false).should.be.false;
     Filter.$exists(b.a, false).should.be.true;
     Filter.$exists('hi', true).should.be.true;
   });
 
+  it('$mod should work', function () {
+    Filter.$mod(12, [12, 0]).should.be.true;
+    Filter.$mod(24, [12, 0]).should.be.true;
+    Filter.$mod(15, [12, 0]).should.be.false;
+  });
+
+  it('$ne should work', function () {
+    Filter.$ne(12,12).should.be.false;
+    Filter.$ne(12,11).should.be.true;
+  });
+
+  it('$in should work', function () {
+    Filter.$in(1,[0,1,2]).should.be.true;
+    Filter.$in(4,[0,1,2]).should.be.false;
+  });
+
+  it('$nin should work', function () {
+    Filter.$nin(1,[0,1,2]).should.be.false;
+    Filter.$nin(4,[0,1,2]).should.be.true;
+  });
+
+  it('$size should work', function () {
+    Filter.$size([0,1,2], 3).should.be.true;
+    Filter.$size('foo', 3).should.be.true;
+    Filter.$size({ a: 1}, 1).should.be.false;
+    Filter.$size({ length: 3}, 3).should.be.true;
+  });
+
+  it('$or should work', function () {
+    var a = [0,1,2]
+      , t1 = Filter.$size(a, 2) // fail
+      , t2 = Filter.$in(1, a) // pass
+      , t3 = Filter.$in(4, a); // fail
+    Filter.$or([ t1, t2 ]).should.be.true;
+    Filter.$or([ t1, t3 ]).should.be.false;
+  });
 });
