@@ -275,7 +275,7 @@ describe('Hash', function () {
       var hash = new Hash(data);
 
       describe('when sorted ASC', function () {
-        var sorted = hash.sort(Seed.Comparator.ASC);
+        var sorted = hash.sort(Seed.comparators.ASC);
 
         it('should return all objects in the correct order', function () {
           sorted.length.should.equal(expected_length);
@@ -285,7 +285,7 @@ describe('Hash', function () {
       });
 
       describe('when sorted DESC', function () {
-        var sorted = hash.sort(Seed.Comparator.DESC);
+        var sorted = hash.sort(Seed.comparators.DESC);
 
         it('should return all objects in the correct order', function () {
           sorted.length.should.equal(expected_length);
