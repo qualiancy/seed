@@ -3,6 +3,8 @@ var should = require('chai').should();
 var Seed = require('..')
   , MemoryStore = Seed.MemoryStore;
 
+var eyes = require('eyes');
+
 describe('MemoryStore', function () {
   it('should have a version', function () {
     Seed.version.should.match(/^\d+\.\d+\.\d+$/);
@@ -85,7 +87,7 @@ describe('MemoryStore', function () {
 
         confirm.fetch(function (err) {
           should.exist(err);
-          err.code.should.equal(3);
+          err.should.be.instanceof(Seed.SeedError);
           done();
         });
       });
@@ -94,17 +96,96 @@ describe('MemoryStore', function () {
 
 
   describe('CRUD from Graph', function () {
+    var store = new MemoryStore()
+      , graph = new Seed.Graph({
+          store: store
+        });
+
+    var Person = Seed.Model.extend('person', {})
+      , Location = Seed.Model.extend('location', {});
+
+    graph.define(Person);
+    graph.define(Location);
+
+    var arthur = {
+        id: 'arthur'
+      , name: 'Arthur Dent'
+      , stats: {
+            origin: 'Earth'
+          , species: 'human'
+        }
+    };
+
+    var ford = {
+        id: 'ford'
+      , name: 'Ford Prefect'
+      , stats: {
+            origin: 'Betelgeuse-ish'
+          , species: 'writer'
+        }
+    };
+
+    var earth = {
+        id: 'earth'
+      , name: 'Dent\'s Planet Earth'
+    };
+
+    var ship = {
+        id: 'gold'
+      , name: 'Starship Heart of Gold'
+    };
+
+    beforeEach(function () {
+      graph.flush();
+    });
 
     it('should allow new objects to be created', function (done) {
-      done();
+      graph.set('/person/' + arthur.id, arthur);
+      graph.set('/person/' + ford.id, ford);
+      graph.set('/location/' + earth.id, earth);
+      graph.set('/location/' + ship.id, ship);
+
+      graph.push(function (err) {
+        should.not.exist(err);
+        eyes.inspect(store);
+        store.store.person.should.be.instanceof(Seed.Hash);
+        store.store.location.should.be.instanceof(Seed.Hash);
+        store.store.person.should.have.length(2);
+        store.store.location.should.have.length(2);
+        done();
+      });
+
     });
 
     it('should allow already existing objects to be read', function (done) {
-      done();
+      graph.set('/person/' + arthur.id);
+      graph.set('/person/' + ford.id);
+      graph.set('/location/' + earth.id);
+      graph.set('/location/' + ship.id);
+
+      graph.pull(function (err) {
+        should.not.exist(err);
+        graph.count.should.equal(4);
+
+        var arthur2 = graph.get('/person/arthur');
+        arthur2._attributes.should.eql(arthur);
+        arthur2.flag('dirty').should.be.false;
+        done();
+      });
     });
 
     it('should allow a subset of existing objects to be selected', function (done) {
-      done();
+
+      graph.fetch('person', { 'name': { $eq: 'Arthur Dent' } }, function (err) {
+        should.not.exist(err);
+        graph.count.should.equal(1);
+
+        var arthur2 = graph.get('/person/arthur');
+        eyes.inspect(graph);
+        arthur2._attributes.should.eql(arthur);
+        arthur2.flag('dirty').should.be.false;
+        done();
+      });
     });
 
     it('show allow an already existing object to be updated', function (done) {
