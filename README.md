@@ -32,8 +32,6 @@ Seed consists of four main components:
 
 ### Graph
 
-### Query
-
 ## Storage Engines
 
 Seed comes with a Memory based storage engine. Need an alternative?
