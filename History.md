@@ -1,4 +1,32 @@
 
+0.1.7 / 2012-01-07
+==================
+
+  * update tests for graph#find
+  * tests for graph.find
+  * Graph removed select added find
+  * added hash opts
+  * implement hash#find using query constructor
+  * remove old filter constructor
+  * query code cleanup
+  * Merge branch 'feature/merge-queryfilter'
+  * moved filter tests to query, adjusted for test opts
+  * allowed options for test
+  * combined filter + query into query, untested
+  * merged traversing methods for filter into parse and test
+  * query data in exec
+  * removed eyes sep from query example
+  * Merge branch 'feature/query-refactor'
+  * added query example
+  * added Query
+  * added $eq filter
+  * test filenames conform to new object names (Filter // filters)
+  * refactor Query as Filter as it is more appropriate.. makes way for actual Querying.
+  * read me has travis badge
+  * added travis.yml
+  * read me updates
+  * update link in package.json
+
 0.1.6 / 2012-01-03
 ==================
 
