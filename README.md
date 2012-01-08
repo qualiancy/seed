@@ -1,8 +1,8 @@
 # Seed [![Build Status](https://secure.travis-ci.org/qualiancy/seed.png)](http://travis-ci.org/qualiancy/seed)
 
-### Storage-agnostic event emitting datasets.
+## Storage-agnostic Event Emitting Datasets
 
-Seed provides an API layer for working with relational datasets. The data can be streams of data or large tables
+Seed provides an API for working with datasets. The data can be continous streams of data or large tables
 of metrics. At it's heart Seed is an event based ORM tool, but it will also allow for realtime analysis,
 aggregation, and whatnot. The focus is to allow for datasets from many sources to be modeled, monitored,
 analyzed, and acted upon.
@@ -47,7 +47,7 @@ Community forum is available at the [Google Group](https://groups.google.com/gro
 
 ## Tests
 
-Tests are writting in [Mocha](http://github.com/visionmedia/mocha) using the [chai](http://chaijs.com)
+Tests are writting in [Mocha](http://github.com/visionmedia/mocha) using the [Chai](http://chaijs.com)
 `should` BDD assertion library. Make sure you have that installed, clone this repo, install dependacies using `npm install`.
 
     $ make test
