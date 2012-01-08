@@ -174,14 +174,24 @@ describe('MemoryStore', function () {
       });
     });
 
-    it('should allow a subset of existing objects to be selected', function (done) {
+    it('should allow all records of a specific type to be fetched', function (done) {
+      graph.fetch('person', function (err) {
+        should.not.exist(err);
+        graph.count.should.equal(2);
 
+        var arthur2 = graph.get('/person/arthur');
+        arthur2._attributes.should.eql(arthur);
+        arthur2.flag('dirty').should.be.false;
+        done();
+      });
+    });
+
+    it('should allow a subset of existing objects to be selected', function (done) {
       graph.fetch('person', { 'name': { $eq: 'Arthur Dent' } }, function (err) {
         should.not.exist(err);
         graph.count.should.equal(1);
 
         var arthur2 = graph.get('/person/arthur');
-        eyes.inspect(graph);
         arthur2._attributes.should.eql(arthur);
         arthur2.flag('dirty').should.be.false;
         done();
@@ -189,7 +199,22 @@ describe('MemoryStore', function () {
     });
 
     it('show allow an already existing object to be updated', function (done) {
-      done();
+      graph.fetch('person', function (err) {
+        should.not.exist(err);
+        graph.count.should.equal(2);
+
+        var arthur2 = graph.get('/person/arthur');
+        arthur2._attributes.should.eql(arthur);
+        arthur2.flag('dirty').should.be.false;
+        arthur2.set({ 'name': 'The Traveler' });
+        arthur2.flag('dirty').should.be.true;
+
+        graph.push(function (err) {
+          should.not.exist(err);
+          store.store.person.get('arthur').should.have.property('name', 'The Traveler');
+          done();
+        });
+      });
     })
 
     it('should allow an already existing ojbect tobe deleted', function (done) {
