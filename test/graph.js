@@ -167,8 +167,16 @@ describe('Graph', function () {
       res.should.be.instanceof(Seed.Hash);
     });
 
-    it('should allow select by regex', function () {
+    it('should allow for filter then find', function () {
+      var res = g.filter('person').find({ 'name': { $eq: 'Arthur Dent' }});
+      res.should.have.length(1);
+      res.should.be.instanceof(Seed.Hash);
+    });
 
+    it('should allow for filters by nested attribute', function () {
+      var res = g.find({ 'stats.species' : { $eq: 'human' } });
+      res.should.have.length(1);
+      res.should.be.instanceof(Seed.Hash);
     });
 
   });
