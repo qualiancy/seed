@@ -7,10 +7,11 @@ of metrics. At it's heart Seed is an event based ORM tool, but it will also allo
 aggregation, and whatnot. The focus is to allow for datasets from many sources to be modeled, monitored,
 analyzed, and acted upon.
 
-#### Some possible implementations:
+### Some possible implementations:
 
 * Realtime notifications of status updates on social networks.
 * KPI monitoriing and alerts based on realtime sales data for shopping sites.
+* Evented ETL network
 * ... are you using it? Message [@logicalparadox](http://github.com/logicalparadox) with your use cases.
 
 ## Installation
@@ -30,6 +31,8 @@ Seed consists of four main components:
 ### Model
 
 ### Graph
+
+### Query
 
 ## Storage Engines
 
