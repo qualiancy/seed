@@ -26,15 +26,21 @@ describe('Graph', function () {
     , Location = Seed.Model.extend('location', {});
 
   var arthur = {
-    id: 'arthur',
-    name: 'Arthur Dent',
-    origin: 'Earth'
+      id: 'arthur'
+    , name: 'Arthur Dent'
+    , stats: {
+          origin: 'Earth'
+        , species: 'human'
+      }
   };
 
   var ford = {
-    id: 'ford',
-    name: 'Ford Prefect',
-    origin: 'Betelgeuse-ish'
+      id: 'ford'
+    , name: 'Ford Prefect'
+    , stats: {
+          origin: 'Betelgeuse-ish'
+        , species: 'writer'
+      }
   };
 
   var earth = {
@@ -144,7 +150,7 @@ describe('Graph', function () {
     });
   });
 
-  describe('select', function () {
+  describe('find', function () {
     var g = new Graph();
 
     g.define('person', Person);
@@ -155,18 +161,14 @@ describe('Graph', function () {
     g.set('/location/' + earth.id, earth);
     g.set('/location/' + ship.id, ship);
 
-    it('should provide a hash when select by attr', function () {
-      var locations = g.select({ name: 'Starship Heart of Gold' });
-
-      locations.should.be.instanceof(Seed.Hash);
-      locations.length.should.equal(1);
+    it('should provide a hash when find by attr', function () {
+      var res = g.find({ 'name' : { $eq: 'Arthur Dent' } });
+      res.should.have.length(1);
+      res.should.be.instanceof(Seed.Hash);
     });
 
     it('should allow select by regex', function () {
-      var people = g.select({ name: /Dent$/});
 
-      people.should.be.instanceof(Seed.Hash);
-      people.length.should.equal(1);
     });
 
   });
