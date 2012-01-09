@@ -3,8 +3,6 @@ var should = require('chai').should();
 var Seed = require('..')
   , MemoryStore = Seed.MemoryStore;
 
-var eyes = require('eyes');
-
 describe('MemoryStore', function () {
   it('should have a version', function () {
     Seed.version.should.match(/^\d+\.\d+\.\d+$/);
@@ -147,7 +145,6 @@ describe('MemoryStore', function () {
 
       graph.push(function (err) {
         should.not.exist(err);
-        eyes.inspect(store);
         store.store.person.should.be.instanceof(Seed.Hash);
         store.store.location.should.be.instanceof(Seed.Hash);
         store.store.person.should.have.length(2);
@@ -217,7 +214,9 @@ describe('MemoryStore', function () {
       });
     })
 
-    it('should allow an already existing ojbect tobe deleted', function (done) {
+    it('should allow an already existing object to be deleted', function (done) {
+      // deletion is handled through the model interface. this is not currently needed.
+      // perhaps in time, if mass deletion of purging is required.
       done();
     });
 
