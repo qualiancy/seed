@@ -1,4 +1,21 @@
 
+0.1.8 / 2012-01-09
+==================
+
+  * Merge branch 'feature/store-upgrades'
+  * model destroy success function requires no return value
+  * store checks version
+  * error accepts opts, and displays such
+  * store passes options to initialize
+  * added server dep
+  * query is not a primary component [ci skip]
+  * few more read me tweaks [ci skip]
+  * read me updates [ci-skip]
+  * Merge branch 'feature/custom-error'
+  * example for custom error
+  * export custom error
+  * Seed Custom erro
+
 0.1.7 / 2012-01-07
 ==================
 
