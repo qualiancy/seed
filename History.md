@@ -1,4 +1,21 @@
 
+0.1.9 / 2012-01-09
+==================
+
+  * Merge branch 'feature/memorystore-graph'
+  * added name to memory store for compatibility.
+  * notes for memory store graph delete
+  * more memory store tests
+  * tests for memory store with graph
+  * memory store fetch
+  * graph#fetch defaults retrieved objects dirty to false
+  * graph#set accepts options flag, but uses defaults
+  * renamed ref to utils in graph to _
+  * find each hash had backwards iterator
+  * memory store uses SeedError
+  * tests for memory store conform to using collections
+  * memory store uses collections
+
 0.1.8 / 2012-01-09
 ==================
 
