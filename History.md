@@ -1,4 +1,12 @@
 
+0.1.10 / 2012-01-11 
+==================
+
+  * seed main exports rearranged
+  * memory store uses oath directly
+  * Drip as EventEmitter, with extend for easy API usage
+  * git ignore vim swp
+
 0.1.9 / 2012-01-09
 ==================
 
