@@ -2,23 +2,38 @@
 
 ## Storage-agnostic Event Emitting Datasets
 
-Seed provides an API for working with datasets. The data can be continous streams of data or large tables
-of metrics. At it's heart Seed is an event based ORM tool, but it will also allow for realtime analysis,
-aggregation, and whatnot. The focus is to allow for datasets from many sources to be modeled, monitored,
-analyzed, and acted upon.
+Seed is a library of components that provide a common API for working with sets of data, no matter the source.
+
+* *Hashs* provide a thorough API for key:value sets. These sets can be simple string key to number value, or 
+string key to object/document value. Hashs are used extensively througout the internals of the other components.
+* *Schema*: A schema is a definition of data structure expecatations and are currently used for validation. Those
+who have used Mongoose will find the API familiar.
+* *Model*: A model defines all aspects and behavior related to a single instance in a set. More specifically, 
+when used in conjunction with storage, a model represents one document in a collection or one row in a table. 
+* *Graph*: A graph is a collection of instantiated models. Though similiar to Backbone Collections, a Graph
+allows for logical groupings of several types of models.
 
 ### Some possible implementations:
 
 * Realtime notifications of status updates on social networks.
 * KPI monitoriing and alerts based on realtime sales data for shopping sites.
 * Evented ETL network
-* ... are you using it? Message [@logicalparadox](http://github.com/logicalparadox) with your use cases.
 
 ## Installation
 
 Package is available through [npm](http://npmjs.org).
 
     $ npm install seed
+
+Seed comes with a Memory based storage engine. Need an alternative?
+
+* [seed-filestore](http://github.com/qualiancy/seed-filestore) - Store your datasets in a JSON based file structure.
+* [seed-redis](http://github.com/qualiancy/seed-redis) - Store your datasets in a [Redis](http://redis.io) database.
+
+## Where to Get Help
+
+Please post issues to [GitHub Issues](https://github.com/logicalparadox/seed/issues).
+Community forum is available at the [Google Group](https://groups.google.com/group/seedjs-orm).
 
 ## Components
 
@@ -33,15 +48,6 @@ Seed consists of four main components:
 ### Graph
 
 ## Storage Engines
-
-Seed comes with a Memory based storage engine. Need an alternative?
-
-* [seed-filestore](http://github.com/logicalparadox) - Store your datasets in a JSON based file structure.
-
-## Where to Get Help
-
-Please post issues to [GitHub Issues](https://github.com/logicalparadox/seed/issues).
-Community forum is available at the [Google Group](https://groups.google.com/group/seedjs-orm).
 
 ## Tests
 
