@@ -25,6 +25,8 @@ Package is available through [npm](http://npmjs.org).
 
     $ npm install seed
 
+## Storage Engines
+
 Seed comes with a Memory based storage engine. Need an alternative?
 
 * [seed-filestore](http://github.com/qualiancy/seed-filestore) - Store your datasets in a JSON based file structure.
@@ -46,8 +48,6 @@ Seed consists of four main components:
 ### Model
 
 ### Graph
-
-## Storage Engines
 
 ## Tests
 
