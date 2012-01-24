@@ -1,4 +1,18 @@
 
+0.1.11 / 2012-01-24 
+==================
+
+  * crystal OS license attribute
+  * object id example
+  * expose named objected generators
+  * added base/bits objectid generator "crystal"
+  * Model supports deep addresses for 'get'
+  * [bug] SeedError opts misreference
+  * Model#fetch returns ENOTFOUND if storage engine returns null
+  * SeedError moves opts.code to this.code as shortcut
+  * README typos
+  * few readme updates
+
 0.1.10 / 2012-01-11 
 ==================
 
