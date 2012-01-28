@@ -22,12 +22,12 @@ var data = {
   }
 }
 
-bench('Schema#validate', function (next) {
-  var valid = schema.validate(data);
-  next();
-});
+suite('Schema', function () {
+  bench('Schema#validate', function () {
+    var valid = schema.validate(data);
+  });
 
-bench('Model#constructor', function (next) {
-  var m = new model(data);
-  next();
+  bench('Model#constructor', function () {
+    var m = new model(data);
+  });
 });
