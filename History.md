@@ -1,4 +1,12 @@
 
+0.1.12 / 2012-01-28 
+==================
+
+  * removed all references to query, using 'filtr'
+  * using filtr for querying
+  * comment typos
+  * remove filter tests
+
 0.1.11 / 2012-01-24 
 ==================
 
