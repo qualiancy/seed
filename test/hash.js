@@ -22,34 +22,6 @@ describe('Hash', function () {
       hash.length.should.equal(expected_length);
     });
 
-    it('should have sum', function () {
-      var hash = new Hash(data);
-
-      hash.length.should.equal(expected_length);
-      hash.sum.should.equal(6936269063);
-    });
-
-    it('should have average', function () {
-      var hash = new Hash(data);
-
-      hash.length.should.equal(expected_length);
-      hash.avg.should.equal(29143987.659663867);
-    });
-
-    it('should have minimum', function () {
-      var hash = new Hash(data);
-
-      hash.length.should.equal(expected_length);
-      hash.min.should.equal(48);
-    });
-
-    it('should have maximum', function () {
-      var hash = new Hash(data);
-
-      hash.length.should.equal(expected_length);
-      hash.max.should.equal(1336718015);
-    });
-
     it('should have an array list of keys', function () {
       var hash = new Hash(data)
         , keys = hash.keys;
@@ -158,14 +130,6 @@ describe('Hash', function () {
       arr[0].key.should.equal('Afghanistan');
       arr[0].value.should.equal(29835392);
     });
-
-    it('should allow for JSON string output', function () {
-      var hash = new Hash(data)
-        , json = hash.serialize();
-
-      json.should.be.a('string');
-      json.should.equal(data_raw);
-    });
   });
 
   describe('position #at', function () {
@@ -214,21 +178,19 @@ describe('Hash', function () {
 
     describe('#map', function () {
       var hash = new Hash(data)
-        , n = 0;
+        , n = 0
+        , s = 0;
 
       var hash2 = hash.map(function (d, k, i) {
         d.should.equal(data[k]);
         i.should.equal(n);
         n++;
+        s += d;
         return d + 1;
       });
 
       it('should iterate over all object in hash', function () {
         n.should.equal(expected_length);
-      });
-
-      it('should return a new value for a new hash', function () {
-        hash2.sum.should.equal(hash.sum + expected_length);
       });
 
     });
