@@ -78,6 +78,23 @@ describe('Hash', function () {
       });
     });
 
+    describe('HAS', function () {
+      it('should work for all values', function () {
+        var hash = new Hash(data)
+        for (var key in data) {
+          hash.has(key).should.be.true;
+        }
+      });
+
+      it('should return false for non existent keys', function () {
+        var hash = new Hash(data);
+        hash.has('hello').should.be.false;
+        hash.has('hasOwnProperty').should.be.false;
+        hash.has('__proto__').should.be.false;
+        hash.has('constructor').should.be.false;
+      });
+    });
+
     describe('DEL', function() {
       it('should work for all values', function () {
         var hash = new Hash(data)
