@@ -142,7 +142,7 @@ describe('Graph', function () {
     it('should allow data to be set by address', function () {
       g.set('/person/' + arthur.id, arthur);
       g.set('/person/' + ford.id, ford);
-      g.count.should.equal(2);
+      g.length.should.equal(2);
     });
 
     it('should have called all callbacks', function () {
@@ -195,21 +195,21 @@ describe('Graph', function () {
       g.set('/location/' + ship.id, ship);
     });
 
-    it('should allow flushing by type', function () {
+    it('should allow flushing', function () {
       var spy = Spy();
-      g.count.should.equal(4);
-      g.on([ 'flush', 'person'], spy);
-      g.flush('person');
-      g.count.should.equal(2);
+      g.should.have.length(4);
+      g.on([ 'flush', 'all' ], spy);
+      g.flush();
+      g.should.have.length(0);
       spy.calls.length.should.equal(1);
     });
 
     it('should allow flushing by type', function () {
       var spy = Spy();
-      g.count.should.equal(4);
-      g.on([ 'flush', 'all' ], spy);
-      g.flush();
-      g.count.should.equal(0);
+      g.should.have.length(4);
+      g.on([ 'flush', 'person'], spy);
+      g.flush('person');
+      g.should.have.length(2);
       spy.calls.length.should.equal(1);
     });
 
