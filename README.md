@@ -1,6 +1,6 @@
 # Seed [![Build Status](https://secure.travis-ci.org/qualiancy/seed.png)](http://travis-ci.org/qualiancy/seed)
 
-## Storage-agnostic Event Emitting Datasets
+> Storage-agnostic Event Emitting Datasets
 
 Seed is a library of components that provide a common API for working with sets of data, no matter the source.
 
