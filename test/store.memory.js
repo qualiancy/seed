@@ -12,7 +12,7 @@ describe('MemoryStore', function () {
 
     it('should call initialize', function () {
       var Store = new MemoryStore();
-      Store.store.should.be.a('object');
+      Store.should.have.property('store').a('object');
     });
 
   });
@@ -34,7 +34,7 @@ describe('MemoryStore', function () {
     it('should allow a new object to be created', function (done) {
       arthur.save(function (err) {
         should.not.exist(err);
-        store.store.person.length.should.equal(1);
+        store.store.person.should.have.length(1);
         arthur._attributes.should.eql(store.store.person.get('arthur'));
         done();
       });
@@ -162,7 +162,7 @@ describe('MemoryStore', function () {
 
       graph.pull(function (err) {
         should.not.exist(err);
-        graph.count.should.equal(4);
+        graph.should.have.length(4);
 
         var arthur2 = graph.get('/person/arthur');
         arthur2._attributes.should.eql(arthur);
@@ -174,7 +174,7 @@ describe('MemoryStore', function () {
     it('should allow all records of a specific type to be fetched', function (done) {
       graph.fetch('person', function (err) {
         should.not.exist(err);
-        graph.count.should.equal(2);
+        graph.should.have.length(2);
 
         var arthur2 = graph.get('/person/arthur');
         arthur2._attributes.should.eql(arthur);
@@ -186,7 +186,7 @@ describe('MemoryStore', function () {
     it('should allow a subset of existing objects to be selected', function (done) {
       graph.fetch('person', { 'name': { $eq: 'Arthur Dent' } }, function (err) {
         should.not.exist(err);
-        graph.count.should.equal(1);
+        graph.should.have.length(1);
 
         var arthur2 = graph.get('/person/arthur');
         arthur2._attributes.should.eql(arthur);
@@ -198,7 +198,7 @@ describe('MemoryStore', function () {
     it('show allow an already existing object to be updated', function (done) {
       graph.fetch('person', function (err) {
         should.not.exist(err);
-        graph.count.should.equal(2);
+        graph.should.have.length(2);
 
         var arthur2 = graph.get('/person/arthur');
         arthur2._attributes.should.eql(arthur);
