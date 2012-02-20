@@ -27,7 +27,7 @@ describe('MemoryStore', function () {
     });
 
     var arthur = new Person({
-        id: 'arthur'
+        _id: 'arthur'
       , name: 'Arthur Dent'
     });
 
@@ -42,7 +42,7 @@ describe('MemoryStore', function () {
 
     it('should allow an already written object to be retrieved', function (done) {
       var dent = new Person({
-          id: 'arthur'
+          _id: 'arthur'
       });
 
       dent.fetch(function (err) {
@@ -59,13 +59,13 @@ describe('MemoryStore', function () {
         should.not.exist(err);
 
         var confirm = new Person({
-            id: 'arthur'
+            _id: 'arthur'
         });
 
         confirm.fetch(function (err) {
           should.not.exist(err);
           confirm._attributes.should.eql({
-              id: 'arthur'
+              _id: 'arthur'
             , name: 'Arthur Dent'
             , location: 'earth'
           });
@@ -80,7 +80,7 @@ describe('MemoryStore', function () {
         should.not.exist(err);
 
         var confirm = new Person({
-            id: 'arthur'
+            _id: 'arthur'
         });
 
         confirm.fetch(function (err) {
@@ -106,7 +106,7 @@ describe('MemoryStore', function () {
     graph.define(Location);
 
     var arthur = {
-        id: 'arthur'
+        _id: 'arthur'
       , name: 'Arthur Dent'
       , stats: {
             origin: 'Earth'
@@ -115,7 +115,7 @@ describe('MemoryStore', function () {
     };
 
     var ford = {
-        id: 'ford'
+        _id: 'ford'
       , name: 'Ford Prefect'
       , stats: {
             origin: 'Betelgeuse-ish'
@@ -124,12 +124,12 @@ describe('MemoryStore', function () {
     };
 
     var earth = {
-        id: 'earth'
+        _id: 'earth'
       , name: 'Dent\'s Planet Earth'
     };
 
     var ship = {
-        id: 'gold'
+        _id: 'gold'
       , name: 'Starship Heart of Gold'
     };
 
@@ -138,10 +138,10 @@ describe('MemoryStore', function () {
     });
 
     it('should allow new objects to be created', function (done) {
-      graph.set('/person/' + arthur.id, arthur);
-      graph.set('/person/' + ford.id, ford);
-      graph.set('/location/' + earth.id, earth);
-      graph.set('/location/' + ship.id, ship);
+      graph.set('/person/' + arthur._id, arthur);
+      graph.set('/person/' + ford._id, ford);
+      graph.set('/location/' + earth._id, earth);
+      graph.set('/location/' + ship._id, ship);
 
       graph.push(function (err) {
         should.not.exist(err);
@@ -155,10 +155,10 @@ describe('MemoryStore', function () {
     });
 
     it('should allow already existing objects to be read', function (done) {
-      graph.set('/person/' + arthur.id);
-      graph.set('/person/' + ford.id);
-      graph.set('/location/' + earth.id);
-      graph.set('/location/' + ship.id);
+      graph.set('/person/' + arthur._id);
+      graph.set('/person/' + ford._id);
+      graph.set('/location/' + earth._id);
+      graph.set('/location/' + ship._id);
 
       graph.pull(function (err) {
         should.not.exist(err);
