@@ -11,7 +11,7 @@ describe('Model', function () {
   describe('managing attributes', function () {
     var model = new Seed.Model();
     it('should allow for attributes to be `set`', function () {
-      model.set({ hello: 'universe' });
+      model.set('hello', 'universe');
       model._attributes.hello.should.equal('universe');
     });
 
