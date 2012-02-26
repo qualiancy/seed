@@ -25,6 +25,6 @@
     "mocha": "*",
     "chai": "*",
     "chai-spies": "*",
-    "matcha": "0.0.x"
+    "matcha": "0.1.x"
   }
 }
