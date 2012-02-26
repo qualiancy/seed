@@ -95,13 +95,11 @@ describe('Hash', function () {
       it('should work for all values', function () {
         var hash = new Hash(data)
           , count = expected_length;
-
         for (var key in data) {
           hash.length.should.equal(count);
           hash.del(key);
           count--;
         }
-
         hash.length.should.equal(0);
       });
 

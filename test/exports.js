@@ -34,7 +34,6 @@ describe('Exports', function () {
 
   it('should respond to utilities', function () {
     Seed.should.have.property('utils');
-    console.log(Seed.utils);
     Seed.utils.should.respondTo('merge');
     Seed.utils.should.respondTo('Flake');
   });
