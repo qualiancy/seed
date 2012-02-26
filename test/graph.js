@@ -53,10 +53,6 @@ describe('Graph', function () {
     , name: 'Starship Heart of Gold'
   };
 
-  it('should have a version', function () {
-    should.exist(Seed.version);
-  });
-
   describe('constructor', function () {
     var n = 0
       , graph = Graph.extend({

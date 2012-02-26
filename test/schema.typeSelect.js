@@ -5,10 +5,6 @@ var Seed = require('..')
 
 describe('Schema Type', function () {
 
-  it('should have a version', function () {
-    should.exist(Seed.version);
-  });
-
   describe('Select', function () {
     var states = ['AL','AK','AZ','AR','CA','CO','CT','DE',
       'FL','GA','HI','ID','IL','IN','IA','KS','KY','LA','ME','MD','MA','MI',

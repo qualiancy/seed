@@ -12,10 +12,6 @@ describe('Hash', function () {
     , data = JSON.parse(data_raw)
     , expected_length = 238;
 
-  it('should have a version', function () {
-    should.exist(Seed.version);
-  });
-
   describe('getters', function () {
     it('should have length', function () {
       var hash = new Hash(data);

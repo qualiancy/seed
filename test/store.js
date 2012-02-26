@@ -7,10 +7,6 @@ var Oath = require('oath');
 
 describe('Store', function () {
 
-  it('should have a version', function () {
-    Seed.version.should.match(/^\d+\.\d+\.\d+$/);
-  });
-
   it('should have the proper drip settings', function () {
     var store = new Store();
     store._drip.should.be.a('object');

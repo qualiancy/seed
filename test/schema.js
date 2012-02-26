@@ -5,10 +5,6 @@ var Seed = require('..')
 
 describe('Schema', function () {
 
-  it('should have a version', function () {
-    should.exist(Seed.version);
-  });
-
   describe('required data', function () {
     var s = new Schema({
       name: {

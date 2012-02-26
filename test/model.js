@@ -35,6 +35,16 @@ describe('Model', function () {
       model.should.respondTo('initialize');
     });
 
+    it('should be `initialized`', function () {
+      var spy = chai.spy()
+        , M = Model.extend({
+            initialize: spy
+          });
+
+      var model = new M();
+      spy.should.have.been.called.once;
+    });
+
     it('should understand types', function () {
       var model = new Model(null, { type: 'person' });
       model.type.should.be.person;
