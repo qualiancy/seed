@@ -42,7 +42,7 @@ describe('MemoryStore', function () {
 
     it('should allow an already written object to be retrieved', function (done) {
       var dent = new Person({
-          _id: 'arthur'
+        _id: 'arthur'
       });
 
       dent.fetch(function (err) {
@@ -54,7 +54,7 @@ describe('MemoryStore', function () {
 
     it('should allow an already written object to be modified', function (done) {
 
-      arthur.set({ 'location': 'earth' });
+      arthur.set('location', 'earth');
       arthur.save(function (err) {
         should.not.exist(err);
 
@@ -203,7 +203,7 @@ describe('MemoryStore', function () {
         var arthur2 = graph.get('/person/arthur');
         arthur2._attributes.should.eql(arthur);
         arthur2.flag('dirty').should.be.false;
-        arthur2.set({ 'name': 'The Traveler' });
+        arthur2.set('name', 'The Traveler');
         arthur2.flag('dirty').should.be.true;
 
         graph.push(function (err) {
