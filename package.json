@@ -24,6 +24,7 @@
   "devDependencies": {
     "mocha": "*",
     "chai": "*",
+    "chai-spies": "*",
     "matcha": "0.0.x"
   }
 }
