@@ -9,23 +9,21 @@ suite('MemoryStore', function () {
     store: store
   });
 
-  var arthur = new Person({
-      id: 'arthur'
-    , name: 'Arthur Dent'
-  });
-
+  var iset = 0;
   bench('Set', function (done) {
-    arthur.save(done);
+    var m = new Person({ _id: ++iset });
+    m.save(done);
   });
 
+  var iget = 0;
   bench('Get', function (done) {
-    arthur.fetch(done);
+    var m = new Person({ _id: ++iget });
+    m.fetch(done);
   });
-  /* TODO: This performs horribly!
+
+  var idel = 0;
   bench('Save/Destroy', function (done) {
-    arthur.save(function () {
-      arthur.destroy(done);
-    });
+    var m = new Person({ _id: ++idel });
+    m.destroy(done);
   });
-  */
 });
