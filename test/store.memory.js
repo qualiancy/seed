@@ -138,10 +138,10 @@ describe('MemoryStore', function () {
     });
 
     it('should allow new objects to be created', function (done) {
-      graph.set('/person/' + arthur._id, arthur);
-      graph.set('/person/' + ford._id, ford);
-      graph.set('/location/' + earth._id, earth);
-      graph.set('/location/' + ship._id, ship);
+      graph.set('person', arthur._id, arthur);
+      graph.set('person', ford._id, ford);
+      graph.set('location', earth._id, earth);
+      graph.set('location', ship._id, ship);
 
       graph.push(function (err) {
         should.not.exist(err);
@@ -155,16 +155,16 @@ describe('MemoryStore', function () {
     });
 
     it('should allow already existing objects to be read', function (done) {
-      graph.set('/person/' + arthur._id);
-      graph.set('/person/' + ford._id);
-      graph.set('/location/' + earth._id);
-      graph.set('/location/' + ship._id);
+      graph.set('person', arthur._id);
+      graph.set('person', ford._id);
+      graph.set('location', earth._id);
+      graph.set('location', ship._id);
 
       graph.pull(function (err) {
         should.not.exist(err);
         graph.should.have.length(4);
 
-        var arthur2 = graph.get('/person/arthur');
+        var arthur2 = graph.get('person', 'arthur');
         arthur2._attributes.should.eql(arthur);
         arthur2.flag('dirty').should.be.false;
         done();
@@ -176,7 +176,7 @@ describe('MemoryStore', function () {
         should.not.exist(err);
         graph.should.have.length(2);
 
-        var arthur2 = graph.get('/person/arthur');
+        var arthur2 = graph.get('person' ,'arthur');
         arthur2._attributes.should.eql(arthur);
         arthur2.flag('dirty').should.be.false;
         done();
@@ -188,7 +188,7 @@ describe('MemoryStore', function () {
         should.not.exist(err);
         graph.should.have.length(1);
 
-        var arthur2 = graph.get('/person/arthur');
+        var arthur2 = graph.get('person', 'arthur');
         arthur2._attributes.should.eql(arthur);
         arthur2.flag('dirty').should.be.false;
         done();
@@ -200,7 +200,7 @@ describe('MemoryStore', function () {
         should.not.exist(err);
         graph.should.have.length(2);
 
-        var arthur2 = graph.get('/person/arthur');
+        var arthur2 = graph.get('person', 'arthur');
         arthur2._attributes.should.eql(arthur);
         arthur2.flag('dirty').should.be.false;
         arthur2.set('name', 'The Traveler');
