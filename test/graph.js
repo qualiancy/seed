@@ -140,8 +140,8 @@ describe('Graph', function () {
     });
 
     it('should allow data to be set by address', function () {
-      g.set('/person/' + arthur.id, arthur);
-      g.set('/person/' + ford.id, ford);
+      g.set('person', arthur.id, arthur);
+      g.set('person', ford.id, ford);
       g.length.should.equal(2);
     });
 
@@ -156,10 +156,10 @@ describe('Graph', function () {
     g.define('person', Person);
     g.define('location', Location);
 
-    g.set('/person/' + arthur.id, arthur);
-    g.set('/person/' + ford.id, ford);
-    g.set('/location/' + earth.id, earth);
-    g.set('/location/' + ship.id, ship);
+    g.set('person', arthur.id, arthur);
+    g.set('person', ford.id, ford);
+    g.set('location', earth.id, earth);
+    g.set('location', ship.id, ship);
 
     it('should provide a hash when find by attr', function () {
       var res = g.find({ 'name' : { $eq: 'Arthur Dent' } });
@@ -189,10 +189,10 @@ describe('Graph', function () {
     g.define('location', Location);
 
     beforeEach(function () {
-      g.set('/person/' + arthur.id, arthur);
-      g.set('/person/' + ford.id, ford);
-      g.set('/location/' + earth.id, earth);
-      g.set('/location/' + ship.id, ship);
+      g.set('person', arthur.id, arthur);
+      g.set('person', ford.id, ford);
+      g.set('location', earth.id, earth);
+      g.set('location', ship.id, ship);
     });
 
     it('should allow flushing', function () {
