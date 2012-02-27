@@ -229,7 +229,7 @@ describe('Hash', function () {
       var hash = new Hash(data)
         , n = 0;
 
-      var hash2 = hash.select(function (d, k) {
+      var hash2 = hash.filter(function (d, k) {
         d.should.equal(data[k]);
         n++;
         return (n <= 10) ? true : false;
