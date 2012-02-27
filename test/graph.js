@@ -30,30 +30,32 @@ describe('Graph', function () {
     , Location = Seed.Model.extend('location', {});
 
   var arthur = {
-      id: 'arthur'
+      _id: 'arthur'
     , name: 'Arthur Dent'
     , stats: {
           origin: 'Earth'
+        , occupation: 'traveller'
         , species: 'human'
       }
   };
 
   var ford = {
-      id: 'ford'
+      _id: 'ford'
     , name: 'Ford Prefect'
     , stats: {
           origin: 'Betelgeuse-ish'
+        , occupation: 'traveller'
         , species: 'writer'
       }
   };
 
   var earth = {
-      id: 'earth'
+      _id: 'earth'
     , name: 'Dent\'s Planet Earth'
   };
 
   var ship = {
-      id: 'gold'
+      _id: 'gold'
     , name: 'Starship Heart of Gold'
   };
 
@@ -155,8 +157,8 @@ describe('Graph', function () {
     });
 
     it('should allow data to be set by address', function () {
-      g.set('person', arthur.id, arthur);
-      g.set('person', ford.id, ford);
+      g.set('person', arthur._id, arthur);
+      g.set('person', ford._id, ford);
       g.length.should.equal(2);
     });
 
@@ -165,21 +167,48 @@ describe('Graph', function () {
     });
   });
 
-  describe('find', function () {
+  describe('filter/find', function () {
     var g = new Graph();
 
     g.define('person', Person);
     g.define('location', Location);
 
-    g.set('person', arthur.id, arthur);
-    g.set('person', ford.id, ford);
-    g.set('location', earth.id, earth);
-    g.set('location', ship.id, ship);
+    g.set('person', arthur._id, arthur);
+    g.set('person', ford._id, ford);
+    g.set('location', earth._id, earth);
+    g.set('location', ship._id, ship);
 
     it('should provide a hash when find by attr', function () {
       var res = g.find({ 'name' : { $eq: 'Arthur Dent' } });
       res.should.have.length(1);
       res.should.be.instanceof(Seed.Hash);
+    });
+
+    it('should allow for filter by type', function () {
+      var res = g.filter('person');
+      res.should.have.length(2);
+      res.should.be.instanceof(Seed.Hash);
+    });
+
+    it('should allow for filter by iterator', function () {
+      var res = g.filter(function (m) {
+        return m.get('stats.occupation') == 'traveller';
+      });
+      res.should.have.length(2);
+      res.should.be.instanceof(Seed.Hash);
+    });
+
+    it('should allow for filter by type + iterator', function () {
+      var res = g.filter('person', function (m) {
+        return m.id == 'arthur';
+      });
+      res.should.have.length(1);
+      res.should.be.instanceof(Seed.Hash);
+    });
+
+    it('should returned undefined for bad formed filter', function () {
+      var res = g.filter();
+      should.not.exist(res);
     });
 
     it('should allow for filter then find', function () {
@@ -204,10 +233,10 @@ describe('Graph', function () {
     g.define('location', Location);
 
     beforeEach(function () {
-      g.set('person', arthur.id, arthur);
-      g.set('person', ford.id, ford);
-      g.set('location', earth.id, earth);
-      g.set('location', ship.id, ship);
+      g.set('person', arthur._id, arthur);
+      g.set('person', ford._id, ford);
+      g.set('location', earth._id, earth);
+      g.set('location', ship._id, ship);
     });
 
     it('should allow flushing', function () {
