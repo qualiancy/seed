@@ -15,15 +15,6 @@ describe('Store', function () {
     store.emit.should.be.a('function');
   });
 
-  it('should have a promise helper', function () {
-    var store = new Store();
-    store.Promise.should.be.a('function');
-    store.Promise.version.should.equal(Oath.version);
-
-    var promise = new store.Promise();
-    promise.should.be.instanceof(Oath);
-  });
-
   it('should provide a functioning extend method', function () {
     Store.extend.should.be.a('function');
     var NewStore = Store.extend({});
