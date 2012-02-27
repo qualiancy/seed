@@ -59,6 +59,17 @@ describe('Model', function () {
       person.type.should.not.equal('alien');
       person.type.should.equal('person');
     });
+
+    it('should provide correct toString value', function () {
+      Model.should.respondTo('toString');
+      Model.toString().should.equal('[object Model]');
+      var m = new Model();
+      m.should.respondTo('toString');
+      m.toString().should.equal('[object ModelItem]');
+      var p = new Model(null, { type: 'person' });
+      p.should.respondTo('toString');
+      p.toString().should.equal('[object Person]');
+    });
   });
 
   describe('managing attributes', function () {
