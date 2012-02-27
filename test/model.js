@@ -92,5 +92,12 @@ describe('Model', function () {
       model.merge({ open: { source: 'always' }});
       model.get('open.source').should.equal('always');
     });
+
+    it('should allow for id to be set/get via helper', function () {
+      should.not.exist(model.get('_id'));
+      model.id = 'testing';
+      model.get('_id').should.equal('testing');
+      model.id.should.equal('testing');
+    });
   });
 });
