@@ -1,4 +1,85 @@
 
+0.2.0 / 2012-02-26 
+==================
+
+  * few more tests and tweaks
+  * tweak for Model toString() + tests
+  * testing for custom error object
+  * code cleanup for schema#validate
+  * promise export mimics event emitter usage
+  * utils imported as standard _ in hash
+  * hash code cleaning
+  * removed comparator helper export as now inline in hash
+  * tests for refactored sort
+  * refactored Hash#sort, added Hash#sortBy
+  * added Hash#clean & Hash#flush
+  * graph tests for filter
+  * inline comments for graph filter
+  * refactor Graph#filter
+  * refactor Hash#select as Hash#filter
+  * schema type tests compatible with id required
+  * schema forces _id as index
+  * remove unused schema functions
+  * graph flag type getter
+  * graph test flag events
+  * test-cov / lib-cov in makefile are phony
+  * tests 0.4.x compatible
+  * accurate keys/values getters for hash
+  * clean tests
+  * hash length & set performance tweak
+  * ;
+  * refactor memory store for better remove performance
+  * refactor memorystore bench
+  * update matcha
+  * crystal is cleaner
+  * more tests
+  * model tests for construction and get/set
+  * added chai spies
+  * model type can't be changed after constructed
+  * Merge branch 'feature/graph-set-refactor'
+  * memory store tests compatible with new graph#set format
+  * graph tests compatible with new set format
+  * graph set is #set(type, id, attrs)
+  * Merge branch 'feature/modelschema'
+  * model cleanup
+  * model uses schema validation when available
+  * schema supports indexes
+  * query helper
+  * tests for new set
+  * model set is no path based, old set is called merge
+  * test coverage support
+  * comments
+  * using EventEmitter drip implementation instead of requiring drip for each component
+  * replacing delete with 'set' undefined
+  * hash benchmarks
+  * filter version bump
+  * comments
+  * Schema uses event emitter
+  * drip as Event emitter
+  * Merge branch 'feature/_id'
+  * changed `id` to `_id`
+  * read me [ci-skip]
+  * memory store tests compatible with `length`
+  * graph uses `length` instead of count
+  * memory store has more appropriate object store
+  * graph tests length fix
+  * graph flush fix
+  * graph comments
+  * model comments
+  * model comments
+  * utils comments
+  * copyright notices
+  * storage comment updates
+  * hash#has implemented
+  * proper storage for hash data
+  * make bench
+  * tests fixed for hash
+  * all hash commenting
+  * change reporter for tests
+  * read me updates on upcoming releases
+  * few simple tests
+  * benchmark updates
+
 0.1.12 / 2012-01-28 
 ==================
 
