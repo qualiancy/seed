@@ -247,25 +247,56 @@ describe('Hash', function () {
     describe('#sort', function () {
       var hash = new Hash(data);
 
-      describe('when sorted ASC', function () {
-        var sorted = hash.sort(Seed.comparators.ASC);
-
-        it('should return all objects in the correct order', function () {
-          sorted.length.should.equal(expected_length);
-          sorted.index('Pitcairn Islands').should.equal(0);
-          sorted.at(0).should.equal(sorted.get('Pitcairn Islands'));
-        });
+      it('should return all objects sorted ASC', function () {
+        hash.sort('asc');
+        hash.length.should.equal(expected_length);
+        hash.index('Pitcairn Islands').should.equal(0);
+        hash.at(0).should.equal(hash.get('Pitcairn Islands'));
       });
 
-      describe('when sorted DESC', function () {
-        var sorted = hash.sort(Seed.comparators.DESC);
-
-        it('should return all objects in the correct order', function () {
-          sorted.length.should.equal(expected_length);
-          sorted.index('China').should.equal(0);
-          sorted.at(0).should.equal(sorted.get('China'));
-        });
+      it('should return all objects sorted DESC', function () {
+        hash.sort('desc');
+        hash.length.should.equal(expected_length);
+        hash.index('China').should.equal(0);
+        hash.at(0).should.equal(hash.get('China'));
       });
+
+      it('should return all objects sorted KASC', function () {
+        hash.sort('kasc');
+        hash.length.should.equal(expected_length);
+        hash.index('China').should.equal(43);
+        hash.at(43).should.equal(hash.get('China'));
+      });
+
+      it('should return all objects sorted KASC (default)', function () {
+        hash.sort();
+        hash.length.should.equal(expected_length);
+        hash.index('China').should.equal(43);
+        hash.at(43).should.equal(hash.get('China'));
+      });
+
+      it('should return all objects sorted KDESC', function () {
+        hash.sort('kdesc');
+        hash.length.should.equal(expected_length);
+        hash.index('China').should.equal(194);
+        hash.at(194).should.equal(hash.get('China'));
+      });
+
+      it('should return all objects sorted by a custom function', function () {
+        // alphabetical
+        hash.sort(function (a, b) {
+          var A = a.key.toLowerCase()
+            , B = b.key.toLowerCase();
+          if (A < B) return -1;
+          else if (A > B) return  1;
+          else return 0;
+        });
+
+        hash.length.should.equal(expected_length);
+        hash.index('China').should.equal(43);
+        hash.at(43).should.equal(hash.get('China'));
+      });
+
     });
 
   });
