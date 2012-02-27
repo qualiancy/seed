@@ -30,6 +30,10 @@ describe('Exports', function () {
     (function () {
       throw new Seed.SeedError('testing');
     }).should.throw(/^testing$/);
+
+    var err = new Seed.SeedError('testing', { testing: true });
+    err.stack.indexOf('SeedError').should.be.above(-1);
+    err.toJSON().should.be.a('object');
   });
 
   it('should respond to utilities', function () {
@@ -51,4 +55,5 @@ describe('Exports', function () {
     Seed.should.respondTo('Store');
     Seed.should.respondTo('MemoryStore');
   });
+
 });
