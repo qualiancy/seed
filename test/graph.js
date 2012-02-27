@@ -1,4 +1,8 @@
-var should = require('chai').should();
+var chai = require('chai')
+  , chaispies = require('chai-spies')
+  , should = chai.should();
+
+chai.use(chaispies);
 
 var Seed = require('../lib/seed')
   , Graph = Seed.Graph;
@@ -76,18 +80,30 @@ describe('Graph', function () {
     it('should define itself as a graph', function () {
       Graph.toString().should.equal('[object Graph]');
     });
+
   });
 
   describe('instance utilities', function () {
     var g = new Graph();
 
     it('should be able to have arbitrary flags', function () {
+      var spy = chai.spy(function (v) {
+        v.should.be.ok;
+      });
+
       should.not.exist(g.flag('testing'));
       should.not.exist(g.flag('hello'));
+
+      g.on([ 'flag', 'testing' ], spy);
+
       g.flag('testing', true).should.be.ok;
       g.flag('testing').should.be.ok;
       g.flag(['testing','hello'], true);
       g.flag('hello').should.be.ok;
+
+      spy.should.have.been.called.twice;
+    });
+
     });
   });
 
