@@ -104,6 +104,9 @@ describe('Graph', function () {
       spy.should.have.been.called.twice;
     });
 
+    it('should know its types', function () {
+      g.define('person', { _id: String });
+      g.types.should.include('person');
     });
   });
 
