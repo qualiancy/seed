@@ -19,11 +19,11 @@ describe('Schema Type', function () {
     });
 
     it('should validate with a state', function () {
-      s.validate({ state: 'CA' }).should.be.ok;
+      s.validate({ _id: 'test', state: 'CA' }).should.be.ok;
     });
 
     it('should not validate with a non-included value', function () {
-      s.validate({ state: 'UK' }).should.not.be.ok;
+      s.validate({ _id: 'test', state: 'UK' }).should.not.be.ok;
     });
   });
 
