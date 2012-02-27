@@ -18,4 +18,4 @@ lib-cov:
 bench:
 	@NODE_ENV=test ./node_modules/.bin/matcha $(BENCHMARKS)
 
-.PHONY: test bench
+.PHONY: test test-cov lib-cov bench
