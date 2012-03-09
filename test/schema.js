@@ -75,7 +75,6 @@ describe('Schema', function () {
 
     it('should recognize the index', function () {
       s.indexes.has('_id').should.be.true;
-      s.required.has('_id').should.be.true;
     });
 
     it('should validate if an index is provided', function () {
@@ -84,10 +83,6 @@ describe('Schema', function () {
 
     it('should not validate if the wrong type of index is provided', function() {
       s.validate({ _id: 42 }).should.be.false;
-    });
-
-    it('should not validate if the index is not provided', function () {
-      s.validate({ name: 'Universe' }).should.be.false;
     });
 
   });
