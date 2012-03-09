@@ -33,6 +33,7 @@ describe('Model', function () {
       model.flag('new').should.be.true;
       model.flag('dirty').should.be.ture;
       model.should.respondTo('initialize');
+      should.exist(model.id);
     });
 
     it('should be `initialized`', function () {
