@@ -1,4 +1,16 @@
 
+0.2.1 / 2012-03-09 
+==================
+
+  * temporarily ignore nested schemas
+  * graph refresh lookups on pull
+  * refactor graph.set to support models
+  * test for kid as id
+  * model id getter shows kid if no _id defined
+  * tweak schema _id index defaults
+  * indexes are not required for schema validation
+  * [bug] Model#save - failure not defined on save fail
+
 0.2.0 / 2012-02-26 
 ==================
 
