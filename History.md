@@ -1,4 +1,12 @@
 
+0.2.2 / 2012-03-14 
+==================
+
+  * Docs cleanup.
+  * Added Graph#has
+  * added Model#has
+  * schema validate path, model set uses Schema#validatePath
+
 0.2.1 / 2012-03-09 
 ==================
 
