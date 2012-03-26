@@ -225,6 +225,34 @@ describe('Graph', function () {
 
   });
 
+  describe('iteration', function () {
+    var g = new Graph();
+
+    g.define('person', Person);
+    g.define('location', Location);
+
+    g.set('person', arthur._id, arthur);
+    g.set('person', ford._id, ford);
+    g.set('location', earth._id, earth);
+    g.set('location', ship._id, ship);
+
+    it('should allow for iteration through all objects', function () {
+      var i = 0;
+      g.each(function (m) {
+        i++;
+      });
+      i.should.equal(4);
+    });
+
+    it('should allow for iteration through specific types', function () {
+      var i = 0;
+      g.each('person', function (m) {
+        i++;
+      });
+      i.should.equal(2);
+    });
+  });
+
   describe('flush', function () {
 
     var g = new Graph();
