@@ -1,4 +1,10 @@
 
+0.2.3 / 2012-03-26 
+==================
+
+  * tests for Graph#each
+  * [bug] graph#each crash with type
+
 0.2.2 / 2012-03-14 
 ==================
 
