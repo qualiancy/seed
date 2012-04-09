@@ -5,18 +5,37 @@ var Seed = require('..')
 
 describe('Schema Type', function () {
 
+  describe('Boolean', function () {
+    var s = new Schema({
+      bln: Boolean
+    });
+
+    it('should validate with a boolean', function () {
+      s.validate({ bln: true }).should.be.true;
+      s.validate({ bln: false }).should.be.true;
+    });
+
+    it('should not validate with non booleans', function () {
+      s.validate({ bln: 0 }).should.be.false;
+      s.validate({ bln: 1 }).should.be.false;
+      s.validate({ bln: 12 }).should.be.false;
+      s.validate({ bln: 'true' }).should.be.false;
+      s.validate({ bln: { bln: true }}).should.be.false;
+    });
+  });
+
   describe('Number', function () {
     var s = new Schema({
       num: Number
     });
 
     it('should validate with a number', function () {
-      s.validate({ _id: 'test', num: 10 }).should.be.ok;
+      s.validate({ num: 10 }).should.be.true;
     });
 
     it('should not validate with other types', function () {
-      s.validate({ _id: 'test', num: 'hello' }).should.not.be.ok;
-      s.validate({ _id: 'test', num: [  ] }).should.not.be.ok;
+      s.validate({ num: 'hello' }).should.be.false;
+      s.validate({ num: [  ] }).should.be.false;
     });
   });
 
@@ -26,12 +45,12 @@ describe('Schema Type', function () {
     });
 
     it('should validate with a string', function () {
-      s.validate({ _id: 'test', str: 'hello' }).should.be.ok;
+      s.validate({ str: 'hello' }).should.be.true;
     });
 
     it('should not validate with other types', function () {
-      s.validate({ _id: 'test', str: 1 }).should.not.be.ok;
-      s.validate({ _id: 'test', str: [ 'hello' ] }).should.not.be.ok;
+      s.validate({ str: 1 }).should.be.false;
+      s.validate({ str: [ 'hello' ] }).should.be.false;
     });
   });
 
@@ -41,12 +60,12 @@ describe('Schema Type', function () {
     });
 
     it('should validate with a array', function () {
-      s.validate({ _id: 'test', arr: [ 'hello', 1 ] }).should.be.ok;
+      s.validate({ arr: [ 'hello', 1 ] }).should.be.true;
     });
 
     it('should not validate with other types', function () {
-      s.validate({ _id: 'test', arr: 1 }).should.not.be.ok;
-      s.validate({ _id: 'test', arr: 'hello' }).should.not.be.ok;
+      s.validate({ arr: 1 }).should.be.false;
+      s.validate({ arr: 'hello' }).should.be.false;
     });
   });
 
