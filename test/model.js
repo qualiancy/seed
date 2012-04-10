@@ -48,10 +48,9 @@ describe('Model', function () {
 
     it('should understand types', function () {
       var model = new Model(null, { type: 'person' });
-      model.type.should.be.person;
-      var Person = Model.extend('person');
-      Person.prototype._type.should.equal('person');
-      var person = new Person();
+      model.type.should.equal('person');
+      var Person = Model.extend('person')
+        , person = new Person();
       person.type.should.equal('person');
       try {
         // this errors on node 0.4.x but not 0.6.x
