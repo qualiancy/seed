@@ -73,6 +73,54 @@ describe('Model', function () {
     });
   });
 
+  describe('flags', function () {
+    var model = new Seed.Model();
+
+    beforeEach(function () {
+      model.off();
+    });
+
+    it('should be able to set a single flag', function () {
+      var spy = chai.spy(function (val) {
+        val.should.equal('universe');
+      });
+      model.on([ 'flag', 'hello' ], spy);
+      model.flag('hello', 'universe');
+      model._flags.get('hello').should.equal('universe');
+      spy.should.have.been.called.once;
+    });
+
+    it('should be able to set a single flag silently', function () {
+      var spy = chai.spy(function (val) {
+        val.should.equal('universe');
+      });
+      model.on([ 'flag', 'hello' ], spy);
+      model.flag('hello', 'universe', true);
+      model._flags.get('hello').should.equal('universe');
+      spy.should.have.been.not_called;
+    });
+
+    it('should be able to set a flag array', function () {
+      var spy = chai.spy(function (val) {
+        val.should.equal('universe');
+      });
+      model.on([ 'flag', '*' ], spy);
+      model.flag([ 'world', 'universe' ], 'universe');
+      model._flags.get('hello').should.equal('universe');
+      spy.should.have.been.called.twice;
+    });
+
+    it('should be able to set a flag array silently', function () {
+      var spy = chai.spy(function (val) {
+        val.should.equal('universe');
+      });
+      model.on([ 'flag', '*' ], spy);
+      model.flag([ 'world', 'universe' ], 'universe', true);
+      model._flags.get('hello').should.equal('universe');
+      spy.should.have.been.not_called;
+    });
+  });
+
   describe('managing attributes', function () {
     var model = new Seed.Model();
     it('should allow for attributes to be `set`', function () {
