@@ -1,4 +1,29 @@
 
+0.2.4 / 2012-04-11 
+==================
+
+  * [clean] code cleanup
+  * [bug] Graph using storage successfully
+  * [refactor] Graph#extend to pass along store flag
+  * [test] Graph#flag
+  * [refactor] Graph#flags
+  * [refactor] Schema#castAstype
+  * [package] only node >= 0.6.x compatible now
+  * [docs] schema comments
+  * [bug] type noop setter
+  * code cleanup
+  * [refactor] model handles schema ensure index of `_id`.
+  * [test] model test formatting
+  * [refactor] model to use flags for storage of store, schema, type, parent
+  * [test] Model#flag
+  * [refactor] Model#flag
+  * [test] added boolean schema type test
+  * [feature] added boolean schema type
+  * [bug] schema existence datum checks
+  * Merge branch 'feature/schema-latlng'
+  * [tests] geospatial schema type
+  * [feature] added geospatial schema type
+
 0.2.3 / 2012-03-26 
 ==================
 
