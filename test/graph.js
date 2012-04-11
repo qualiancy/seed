@@ -88,30 +88,59 @@ describe('Graph', function () {
   describe('instance utilities', function () {
     var g = new Graph();
 
-    it('should be able to have arbitrary flags', function () {
-      var spy = chai.spy(function (v) {
-        v.should.be.ok;
-      });
-
-      should.not.exist(g.flag('testing'));
-      should.not.exist(g.flag('hello'));
-
-      g.on([ 'flag', 'testing' ], spy);
-
-      g.flag('testing', true).should.be.ok;
-      g.flag('testing').should.be.ok;
-      g.flag(['testing','hello'], true);
-      g.flag('hello').should.be.ok;
-
-      spy.should.have.been.called.twice;
-    });
-
     it('should know its types', function () {
       g.define('person', { _id: String });
       g.types.should.include('person');
     });
   });
 
+  describe('flags', function () {
+    var g = new Seed.Graph();
+
+    beforeEach(function () {
+      g.off();
+    });
+
+    it('should be able to set a single flag', function () {
+      var spy = chai.spy(function (val) {
+        val.should.equal('universe');
+      });
+      g.on([ 'flag', 'hello' ], spy);
+      g.flag('hello', 'universe');
+      g._flags.get('hello').should.equal('universe');
+      spy.should.have.been.called.once;
+    });
+
+    it('should be able to set a single flag silently', function () {
+      var spy = chai.spy(function (val) {
+        val.should.equal('universe');
+      });
+      g.on([ 'flag', 'hello' ], spy);
+      g.flag('hello', 'universe', true);
+      g._flags.get('hello').should.equal('universe');
+      spy.should.have.been.not_called;
+    });
+
+    it('should be able to set a flag array', function () {
+      var spy = chai.spy(function (val) {
+        val.should.equal('universe');
+      });
+      g.on([ 'flag', '*' ], spy);
+      g.flag([ 'world', 'universe' ], 'universe');
+      g._flags.get('hello').should.equal('universe');
+      spy.should.have.been.called.twice;
+    });
+
+    it('should be able to set a flag array silently', function () {
+      var spy = chai.spy(function (val) {
+        val.should.equal('universe');
+      });
+      g.on([ 'flag', '*' ], spy);
+      g.flag([ 'world', 'universe' ], 'universe', true);
+      g._flags.get('hello').should.equal('universe');
+      spy.should.have.been.not_called;
+    });
+  });
   describe('type definitions', function () {
     var g = new Graph();
 
