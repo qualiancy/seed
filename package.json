@@ -13,7 +13,7 @@
     "test": "make test"
   },
   "engines": {
-    "node": ">= v0.4.8"
+    "node": ">= v0.6.0"
   },
   "dependencies": {
     "drip": "0.2.x",

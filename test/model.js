@@ -52,10 +52,7 @@ describe('Model', function () {
       var Person = Model.extend('person')
         , person = new Person();
       person.type.should.equal('person');
-      try {
-        // this errors on node 0.4.x but not 0.6.x
-        person.type = 'alien';
-      } catch (ex) {}
+      person.type = 'alien';
       person.type.should.not.equal('alien');
       person.type.should.equal('person');
     });
