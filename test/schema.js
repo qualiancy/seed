@@ -14,6 +14,12 @@ describe('Schema', function () {
       age: Number
     });
 
+    it('should know what fields are required', function () {
+      s.required.should.have.length(1);
+      s.required.has('name').should.be.true;
+      s.required.has('age').should.be.false;
+    });
+
     it('should validate when required field included', function () {
       s.validate({ _id: 'test', name: 'Seed' }).should.be.ok;
     });
@@ -34,6 +40,13 @@ describe('Schema', function () {
       }
     });
 
+    it('should know what fields are required', function () {
+      s.required.should.have.length(1);
+      s.required.has('name.first').should.be.true;
+      s.required.has('name').should.be.false;
+      s.required.has('name.last').should.be.false;
+    });
+
     it('should validate when required fields included', function () {
       var p = {
         _id: 'test'
@@ -48,7 +61,6 @@ describe('Schema', function () {
 
     it('should not validate if data for parent not object', function () {
       var p = { _id: 'test', name: 'Node.js' };
-
       s.validate(p).should.not.be.ok;
     });
 
@@ -71,10 +83,15 @@ describe('Schema', function () {
           , index: true
         }
       , name: String
+      , location: {
+            type: Schema.Type.Geospatial
+          , index: '2d'
+        }
     });
 
     it('should recognize the index', function () {
-      s.indexes.has('_id').should.be.true;
+      s.indexes.should.have.length(2);
+      s.indexes.keys.should.include('_id', 'location');
     });
 
     it('should validate if an index is provided', function () {
@@ -84,6 +101,5 @@ describe('Schema', function () {
     it('should not validate if the wrong type of index is provided', function() {
       s.validate({ _id: 42 }).should.be.false;
     });
-
   });
 });
