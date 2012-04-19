@@ -30,17 +30,47 @@ describe('Schema Type', function () {
 
     it('should validate with the proper values', function () {
       var address = new Address({ _id: 123, zip: 12345 });
+
       PersonSchema.validate({
           name: 'John Smith'
         , address: address
+      }).should.be.true;
+
+      PersonSchema.validate({
+          name: 'John Smith'
+        , address: {
+              $ref: 'address'
+            , $id: 123
+          }
       }).should.be.true;
     });
 
     it('should not validate with improper values', function () {
       var address = new Model({ zip: 12345 });
+
       PersonSchema.validate({
           name: 'John Smith'
         , address: address
+      }).should.be.false;
+
+      PersonSchema.validate({
+          name: 'John Smith'
+        , address: {}
+      }).should.be.false;
+
+      PersonSchema.validate({
+          name: 'John Smith'
+        , address: {
+              $ref: 'address'
+          }
+      }).should.be.false;
+
+      PersonSchema.validate({
+          name: 'John Smith'
+        , address: {
+              $ref: 'person'
+            , $id: 123
+          }
       }).should.be.false;
     });
   });
