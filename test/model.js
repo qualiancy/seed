@@ -31,7 +31,7 @@ describe('Model', function () {
       model._flags.should.be.instanceof(Seed.Hash);
       model.should.respondTo('flag');
       model.flag('new').should.be.true;
-      model.flag('dirty').should.be.ture;
+      model.flag('dirty').should.be.true;
       model.should.respondTo('initialize');
       should.exist(model.id);
     });
