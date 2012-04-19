@@ -48,7 +48,8 @@ tardis.relate(williams, pond, 'companion');
 tardis._relations.each(function (rel, key) {
   var namex = rel.flag('x').get('name')
     , namey = rel.flag('y').get('name')
-    , rel = rel.flag('relation');
-  console.log(namex + ' is ' + rel + ' to ' + namey);
+    , relation = rel.flag('relation');
+  console.log(namex + ' is ' + relation + ' to ' + namey);
+  console.log(rel.attributes);
 });
 
