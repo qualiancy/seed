@@ -31,7 +31,7 @@ describe('Model', function () {
       model._flags.should.be.instanceof(Seed.Hash);
       model.should.respondTo('flag');
       model.flag('new').should.be.true;
-      model.flag('dirty').should.be.ture;
+      model.flag('dirty').should.be.true;
       model.should.respondTo('initialize');
       should.exist(model.id);
     });
@@ -62,7 +62,7 @@ describe('Model', function () {
       Model.toString().should.equal('[object Model]');
       var m = new Model();
       m.should.respondTo('toString');
-      m.toString().should.equal('[object ModelItem]');
+      m.toString().should.equal('[object Model]');
       var p = new Model(null, { type: 'person' });
       p.should.respondTo('toString');
       p.toString().should.equal('[object Person]');
