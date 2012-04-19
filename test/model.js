@@ -62,7 +62,7 @@ describe('Model', function () {
       Model.toString().should.equal('[object Model]');
       var m = new Model();
       m.should.respondTo('toString');
-      m.toString().should.equal('[object ModelItem]');
+      m.toString().should.equal('[object Model]');
       var p = new Model(null, { type: 'person' });
       p.should.respondTo('toString');
       p.toString().should.equal('[object Person]');
