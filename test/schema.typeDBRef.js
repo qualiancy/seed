@@ -29,7 +29,7 @@ describe('Schema Type', function () {
     });
 
     it('should validate with the proper values', function () {
-      var address = new Address({ zip: 12345 });
+      var address = new Address({ _id: 123, zip: 12345 });
       PersonSchema.validate({
           name: 'John Smith'
         , address: address
