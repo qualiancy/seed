@@ -61,7 +61,7 @@ describe('Graph', function () {
 
   describe('constructor', function () {
     var n = 0
-      , graph = Graph.extend({
+      , graph = Graph.extend('people', {
           initialize: function () {
             n++;
           }
@@ -83,14 +83,22 @@ describe('Graph', function () {
       Graph.toString().should.equal('[object Graph]');
     });
 
-  });
-
-  describe('instance utilities', function () {
-    var g = new Graph();
-
     it('should know its types', function () {
       g.define('person', { _id: String });
       g.types.should.include('person');
+    });
+  });
+
+  describe('configuration', function () {
+    it('should understand types', function () {
+      var graph = new Graph({ type: 'people' });
+      graph.type.should.equal('people');
+      var People = Graph.extend('people')
+        , people = new People();
+      people.type.should.equal('people');
+      people.type = 'aliens';
+      people.type.should.not.equal('aliens');
+      people.type.should.equal('people');
     });
   });
 
@@ -141,6 +149,7 @@ describe('Graph', function () {
       spy.should.have.been.not_called;
     });
   });
+
   describe('type definitions', function () {
     var g = new Graph();
 
