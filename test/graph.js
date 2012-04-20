@@ -322,6 +322,5 @@ describe('Graph', function () {
       g.should.have.length(2);
       spy.calls.length.should.equal(1);
     });
-
   });
 });
