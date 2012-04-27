@@ -13,7 +13,7 @@ var People = Seed.Graph.extend({
 });
 
 var smith = new Person({
-    name: 'John Smith'
+    name: 'The Doctor'
 });
 
 var song = new Person({
@@ -39,17 +39,71 @@ tardis.set(williams);
 // this.relate(x, y, relation, reciprocate);
 // read: x is relation to y
 
-tardis.relate(smith, song, 'married', true);
-tardis.relate(pond, williams, 'married', true);
+tardis.relate(smith, song, 'married');
+tardis.relate(song, smith, 'married');
+
+tardis.relate(pond, williams, 'married');
+tardis.relate(williams, pond, 'married');
 
 tardis.relate(pond, smith, 'companion');
 tardis.relate(williams, pond, 'companion');
 
-tardis._relations.each(function (rel, key) {
-  var namex = rel.flag('x').get('name')
-    , namey = rel.flag('y').get('name')
-    , relation = rel.flag('relation');
+tardis._edges.each(function (rel, key) {
+  var namex = rel.get('x').get('name')
+    , namey = rel.get('y').get('name')
+    , relation = rel.get('rel');
   console.log(namex + ' is ' + relation + ' to ' + namey);
-  console.log(rel.attributes);
 });
 
+console.log('');
+
+var trav1 = tardis.traverse(pond);
+
+trav1
+  .out
+  .exec(function (err, hash) {
+    console.log('Amy\'s has relationships with..');
+    hash.each(function (model) {
+      console.log(model.get('name'));
+    });
+  });
+
+console.log('');
+
+var trav2 = tardis.traverse(pond);
+
+trav2
+  .outE('married')
+  .exec(function (err, hash) {
+    hash.each(function (edge) {
+      var x = edge.get('x').get('name')
+        , y = edge.get('y').get('name');
+      console.log(x + ' is ' + edge.get('rel') + ' to ' + y);
+    });
+  });
+
+console.log('');
+
+var trav3 = tardis.traverse(smith);
+
+trav3
+  .in
+  .exec(function (err, hash) {
+    hash.each(function (model) {
+      console.log(model.get('name'));
+    });
+  });
+
+console.log('');
+
+var trav4 = tardis.traverse(smith);
+
+trav4
+  .inE
+  .exec(function (err, hash) {
+    hash.each(function (edge) {
+      var x = edge.get('x').get('name')
+        , y = edge.get('y').get('name');
+      console.log(x + ' is ' + edge.get('rel') + ' to ' + y);
+    });
+  });
