@@ -57,4 +57,9 @@ describe('Graph Theory', function () {
       people._edges.should.have.length(0);
     });
   });
+
+  describe('Edge Storage', function () {
+
+  });
+
 });
