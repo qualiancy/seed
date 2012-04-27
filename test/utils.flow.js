@@ -43,4 +43,41 @@ describe('Flow Utils', function () {
     });
   });
 
+  describe('Queue', function () {
+    it('should process a queue of asysc calls', function (done) {
+      var arr = [ 1, 2, 3, 4, 5, 6 ]
+        , count = 1;
+
+      var queue = new Seed.utils.Queue(function (num, next) {
+        count.should.be.equal(num);
+        setTimeout(function () {
+          count++;
+          count.should.equal(num + 1);
+          if (num == 6) return done();
+          next();
+        }, 10);
+      });
+
+      arr.forEach(function (n) { queue.push(n); });
+    });
+
+    it('should concurrently process a queue of asysc calls', function (done) {
+      var arr = [ 1, 2, 3, 4, 5, 6 ]
+        , active = 0;
+
+      var queue = new Seed.utils.Queue(2, function (num, next) {
+        active++;
+        active.should.be.below(3);
+        setTimeout(function () {
+          active.should.be.below(3);
+          active--;
+          if (num == 6) return done();
+          next();
+        }, 10);
+      });
+
+      arr.forEach(function (n) { queue.push(n); });
+    });
+  });
+
 });
