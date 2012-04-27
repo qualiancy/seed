@@ -12,6 +12,7 @@ describe('Graph Theory', function () {
   it('should provide the graph theory methods', function () {
     Graph.should.respondTo('relate');
     Graph.should.respondTo('unrelate');
+    Graph.should.respondTo('traverse');
   });
 
   describe('Edge', function () {
