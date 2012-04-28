@@ -1,4 +1,37 @@
 
+0.2.5 / 2012-04-27 
+==================
+
+  * [bug] Schema#validatePath was throwing a reference error
+  * Merge branch 'feature/graph-theory'
+  * [refactor] file restructure
+  * [refactor] code clean for Graph/Model
+  * [refactor] Graph/Model # toString
+  * [feature] Graph now has type (same implementation as model)
+  * [refactor] clean up relation prototype
+  * [feature] added Model.prototype.DBRef helper
+  * [feature] basic relations Graph
+  * [example] graph relationships
+  * Merge branch 'feature/relations'
+  * [refactor] file restructure
+  * [refactor] code clean for Graph/Model
+  * [refactor] Graph/Model # toString
+  * [feature] Graph now has type (same implementation as model)
+  * [refactor] clean up relation prototype
+  * [feature] added Model.prototype.DBRef helper
+  * [feature] basic relations Graph
+  * [example] graph relationships
+  * [feature] Model.attributes configurable getter
+  * [bug] Model/Graph constructor correctly calls initialize with all arguments
+  * [feature] Graph#del supports `graph.del(model_instance)`
+  * [feature] Graph#has supports `graph.has(model_instance)`
+  * [feature] Graph#set supports `graph.set(model_instance)`
+  * [refactor] Graph#set events
+  * [bug] Graph#define not setting correct object
+  * [bug] EmbeddedSchema.validate referencing wrong value
+  * [feature] support for nested schemas
+  * [bug] schema required/indexes support nonboolean indicators
+
 0.2.4 / 2012-04-11 
 ==================
 
