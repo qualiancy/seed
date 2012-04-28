@@ -57,6 +57,9 @@ describe('Schema', function () {
         };
 
       s.validate(p).should.be.ok;
+      s.validatePath('name.first', 'Node').should.be.true;
+      s.validatePath('name.first', 12).should.be.false;
+      s.validatePath('name.first', undefined).should.be.false;
     });
 
     it('should not validate if data for parent not object', function () {
