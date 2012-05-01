@@ -57,9 +57,10 @@ tardis._edges.each(function (rel, key) {
 
 console.log('');
 
-var trav1 = tardis.traverse(pond);
+var trav1 = tardis.traverse();
 
 trav1
+  .select(pond)
   .out
   .end(function (err, hash) {
     console.log('Amy\'s has relationships with..');
@@ -70,9 +71,10 @@ trav1
 
 console.log('');
 
-var trav2 = tardis.traverse(pond);
+var trav2 = tardis.traverse();
 
 trav2
+  .select(pond)
   .outE('married')
   .end(function (err, hash) {
     hash.each(function (edge) {
@@ -84,9 +86,10 @@ trav2
 
 console.log('');
 
-var trav3 = tardis.traverse(smith);
+var trav3 = tardis.traverse();
 
 trav3
+  .select(smith)
   .in
   .end(function (err, hash) {
     hash.each(function (model) {
@@ -96,9 +99,10 @@ trav3
 
 console.log('');
 
-var trav4 = tardis.traverse(smith);
+var trav4 = tardis.traverse();
 
 trav4
+  .select(smith)
   .inE
   .end(function (err, hash) {
     hash.each(function (edge) {
