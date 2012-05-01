@@ -88,6 +88,7 @@ describe('Graph Traversal', function () {
         .out
         .end(function (err, hash) {
           should.not.exist(err);
+          hash.should.be.instanceof(Hash);
           hash.should.have.length(2);
           hash.keys.should.include('/person/' + williams.id, '/person/' + doctor.id);
           done();
@@ -101,6 +102,7 @@ describe('Graph Traversal', function () {
         .out('married')
         .end(function (err, hash) {
           should.not.exist(err);
+          hash.should.be.instanceof(Hash);
           hash.should.have.length(1);
           hash.at(0).should.eql(williams);
           done();
@@ -114,6 +116,7 @@ describe('Graph Traversal', function () {
         .outE
         .end(function (err, hash) {
           should.not.exist(err);
+          hash.should.be.instanceof(Hash);
           hash.should.have.length(2);
           hash.each(function (e) {
             e.should.be.instanceof(Edge);
@@ -130,6 +133,7 @@ describe('Graph Traversal', function () {
         .outE('married')
         .end(function (err, hash) {
           should.not.exist(err);
+          hash.should.be.instanceof(Hash);
           hash.should.have.length(1);
           hash.at(0).should.be.instanceof(Edge);
           hash.at(0).get('x').should.eql(pond);
@@ -146,6 +150,7 @@ describe('Graph Traversal', function () {
         .in
         .end(function (err, hash) {
           should.not.exist(err);
+          hash.should.be.instanceof(Hash);
           hash.should.have.length(2);
           hash.keys.should.include('/person/' + song.id, '/person/' + pond.id);
           done();
@@ -159,6 +164,7 @@ describe('Graph Traversal', function () {
         .in('married')
         .end(function (err, hash) {
           should.not.exist(err);
+          hash.should.be.instanceof(Hash);
           hash.should.have.length(1);
           hash.at(0).should.eql(song);
           done();
@@ -172,6 +178,7 @@ describe('Graph Traversal', function () {
         .inE
         .end(function (err, hash) {
           should.not.exist(err);
+          hash.should.be.instanceof(Hash);
           hash.should.have.length(2);
           hash.each(function (e) {
             e.should.be.instanceof(Edge);
@@ -188,6 +195,7 @@ describe('Graph Traversal', function () {
         .inE('companion')
         .end(function (err, hash) {
           should.not.exist(err);
+          hash.should.be.instanceof(Hash);
           hash.should.have.length(1);
           hash.at(0).should.be.instanceof(Edge);
           hash.at(0).get('x').should.eql(pond);
