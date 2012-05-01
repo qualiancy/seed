@@ -1,5 +1,7 @@
 var Seed = require('..');
 
+var store = new Seed.MemoryStore;
+
 var Person = Seed.Model.extend('person', {
     schema: new Seed.Schema({
         'name': String
@@ -8,6 +10,7 @@ var Person = Seed.Model.extend('person', {
 
 var People = Seed.Graph.extend({
     initialize: function () {
+      this.store = store;
       this.define(Person);
     }
 });
@@ -111,3 +114,4 @@ trav4
       console.log(x + ' is ' + edge.get('rel') + ' to ' + y);
     });
   });
+
