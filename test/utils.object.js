@@ -77,5 +77,18 @@ describe('Object Utilities', function () {
       });
     });
 
+    it('should work for complex nested objects', function () {
+      var a = {
+        b: {
+          c: {
+            d: 'hello universe'
+          }
+        }
+      }
+
+      var b = dm({}, a);
+      b.should.eql({ b: { c: { d: 'hello universe' } } });
+    });
+
   });
 });
