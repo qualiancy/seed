@@ -206,4 +206,60 @@ describe('Graph Traversal', function () {
     });
   });
 
+  describe('Live Traversal', function () {
+    var Person = Model.extend('person')
+      , store = new Seed.MemoryStore()
+      , g = new Graph({ type: 'static', store: store })
+      , doctor = new Person({ name: 'The Doctor' })
+      , song = new Person({ name: 'River Song' })
+      , pond = new Person({ name: 'Amy Pond' })
+      , williams = new Person({ name: 'Rory Williams' });
+
+    before(function (done) {
+      g.define(Person);
+
+      g.set(doctor);
+      g.set(song);
+      g.set(pond);
+      g.set(williams);
+
+      g.relate(doctor, song, 'married');
+      g.relate(song, doctor, 'married');
+      g.relate(pond, williams, 'married');
+      g.relate(williams, pond, 'married');
+      g.relate(pond, doctor, 'companion');
+      g.relate(williams, pond, 'companion');
+
+      g.push(function (err) {
+        if (err) throw err;
+        done();
+      });
+    });
+
+    beforeEach(function () {
+      g.flush();
+    });
+
+    it('should allow for a `out` EDGES', function (done) {
+      g.should.have.length(0);
+      g._edges.should.have.length(0);
+
+      g.set(pond);
+      var traverse = g.traverse({ live: true });
+      traverse
+        .select(pond)
+        .outE
+        .end(function (err, hash) {
+          should.not.exist(err);
+          hash.should.be.instanceof(Hash);
+          hash.should.have.length(2);
+          hash.each(function (e) {
+            e.should.be.instanceof(Edge);
+            e.get('x').should.eql(pond);
+          });
+          done();
+        });
+    });
+  });
+
 });
