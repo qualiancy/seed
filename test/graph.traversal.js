@@ -245,6 +245,7 @@ describe('Graph Traversal', function () {
       g._edges.should.have.length(0);
 
       g.set(pond);
+
       var traverse = g.traverse({ live: true });
       traverse
         .select(pond)
@@ -257,6 +258,29 @@ describe('Graph Traversal', function () {
             e.should.be.instanceof(Edge);
             e.get('x').should.eql(pond);
           });
+          done();
+        });
+    });
+
+    it('should allow for a `out` relation filtered EDGES', function (done) {
+      g.should.have.length(0);
+      g._edges.should.have.length(0);
+
+      g.set(pond);
+
+      var traverse = g.traverse({ live: true });
+      traverse
+        .select(pond)
+        .outE('married')
+        .end(function (err, hash) {
+          should.not.exist(err);
+          hash.should.be.instanceof(Hash);
+          hash.should.have.length(1);
+
+          var edge = hash.at(0);
+          edge.should.be.instanceof(Edge);
+          edge.get('x').should.eql(pond);
+          edge.get('y.$id').should.equal(williams.id);
           done();
         });
     });
