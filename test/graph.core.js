@@ -24,7 +24,7 @@ function Spy (fn) {
   return proxy;
 }
 
-describe('Graph', function () {
+describe('Graph Core', function () {
 
   var Person = Seed.Model.extend('person', {})
     , Location = Seed.Model.extend('location', {});
@@ -322,6 +322,5 @@ describe('Graph', function () {
       g.should.have.length(2);
       spy.calls.length.should.equal(1);
     });
-
   });
 });

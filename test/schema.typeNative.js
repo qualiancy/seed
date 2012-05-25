@@ -69,4 +69,19 @@ describe('Schema Type', function () {
     });
   });
 
+  describe('Object', function () {
+    var s = new Schema({
+      obj: Object
+    });
+
+    it('should validate with an object', function () {
+      s.validate({ obj: { testing: 1 } }).should.be.true;
+    });
+
+    it('should not validate with other types', function () {
+      s.validate({ obj: [ 1, 2 ] }).should.be.false;
+      s.validate({ obj: 'hello world' }).should.be.false;
+    });
+  });
+
 });
