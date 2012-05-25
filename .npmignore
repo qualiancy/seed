@@ -1,2 +1,11 @@
+.git*
+support/
+test/
+examples/
+benchmarks/
+.DS_Store
+coverage.html
 lib-cov
-node_modules
+.travis.yml
+Makefile
+.mailmap
