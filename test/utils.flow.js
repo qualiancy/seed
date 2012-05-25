@@ -53,12 +53,12 @@ describe('Flow Utils', function () {
         setTimeout(function () {
           count++;
           count.should.equal(num + 1);
-          if (num == 6) return done();
           next();
         }, 10);
       });
 
       arr.forEach(function (n) { queue.push(n); });
+      queue.start(done);
     });
 
     it('should concurrently process a queue of asysc calls', function (done) {
@@ -71,12 +71,12 @@ describe('Flow Utils', function () {
         setTimeout(function () {
           active.should.be.below(3);
           active--;
-          if (num == 6) return done();
           next();
         }, 10);
       });
 
       arr.forEach(function (n) { queue.push(n); });
+      queue.start(done);
     });
   });
 
