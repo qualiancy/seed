@@ -6,8 +6,16 @@ var Seed = require('..')
   , Model = Seed.Model
   , Graph = Seed.Graph;
 
-var Edge = require('../lib/seed/graph/edge/model')
-  , Traversal = require('../lib/seed/graph/traversal');
+var Edge
+  , Traversal;
+
+if (process.env.SEED_COV) {
+  Edge = require('../lib-cov/seed/graph/edge/model');
+  Traversal = require('../lib-cov/seed/graph/traversal');
+} else {
+  Edge = require('../lib/seed/graph/edge/model');
+  Traversal = require('../lib/seed/graph/traversal');
+}
 
 describe('Graph Traversal', function () {
 

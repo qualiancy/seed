@@ -5,7 +5,13 @@ var Seed = require('..')
   , Model = Seed.Model
   , Graph = Seed.Graph;
 
-var Edge = require('../lib/seed/graph/edge/model');
+var Edge;
+
+if (process.env.SEED_COV) {
+  Edge = require('../lib-cov/seed/graph/edge/model');
+} else {
+  Edge = require('../lib/seed/graph/edge/model');
+}
 
 describe('Graph Edges', function () {
   var Person = Model.extend('person')
