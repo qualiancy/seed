@@ -284,6 +284,51 @@ describe('Graph Traversal', function () {
           done();
         });
     });
+
+    it('should allow for `in` EDGES', function (done) {
+      g.should.have.length(0);
+      g._edges.should.have.length(0);
+
+      g.set(pond);
+
+      var traverse = g.traverse({ live: true });
+      traverse
+        .select(pond)
+        .inE
+        .end(function (err, hash) {
+          should.not.exist(err);
+          hash.should.be.instanceof(Hash);
+          hash.should.have.length(2);
+          hash.each(function (e) {
+            e.should.be.instanceof(Edge);
+            e.get('y').should.eql(pond);
+          });
+          done();
+        });
+    });
+
+    it('should allow for a `in` relation filtered EDGES', function (done) {
+      g.should.have.length(0);
+      g._edges.should.have.length(0);
+
+      g.set(pond);
+
+      var traverse = g.traverse({ live: true });
+      traverse
+        .select(pond)
+        .inE('married')
+        .end(function (err, hash) {
+          should.not.exist(err);
+          hash.should.be.instanceof(Hash);
+          hash.should.have.length(1);
+
+          var edge = hash.at(0);
+          edge.should.be.instanceof(Edge);
+          edge.get('y').should.eql(pond);
+          edge.get('x.$id').should.equal(williams.id);
+          done();
+        });
+    });
   });
 
 });
