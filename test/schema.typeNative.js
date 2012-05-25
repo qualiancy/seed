@@ -82,6 +82,10 @@ describe('Schema Type', function () {
       s.validate({ obj: [ 1, 2 ] }).should.be.false;
       s.validate({ obj: 'hello world' }).should.be.false;
     });
+
+    it('should be able to get the value', function () {
+      s.getValue({ obj: { testing: 1 }}).should.eql({ obj: { testing: 1 }});
+    });
   });
 
 });
