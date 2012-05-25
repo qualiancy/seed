@@ -368,6 +368,45 @@ describe('Graph Traversal', function () {
           done();
         });
     });
+
+    it('should allow for `in` VERTICES', function (done) {
+      g.should.have.length(0);
+      g._edges.should.have.length(0);
+
+      g.set(doctor);
+
+      var traverse = g.traverse({ live: true });
+      traverse
+        .select(doctor)
+        .in
+        .end(function (err, hash) {
+          should.not.exist(err);
+          hash.should.be.instanceof(Hash);
+          hash.should.have.length(2);
+          hash.keys.should.include('/person/' + pond.id, '/person/' + song.id);
+          done();
+        });
+    });
+
+    it('should allow for `in` filtered VERTICES', function (done) {
+      g.should.have.length(0);
+      g._edges.should.have.length(0);
+
+      g.set(doctor);
+
+      var traverse = g.traverse({ live: true });
+      traverse
+        .select(doctor)
+        .in('married')
+        .end(function (err, hash) {
+          should.not.exist(err);
+          hash.should.be.instanceof(Hash);
+          hash.should.have.length(1);
+          hash.at(0).id.should.equal(song.id);
+          hash.at(0).get('name').should.equal(song.get('name'));
+          done();
+        });
+    });
   });
 
 });
