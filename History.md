@@ -1,4 +1,111 @@
 
+0.3.0 / 2012-05-25 
+==================
+
+  * test coverage support
+  * case sensitive #2
+  * case sensitive
+  * no longer checking versions
+  * Merge branch 'feature/graph-theory'
+  * refactor command vertices for proper callback structure
+  * improved Queue flow helper
+  * graph edge fetching uses DBRef schema type to ensure clean references
+  * model schema detection typo
+  * DBRef schema type supports bson format
+  * refactor Queue flow utility to use start + callback
+  * tests for in vertices live
+  * refactor vertices traversal to use base and smarter concurrency
+  * parallel flow bug
+  * tests for live out vertices
+  * refactored outVertices to support live traversal
+  * refactored edge model fetch x/y methods
+  * tests for live in Edges
+  * allow a queue to be cancelled
+  * Graph#traverse `inEdges` command supports live mode
+  * finished tests for Graph#traverse `live` out edges command
+  * graph helper fetchEdges now properly works with dbrefs
+  * Store#sync abides to Model schemas
+  * Graph edge compatible with object type and Schema#getValue
+  * added Schema#getValue to allow for "prepared" model attributes
+  * nested deepMerge bug fix for undefined properties
+  * added schema type `object` tests
+  * added schema type `object`
+  * Schema Types all have #getValue helper
+  * starting tests for live traversals
+  * Graph traverse command outEdges can do live queries
+  * relations example using memory store
+  * Graph#flush also flushes edges if we are flushing everything
+  * test for deep merging
+  * deep merge utility
+  * [bug] Graph#set using existing model needs to set parent
+  * refactor Graph helper to fetch edges to support x/y/undef  type of pulls
+  * clean up Graph#each / flush
+  * graph helpers comment header
+  * [refactor] graph private functions into helper dependancy
+  * traverse and should return instance of hash
+  * static traversal tests
+  * Graph#traverse doesn't automatically select
+  * [bug] pull only pull non-new .. needed way to overwrite using option.force
+  * Graph private helper functions :: getEdge and pullEdge
+  * graph pull edges non-new
+  * comment cleanup
+  * [bug] fulfilled misspelled
+  * DRY Graph `refreshLookups`
+  * code styling for graph traversal
+  * Merge branch 'feature/graph-theory' of github.com:qualiancy/seed into feature/graph-theory
+  * starting graph traversal tests
+  * [refactor] Graph#push // Graph#pull to use flow concurrency queue and refresh lookups
+  * graph clean up
+  * renamed test files for easier group running
+  * refactored relations example
+  * Added Traversal#flag. Refactored so parent is a flag.
+  * util flow Queue tests
+  * added util flow Queue
+  * changed flow util `waterfall` to `concurrent` as it inappropriately named
+  * update relations example
+  * traverse command inEdges
+  * traverse command outEdges
+  * traverse command inVertices
+  * traverse command loader
+  * traverse command outVertices
+  * Graph#traverse command
+  * starting graph traversal. Traversal object
+  * added async flow control utils
+  * edge model loading vertices
+  * [bug] Graph!#refreshLookups also cleans Graph#_edges lookups
+  * [feature] Graph#relate / Graph#unrelate + Edge Model
+  * [feature] Model#validate as public method for self schema validation
+  * [bug] SchemaType#DBRef validates for returned dbref values
+  * [refactor] Graph internally stores constructed models in `_vertices`
+  * [feature] Schema.Type.DBRef include property getter `value`
+  * [feature] added SchemaType.DBRef
+  * starting graph traversal tests
+  * [refactor] Graph#push // Graph#pull to use flow concurrency queue and refresh lookups
+  * graph clean up
+  * renamed test files for easier group running
+  * refactored relations example
+  * Added Traversal#flag. Refactored so parent is a flag.
+  * util flow Queue tests
+  * added util flow Queue
+  * changed flow util `waterfall` to `concurrent` as it inappropriately named
+  * update relations example
+  * traverse command inEdges
+  * traverse command outEdges
+  * traverse command inVertices
+  * traverse command loader
+  * traverse command outVertices
+  * Graph#traverse command
+  * starting graph traversal. Traversal object
+  * added async flow control utils
+  * edge model loading vertices
+  * [bug] Graph!#refreshLookups also cleans Graph#_edges lookups
+  * [feature] Graph#relate / Graph#unrelate + Edge Model
+  * [feature] Model#validate as public method for self schema validation
+  * [bug] SchemaType#DBRef validates for returned dbref values
+  * [refactor] Graph internally stores constructed models in `_vertices`
+  * [feature] Schema.Type.DBRef include property getter `value`
+  * [feature] added SchemaType.DBRef
+
 0.2.5-1 / 2012-04-27 
 ==================
 
