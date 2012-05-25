@@ -1,4 +1,10 @@
 
+0.3.1 / 2012-05-25 
+==================
+
+  * clean npm ignore
+  * bug - object schema type getValue returned circular reference
+
 0.3.0 / 2012-05-25 
 ==================
 
