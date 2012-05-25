@@ -18,8 +18,7 @@
   "dependencies": {
     "drip": "0.2.x",
     "oath": "0.2.x",
-    "filtr": "0.2.x",
-    "semver": "1.0.x"
+    "filtr": "0.2.x"
   },
   "devDependencies": {
     "mocha": "*",
