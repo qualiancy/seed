@@ -1,4 +1,10 @@
 
+0.3.2 / 2012-05-27 
+==================
+
+  * graph fetched models pass into schema validation
+  * bug - if model has schema, use schema#getValue to ensure correct format
+
 0.3.1 / 2012-05-25 
 ==================
 
