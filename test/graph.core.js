@@ -195,9 +195,13 @@ describe('Graph Core', function () {
     });
 
     it('should allow data to be set by address', function () {
-      g.set('person', arthur._id, arthur);
-      g.set('person', ford._id, ford);
+      var a = g.set('person', arthur._id, arthur)
+        , f = g.set('person', ford._id, ford);
       g.length.should.equal(2);
+      a.id.should.equal(arthur._id);
+      f.id.should.equal(ford._id);
+      a._attributes.should.deep.equal(arthur);
+      f._attributes.should.deep.equal(ford);
     });
 
     it('should have called all callbacks', function () {
