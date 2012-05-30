@@ -1,4 +1,14 @@
 
+0.3.3 / 2012-05-30 
+==================
+
+  * added ObjectId schema type
+  * MemoryStore is simulates async using nextTick
+  * tests for Hash#reduce and Hash#mapReduce
+  * Hash#mapReduce
+  * Hash#reduce
+  * bug - Graph#set wasn't setting object id before returning newly constructed model
+
 0.3.2 / 2012-05-27 
 ==================
 
