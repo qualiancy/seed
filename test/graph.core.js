@@ -7,23 +7,6 @@ chai.use(chaispies);
 var Seed = require('../lib/seed')
   , Graph = Seed.Graph;
 
-function Spy (fn) {
-  if (!fn) fn = function() {};
-
-  function proxy() {
-    var args = Array.prototype.slice.call(arguments);
-    proxy.calls.push(args);
-    proxy.called = true;
-    fn.apply(this, args);
-  }
-
-  proxy.prototype = fn.prototype;
-  proxy.calls = [];
-  proxy.called = false;
-
-  return proxy;
-}
-
 describe('Graph Core', function () {
 
   var Person = Seed.Model.extend('person', {})
@@ -73,10 +56,10 @@ describe('Graph Core', function () {
     });
 
     it('should emit events', function () {
-      var spy = Spy();
+      var spy = chai.spy();
       g.on('test', spy);
       g.emit('test');
-      spy.calls.length.should.equal(1);
+      spy.should.have.been.called.once;
     });
 
     it('should define itself as a graph', function () {
@@ -183,7 +166,7 @@ describe('Graph Core', function () {
 
   describe('adding basic data', function () {
     var g = new Graph()
-      , spy = Spy(function (person) {
+      , spy = chai.spy(function (person) {
           should.exist(person);
           person.flag('type').should.equal('person');
       });
@@ -205,7 +188,7 @@ describe('Graph Core', function () {
     });
 
     it('should have called all callbacks', function () {
-      spy.calls.length.should.equal(2);
+      spy.should.have.been.called.twice;
     });
   });
 
@@ -310,21 +293,45 @@ describe('Graph Core', function () {
     });
 
     it('should allow flushing', function () {
-      var spy = Spy();
+      var spy = chai.spy();
       g.should.have.length(4);
       g.on([ 'flush', 'all' ], spy);
       g.flush();
       g.should.have.length(0);
-      spy.calls.length.should.equal(1);
+      spy.should.have.been.called.once;
     });
 
     it('should allow flushing by type', function () {
-      var spy = Spy();
+      var spy = chai.spy();
       g.should.have.length(4);
       g.on([ 'flush', 'person'], spy);
       g.flush('person');
       g.should.have.length(2);
-      spy.calls.length.should.equal(1);
+      spy.should.have.been.called.once;
     });
   });
+
+  describe('using schema', function () {
+    var PersonSchema = new Seed.Schema({
+        _id: Seed.Schema.Type.ObjectId
+      , name: String
+      , stats: Object
+    });
+
+    var Spaceman = Person.extend('spaceman', { schema: PersonSchema })
+      , graph = new Seed.Graph('spacemen')
+      , spaceman;
+
+    before(function () {
+      graph.define(Spaceman);
+    });
+
+    it('can set attributes of a new model', function () {
+      var spaceman = graph.set('spaceman', arthur);
+      spaceman.should.have.property('_attributes')
+        .deep.equal(arthur);
+    });
+
+  });
+
 });
