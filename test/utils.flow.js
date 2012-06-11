@@ -44,6 +44,15 @@ describe('Flow Utils', function () {
   });
 
   describe('Queue', function () {
+    it('should process an empty queue', function () {
+      var queue = new Seed.utils.Queue(function () {})
+        , called = false;
+      queue.start(function () {
+        called = true;
+      });
+      called.should.be.true;
+    });
+
     it('should process a queue of asysc calls', function (done) {
       var arr = [ 1, 2, 3, 4, 5, 6 ]
         , count = 1;
