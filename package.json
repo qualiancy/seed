@@ -16,7 +16,7 @@
     "node": ">= v0.6.0"
   },
   "dependencies": {
-    "drip": "0.2.x",
+    "drip": "0.3.x",
     "oath": "0.2.x",
     "filtr": "0.2.x"
   },
