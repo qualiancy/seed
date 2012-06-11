@@ -1,4 +1,11 @@
 
+0.3.5 / 2012-06-11 
+==================
+
+  * queue flow utility calls callback immediately if queue is empty
+  * refactor memory store to not error on non-existent group
+  * test for empty traversal
+
 0.3.4 / 2012-06-11 
 ==================
 
