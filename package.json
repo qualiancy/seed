@@ -18,8 +18,9 @@
   "dependencies": {
       "breeze": "0.2.x"
     , "drip": "0.3.x"
-    , "oath": "0.2.x"
     , "filtr": "0.3.x"
+    , "oath": "0.2.x"
+    , "super": "0.2.x"
   },
   "devDependencies": {
     "mocha": "*",
