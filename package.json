@@ -20,7 +20,7 @@
     , "drip": "0.3.x"
     , "filtr": "0.3.x"
     , "oath": "0.2.x"
-    , "sol": "0.1.x"
+    , "sol": "0.2.x"
     , "super": "0.2.x"
   },
   "devDependencies": {
