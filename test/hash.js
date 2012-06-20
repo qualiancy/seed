@@ -62,17 +62,6 @@ describe('Hash', function () {
         hash.length.should.equal(expected_length);
       });
 
-      it('should emit `set` event', function () {
-        var hash = new Hash()
-          , n = 0;
-
-        hash.on('set:*', function () {
-          n++;
-        });
-
-        hash.set('hello', 'world');
-        n.should.equal(1);
-      });
     });
 
     describe('HAS', function () {
@@ -104,19 +93,6 @@ describe('Hash', function () {
         hash.length.should.equal(0);
       });
 
-      it('should emit `delete` event', function () {
-        var hash = new Hash()
-          , n = 0;
-
-        hash.on('delete:*', function () {
-          n++;
-        });
-
-        hash.set('hello', 'world');
-        hash.del('hello');
-
-        n.should.equal(1);
-      });
     });
   });
 
