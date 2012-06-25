@@ -1,4 +1,45 @@
 
+0.4.0 / 2012-06-25 
+==================
+
+  * Merge branch 'refactor/basehash'
+  * update all require references to hash to point to base hash
+  * move hash to base as its no longer a core constructor
+  * Merge branch 'feature/loadvert'
+  * loadref can function without graph present if incoming model is of same type
+  * add model `loadRef` as model dbref loader
+  * Tests for #8
+  * model construction forge merge. Closes #8.
+  * model set/merge/save/fetch cleanup
+  * Merge branch 'refactor/hash'
+  * using sol as basis for hash
+  * using sol 0.2.x
+  * added sol dependancy
+  * Merge branch 'refactor/use-super'
+  * graph traversal and commands using super
+  * schema type using super
+  * base extenders using super
+  * removed utilts/object/eextend in favor of super supported self extension
+  * graph using super
+  * model using super
+  * store uses super
+  * schema using super
+  * hash using super instead of node.utils
+  * add super dependancy
+  * Merge branch 'refactor/flow'
+  * fix bug blocking Graph#fetch
+  * graph model uses breeze for flow control
+  * graph edge/vertice traversal can support empty input
+  * clean up select graph traversal
+  * graph traverse edges refactored to use base
+  * graph traversal vertices use proper flow
+  * graph refactored to use queue from breeze
+  * rename emptyFn to noop
+  * using async nextTick in memorystore
+  * remove old flow utils, include breeze as `async` as base/async, add to main export
+  * use breeze as base/flow
+  * add breeze, update filtr
+
 0.3.5 / 2012-06-11 
 ==================
 
