@@ -105,4 +105,31 @@ describe('Schema', function () {
       s.validate({ _id: 42 }).should.be.false;
     });
   });
+
+  describe('model integration', function () {
+
+    it('can be set to a model', function () {
+      var m = new Seed.Model()
+        , s = new Schema();
+      s.indexes.should.have.length(0);
+      m.schema = s;
+      m.schema.should.deep.equal(s);
+      s.indexes.should.have.length(1);
+    });
+
+    it('can validate a models data', function () {
+      var s = new Schema({ name: { type: String, required: true }})
+        , M = Seed.Model.extend('test', { schema: s })
+        , m = new M({ name: 1234 });
+      m.get('name').should.equal(1234);
+      m.validate().should.be.false;
+      var notvalid = m.set('name', 1111);
+      notvalid.should.be.false;
+      m.get('name').should.equal(1234);
+      var valid = m.set('name', 'Arthur Dent');
+      valid.should.be.true;
+      m.get('name').should.equal('Arthur Dent');
+    });
+
+  });
 });
