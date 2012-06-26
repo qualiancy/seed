@@ -82,7 +82,7 @@ describe('MemoryStore', function () {
 
         confirm.fetch(function (err) {
           should.exist(err);
-          err.should.be.instanceof(Seed.SeedError);
+          err.should.be.instanceof(Seed.errors.store._proto);
           done();
         });
       });
