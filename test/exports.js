@@ -22,20 +22,6 @@ describe('Exports', function () {
     Seed.should.respondTo('Graph');
   });
 
-  it('should respond to custom error', function () {
-    Seed.should.respondTo('SeedError');
-    (function () {
-      throw new Seed.SeedError();
-    }).should.throw(Seed.SeedError);
-    (function () {
-      throw new Seed.SeedError('testing');
-    }).should.throw(/^testing$/);
-
-    var err = new Seed.SeedError('testing', { testing: true });
-    err.stack.indexOf('SeedError').should.be.above(-1);
-    err.toJSON().should.be.a('object');
-  });
-
   it('should respond to utilities', function () {
     Seed.should.have.property('utils');
     Seed.utils.should.respondTo('merge');
