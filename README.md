@@ -4,13 +4,13 @@
 
 Seed is a suite of components (Graph, Model, Schema, Hash) that provide a common API for working with JSON-style 
 documents, regardless of the storage engine. Additionally, Seed can layer a graph structure to facilitate the 
-traversal of data relationships.
+traversal of data relationships between documents of the same or different model types.
 
-- **Hashs** provide a thorough API for key:value sets. These sets can be simple string key to number value, or 
+- **Hash**: A thorough API for non-persistent key:value sets. These sets can be simple string key to number value, or 
 string key to object/document value. Hashs are used extensively througout the internals of the other components.
 - **Schema**: A schema is a definition of data structure expecatations and are currently used for validation. Those
 who have used Mongoose will find the API familiar.
-- **Model**: A model defines all aspects and behavior related to a single instance in a set. More specifically, 
+- **Model**: A model defines all aspects and behavior related to a single data object in a set. More specifically, 
 when used in conjunction with storage, a model represents one document in a collection or one row in a table. 
 - **Graph**: A graph is a collection of instantiated models. A graph allows for logical groupings of several 
 types of models, querying of storage, and traversal of model relationships. 
