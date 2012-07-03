@@ -1,4 +1,11 @@
 
+0.4.3 / 2012-07-03 
+==================
+
+  * recommit Hash#sortBy
+  * add notes on traversal to readme
+  * add readme link to kinetik
+
 0.4.2 / 2012-06-28 
 ==================
 
