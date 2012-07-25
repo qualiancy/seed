@@ -16,18 +16,18 @@
     "node": ">= v0.6.0"
   },
   "dependencies": {
-      "breeze": "0.3.x"
+      "breeze": "0.4.x"
     , "dragonfly": "0.2.x"
     , "drip": "0.3.x"
     , "filtr": "0.3.x"
     , "oath": "0.2.x"
-    , "sol": "0.2.x"
+    , "sol": "0.3.x"
     , "super": "0.2.x"
   },
   "devDependencies": {
     "mocha": "*",
     "chai": "*",
     "chai-spies": "*",
-    "matcha": "0.1.x"
+    "matcha": "0.2.x"
   }
 }
