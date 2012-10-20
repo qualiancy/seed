@@ -1,16 +1,7 @@
-var chai = require('chai')
-  , chaispies = require('chai-spies')
-  , should = chai.should();
-
-chai.use(chaispies);
-
-var Seed = require('../lib/seed')
-  , Graph = Seed.Graph;
-
 describe('Graph Core', function () {
-
-  var Person = Seed.Model.extend('person', {})
-    , Location = Seed.Model.extend('location', {});
+  var Graph = seed.Graph
+    , Person = seed.Model.extend('person', {})
+    , Location = seed.Model.extend('location', {});
 
   var arthur = {
       _id: 'arthur'
@@ -86,7 +77,7 @@ describe('Graph Core', function () {
   });
 
   describe('flags', function () {
-    var g = new Seed.Graph();
+    var g = new seed.Graph();
 
     beforeEach(function () {
       g.off();
@@ -142,7 +133,7 @@ describe('Graph Core', function () {
     });
 
     it('should be able to accept a schema instance', function () {
-      var s = new Seed.Schema({
+      var s = new seed.Schema({
         name: String
       });
 
@@ -206,13 +197,13 @@ describe('Graph Core', function () {
     it('should provide a hash when find by attr', function () {
       var res = g.find({ 'name' : { $eq: 'Arthur Dent' } });
       res.should.have.length(1);
-      res.should.be.instanceof(Seed.Hash);
+      res.should.be.instanceof(seed.Hash);
     });
 
     it('should allow for filter by type', function () {
       var res = g.filter('person');
       res.should.have.length(2);
-      res.should.be.instanceof(Seed.Hash);
+      res.should.be.instanceof(seed.Hash);
     });
 
     it('should allow for filter by iterator', function () {
@@ -220,7 +211,7 @@ describe('Graph Core', function () {
         return m.get('stats.occupation') == 'traveller';
       });
       res.should.have.length(2);
-      res.should.be.instanceof(Seed.Hash);
+      res.should.be.instanceof(seed.Hash);
     });
 
     it('should allow for filter by type + iterator', function () {
@@ -228,7 +219,7 @@ describe('Graph Core', function () {
         return m.id == 'arthur';
       });
       res.should.have.length(1);
-      res.should.be.instanceof(Seed.Hash);
+      res.should.be.instanceof(seed.Hash);
     });
 
     it('should returned undefined for bad formed filter', function () {
@@ -239,13 +230,13 @@ describe('Graph Core', function () {
     it('should allow for filter then find', function () {
       var res = g.filter('person').find({ 'name': { $eq: 'Arthur Dent' }});
       res.should.have.length(1);
-      res.should.be.instanceof(Seed.Hash);
+      res.should.be.instanceof(seed.Hash);
     });
 
     it('should allow for filters by nested attribute', function () {
       var res = g.find({ 'stats.species' : { $eq: 'human' } });
       res.should.have.length(1);
-      res.should.be.instanceof(Seed.Hash);
+      res.should.be.instanceof(seed.Hash);
     });
 
   });
@@ -312,14 +303,14 @@ describe('Graph Core', function () {
   });
 
   describe('using schema', function () {
-    var PersonSchema = new Seed.Schema({
-        _id: Seed.Schema.Type.ObjectId
+    var PersonSchema = new seed.Schema({
+        _id: seed.Schema.Type.ObjectId
       , name: String
       , stats: Object
     });
 
     var Spaceman = Person.extend('spaceman', { schema: PersonSchema })
-      , graph = new Seed.Graph('spacemen')
+      , graph = new seed.Graph('spacemen')
       , spaceman;
 
     before(function () {

@@ -1,9 +1,5 @@
-var should = require('chai').should();
-
-var Seed = require('..')
-  , MemoryStore = Seed.MemoryStore;
-
 describe('MemoryStore', function () {
+  var MemoryStore = seed.MemoryStore;
 
   describe('constructor', function () {
 
@@ -19,7 +15,7 @@ describe('MemoryStore', function () {
     // store uses hash so we can compare expectations.
     var store = new MemoryStore();
 
-    var Person = Seed.Model.extend('person', {
+    var Person = seed.Model.extend('person', {
         store: store
     });
 
@@ -82,7 +78,7 @@ describe('MemoryStore', function () {
 
         confirm.fetch(function (err) {
           should.exist(err);
-          err.should.be.instanceof(Seed.errors.store._proto);
+          err.should.be.instanceof(seed.errors.store._proto);
           done();
         });
       });
@@ -92,12 +88,12 @@ describe('MemoryStore', function () {
 
   describe('CRUD from Graph', function () {
     var store = new MemoryStore()
-      , graph = new Seed.Graph({
+      , graph = new seed.Graph({
           store: store
         });
 
-    var Person = Seed.Model.extend('person', {})
-      , Location = Seed.Model.extend('location', {});
+    var Person = seed.Model.extend('person', {})
+      , Location = seed.Model.extend('location', {});
 
     graph.define(Person);
     graph.define(Location);
@@ -142,8 +138,8 @@ describe('MemoryStore', function () {
 
       graph.push(function (err) {
         should.not.exist(err);
-        store.store.person.should.be.instanceof(Seed.Hash);
-        store.store.location.should.be.instanceof(Seed.Hash);
+        store.store.person.should.be.instanceof(seed.Hash);
+        store.store.location.should.be.instanceof(seed.Hash);
         store.store.person.should.have.length(2);
         store.store.location.should.have.length(2);
         done();

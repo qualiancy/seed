@@ -1,9 +1,5 @@
-var should = require('chai').should();
-
-var Seed = require('..')
-  , Schema = Seed.Schema;
-
 describe('Schema', function () {
+  var Schema = seed.Schema;
 
   describe('required data', function () {
     var s = new Schema({
@@ -21,7 +17,7 @@ describe('Schema', function () {
     });
 
     it('should validate when required field included', function () {
-      s.validate({ _id: 'test', name: 'Seed' }).should.be.ok;
+      s.validate({ _id: 'test', name: 'seed' }).should.be.ok;
     });
 
     it('should not validate when required field is missing', function () {
@@ -109,7 +105,7 @@ describe('Schema', function () {
   describe('model integration', function () {
 
     it('can be set to a model', function () {
-      var m = new Seed.Model()
+      var m = new seed.Model()
         , s = new Schema();
       s.indexes.should.have.length(0);
       m.schema = s;
@@ -119,7 +115,7 @@ describe('Schema', function () {
 
     it('can validate a models data', function () {
       var s = new Schema({ name: { type: String, required: true }})
-        , M = Seed.Model.extend('test', { schema: s })
+        , M = seed.Model.extend('test', { schema: s })
         , m = new M({ name: 1234 });
       m.get('name').should.equal(1234);
       m.validate().should.be.false;

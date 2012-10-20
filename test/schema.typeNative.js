@@ -1,9 +1,5 @@
-var should = require('chai').should();
-
-var Seed = require('..')
-  , Schema = Seed.Schema;
-
 describe('Schema Type', function () {
+  var Schema = seed.Schema;
 
   describe('Boolean', function () {
     var s = new Schema({

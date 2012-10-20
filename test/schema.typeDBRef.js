@@ -1,10 +1,6 @@
-var should = require('chai').should();
-
-var Seed = require('..')
-  , Schema = Seed.Schema
-  , Model = Seed.Model;
-
 describe('Schema Type', function () {
+  var Model = seed.Model
+    , Schema = seed.Schema;
 
   describe('DBRef', function () {
     var Address = Model.extend('address')

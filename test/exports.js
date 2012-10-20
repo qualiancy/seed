@@ -1,45 +1,40 @@
-var chai = require('chai')
-  , should = chai.should();
-
-var Seed = require('..');
-
 describe('Exports', function () {
 
   it('should have a valid version', function () {
-    Seed.version.should.match(/^\d+\.\d+\.\d+$/);
+    seed.version.should.match(/^\d+\.\d+\.\d+$/);
   });
 
   it('should respond to utility constructors', function () {
-    Seed.should.respondTo('Promise');
-    Seed.should.respondTo('EventEmitter');
-    Seed.should.respondTo('Query');
+    seed.should.respondTo('Promise');
+    seed.should.respondTo('EventEmitter');
+    seed.should.respondTo('Query');
   });
 
   it('should respond to main constructors', function () {
-    Seed.should.respondTo('Schema');
-    Seed.should.respondTo('Hash');
-    Seed.should.respondTo('Model');
-    Seed.should.respondTo('Graph');
+    seed.should.respondTo('Schema');
+    seed.should.respondTo('Hash');
+    seed.should.respondTo('Model');
+    seed.should.respondTo('Graph');
   });
 
   it('should respond to utilities', function () {
-    Seed.should.have.property('utils');
-    Seed.utils.should.respondTo('merge');
-    Seed.utils.should.respondTo('Flake');
+    seed.should.have.property('utils');
+    seed.utils.should.respondTo('merge');
+    seed.utils.should.respondTo('Flake');
   });
 
   it('should respond to unique id strategies', function () {
-    Seed.should.respondTo('Flake');
-    Seed.should.respondTo('Crystal');
-    var flake = new Seed.Flake();
+    seed.should.respondTo('Flake');
+    seed.should.respondTo('Crystal');
+    var flake = new seed.Flake();
     flake.should.respondTo('gen');
-    var crystal = new Seed.Crystal();
+    var crystal = new seed.Crystal();
     crystal.should.respondTo('gen');
   });
 
   it('should respond to storage', function () {
-    Seed.should.respondTo('Store');
-    Seed.should.respondTo('MemoryStore');
+    seed.should.respondTo('Store');
+    seed.should.respondTo('MemoryStore');
   });
 
 });
