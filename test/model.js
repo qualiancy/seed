@@ -1,13 +1,6 @@
-var chai = require('chai')
-  , chaispies = require('chai-spies')
-  , should = chai.should();
-
-chai.use(chaispies);
-
-var Seed = require('..')
-  , Model = Seed.Model;
-
 describe('Model', function () {
+  var Model = seed.Model;
+
   describe('configuration', function () {
 
     it('should be an event emitter', function () {
@@ -28,7 +21,7 @@ describe('Model', function () {
       var model = new Model({ hello: 'universe' });
       model.should.have.property('_attributes')
         .and.have.property('hello', 'universe');
-      model._flags.should.be.instanceof(Seed.Hash);
+      model._flags.should.be.instanceof(seed.Hash);
       model.should.respondTo('flag');
       model.flag('new').should.be.true;
       model.flag('dirty').should.be.true;
@@ -70,7 +63,7 @@ describe('Model', function () {
   });
 
   describe('flags', function () {
-    var model = new Seed.Model();
+    var model = new Model();
 
     beforeEach(function () {
       model.off();
@@ -118,7 +111,7 @@ describe('Model', function () {
   });
 
   describe('managing attributes', function () {
-    var model = new Seed.Model();
+    var model = new Model();
     it('should allow for attributes to be `set`', function () {
       model.set('hello', 'universe');
       model._attributes.hello.should.equal('universe');

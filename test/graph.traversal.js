@@ -1,23 +1,9 @@
-var chai = require('chai')
-  , should = chai.should();
-
-var Seed = require('..')
-  , Hash = Seed.Hash
-  , Model = Seed.Model
-  , Graph = Seed.Graph;
-
-var Edge
-  , Traversal;
-
-if (process.env.SEED_COV) {
-  Edge = require('../lib-cov/seed/graph/edge/model');
-  Traversal = require('../lib-cov/seed/graph/traversal');
-} else {
-  Edge = require('../lib/seed/graph/edge/model');
-  Traversal = require('../lib/seed/graph/traversal');
-}
-
 describe('Graph Traversal', function () {
+  var Edge = __seed.graph.Edge
+    , Hash = seed.Hash
+    , Graph = seed.Graph
+    , Model = seed.Model
+    , Traversal = __seed.graph.Traversal;
 
   describe('Construction', function () {
     var g = new Graph({ type: 'test1' })
@@ -236,7 +222,7 @@ describe('Graph Traversal', function () {
 
   describe('Live Traversal', function () {
     var Person = Model.extend('person')
-      , store = new Seed.MemoryStore()
+      , store = new seed.MemoryStore()
       , g = new Graph({ type: 'static', store: store })
       , doctor = new Person({ name: 'The Doctor' })
       , song = new Person({ name: 'River Song' })

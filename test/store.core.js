@@ -1,11 +1,5 @@
-var should = require('chai').should();
-
-var Seed = require('..')
-  , Store = Seed.Store;
-
-var Oath = require('oath');
-
 describe('Store', function () {
+  var Store = seed.Store;
 
   it('should have the proper drip settings', function () {
     var store = new Store();

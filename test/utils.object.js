@@ -1,12 +1,7 @@
-var chai = require('chai')
-  , should = chai.should();
-
-var Seed = require('..');
-
 describe('Object Utilities', function () {
 
   describe('deepMerge', function () {
-    var dm = Seed.utils.deepMerge;
+    var dm = seed.utils.deepMerge;
 
     it('should work for simple objects', function () {
       var a = {

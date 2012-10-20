@@ -1,20 +1,8 @@
-var chai = require('chai')
-  , should = chai.should();
-
-var Seed = require('..')
-  , Model = Seed.Model
-  , Graph = Seed.Graph;
-
-var Edge;
-
-if (process.env.SEED_COV) {
-  Edge = require('../lib-cov/seed/graph/edge/model');
-} else {
-  Edge = require('../lib/seed/graph/edge/model');
-}
-
 describe('Graph Edges', function () {
-  var Person = Model.extend('person')
+  var Edge = __seed.graph.Edge
+    , Graph = seed.Graph
+    , Model = seed.Model
+    , Person = Model.extend('person')
     , people = new Graph({ type: 'people' });
 
   var smith = new Person({ name: 'John Smith' })

@@ -1,13 +1,8 @@
-var chai = require('chai')
-  , should = chai.should();
-
-var Seed = require('..')
-  , Hash = Seed.Hash;
-
 var fs = require('fs')
   , path = require('path');
 
 describe('Hash', function () {
+  var Hash = seed.Hash;
 
   var data_raw = fs.readFileSync(path.join(__dirname, 'fixtures', 'countries.json'), 'utf-8')
     , data = JSON.parse(data_raw)
