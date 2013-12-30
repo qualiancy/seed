@@ -1,11 +1,6 @@
-.git*
-support/
-test/
-examples/
-benchmarks/
-.DS_Store
-coverage.html
-lib-cov
+/docs/
+/test/
+/coverage/
 .travis.yml
 Makefile
-.mailmap
+*.swp
