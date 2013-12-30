@@ -1,33 +1,37 @@
 {
-  "author": "Jake Luer <jake@alogicalparadox.com>",
   "name": "seed",
-  "description": "Storage-agnostic, event emitting datasets: schemas, models, hashes, and graphs.",
-  "keyword": [ "database", "db", "storage", "schema", "model", "collection" ],
   "version": "0.4.4",
+  "author": "Jake Luer <jake@alogicalparadox.com>",
+  "description": "Storage-agnostic, event emitting datasets: schemas, models, hashes, and graphs.",
+  "keyword": [
+    "database",
+    "db",
+    "storage",
+    "schema",
+    "model",
+    "collection"
+  ],
   "repository": {
     "type": "git",
     "url": "git://github.com/qualiancy/seed.git"
   },
   "main": "index",
   "scripts": {
-    "test": "make test"
+    "test": "node_modules/goodwin/bin/goodwin --harmony"
   },
   "engines": {
     "node": ">= v0.6.0"
   },
   "dependencies": {
-      "breeze": "0.4.x"
-    , "dragonfly": "0.2.x"
-    , "drip": "0.3.x"
-    , "filtr": "0.3.x"
-    , "oath": "0.2.x"
-    , "sol": "0.3.x"
-    , "super": "0.2.x"
+    "breeze": "0.4.x",
+    "drip": "~1.3.1",
+    "dragonfly": "0.2.x",
+    "oath": "~1.0.0",
+    "super": "0.2.x",
+    "co": "~3.0.1"
   },
   "devDependencies": {
-    "mocha": "*",
-    "chai": "*",
-    "chai-spies": "*",
-    "matcha": "0.2.x"
+    "goodwin": "https://github.com/logicalparadox/goodwin/tarball/master",
+    "matcha": "~0.4.1"
   }
 }
