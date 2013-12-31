@@ -4,36 +4,32 @@
  * MIT Licensed
  */
 
-var Seed = module.exports = {};
-
-Seed.version = '0.4.4';
-
-// Utility Constructors
-Seed.Query = require('./seed/base/query');
-Seed.Hash = require('./seed/base/hash');
+// version
+exports.version = '1.0.0-alpha';
 
 // Custom Errors
-Seed.errors = {};
-Seed.errors.model = require('./seed/errors/model');
-Seed.errors.graph = require('./seed/errors/graph');
-Seed.errors.store = require('./seed/errors/store');
+exports.errors = {};
+exports.errors.model = require('./lib/errors/model');
+exports.errors.graph = require('./lib/errors/graph');
+exports.errors.store = require('./lib/errors/store');
 
-// Seed Constructors
-Seed.Schema = require('./seed/schema');
-Seed.Model = require('./seed/model');
-Seed.Graph = require('./seed/graph');
+// exports Constructors
+exports.Filter = require('./lib/filter');
+exports.Hash = require('./lib/hash');
+exports.Struct = require('./lib/struct');
+exports.Model = require('./lib/model');
+exports.Graph = require('./lib/graph');
 
 // Utils
-Seed.utils = require('./seed/utils');
-Seed.async = require('./seed/base/async');
+exports.utils = require('./lib/utils');
 
 // Unique ID Strategies
-Seed.ObjectId = Seed.utils.Flake;
-Seed.Flake = Seed.utils.Flake;
-Seed.Crystal = Seed.utils.Crystal;
+exports.ObjectId = exports.utils.Flake;
+exports.Flake = exports.utils.Flake;
+exports.Crystal = exports.utils.Crystal;
 
 // Expose storage prototype for extending
-Seed.Store = require('./seed/store');
+exports.Store = require('./lib/store');
 
 // Build-in storage modules
-Seed.MemoryStore = require('./seed/stores/memory.js');
+exports.MemoryStore = require('./lib/stores/memory.js');

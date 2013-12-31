@@ -28,6 +28,10 @@
     "drip": "~1.3.1",
     "dragonfly": "0.2.x",
     "oath": "~1.0.0",
+    "params": "https://github.com/vesln/params/tarball/refactor/nextgen",
+    "pathval": "~0.1.1",
+    "type-detect": "~0.1.2",
+    "sherlock": "~1.1.0",
     "super": "0.2.x"
   },
   "devDependencies": {
